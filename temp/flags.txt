@@ -1,0 +1,10 @@
+liste des flags disponible par conv
+char : minus ( cas ou c'est 1 traiter la with si flags minus = 0 -> return nbr carac + 1)
+hexa : dot (dot = 0 traiter la width)
+int : minus, dot, zero ( cas dot = 0 -> traiter width)
+percent : minus ( traiter width)
+pointer: dot, minus ( traiter la width)
+string : dot, minus
+
+---------------
+fix the norme in the github ( global scope)
