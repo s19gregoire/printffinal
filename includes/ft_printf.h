@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <limits.h>
 # include "libft.h"
 
 typedef struct		s_print
@@ -60,5 +61,6 @@ t_print *ft_initialise_tab(t_print *mytab);
 void ft_update_char_counts(t_print *mytab, int pos);
 int convert_to_hex(int nb);
 void	ft_putchar(char c);
+char		*ft_unsigned_itoa(unsigned int nb);
 
 # endif
