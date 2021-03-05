@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_output_string.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/02/27 11:42:59 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/04 09:21:43 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_output_string(t_print *mytab, const char *format, int pos)
+int	ft_output_string(t_print *mytab, const char *format, int pos)
 {
 	char *s;
 	int i;
@@ -39,7 +39,7 @@ int ft_output_string(t_print *mytab, const char *format, int pos)
 				write(1, " ", 1);
 		}
 	}
-	while(s[++i])
+	while (s[++i])
 		write(1, &s[i], 1);
 	return (pos);
 }

@@ -8,3 +8,7 @@ string : dot, minus
 
 ---------------
 fix the norme in the github ( global scope)
+int	ft_eval_input : 33 lines
+int	ft_output_char : 27 lines
+int	convert_to_hex : 26 lines
+int	ft_output_string : 27 lines
