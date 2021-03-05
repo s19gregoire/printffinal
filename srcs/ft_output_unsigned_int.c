@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/05 09:39:45 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/05 10:41:52 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,17 @@ char		*ft_unsigned_itoa(unsigned int nb)
 	return (a);
 }
 
-
-int ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
+int			ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 {
-	int i;
-	unsigned int j;
-	char *num;
+	int				i;
+	unsigned int	j;
+	char			*num;
 
 	i = 0;
 	j = va_arg(mytab->args, int);
 	(void)format;
 	num = ft_unsigned_itoa(j);
-	while(num[i])
+	while (num[i])
 		write(1, &num[i++], 1);
 	free(num);
 	mytab->total_length += i;

@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/04 09:20:20 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/05 10:42:42 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	ft_output_hexa_int(t_print *mytab, const char *format, int pos)
 {
-	int i;
-	int j;
-	char *num;
+	int		i;
+	int		j;
+	char	*num;
 
 	i = 0;
 	j = va_arg(mytab->args, int);

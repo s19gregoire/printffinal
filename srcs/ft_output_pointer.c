@@ -1,45 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_int.c                                    :+:      :+:    :+:   */
+/*   ft_output_pointer.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/02 16:05:56 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/05 10:52:56 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-// void	convert_to_hex(unsigned char c)
-// {
-// 	char *base;
-//
-// 	base = "0123456789abcdef";
-// 	if (str[i] < 32 || str[i] > 126)
-// 		convert_to_hex(str[i]);
-// 	else
-// 		write(1, &str[i], 1);
-// 	str++;
-//
-// }
-
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-int	convert_to_hex(int nb)
+int		convert_to_hex(int nb)
 {
 	long int	i;
-	long		len_base;
-	char *base;
-	int l;
+	char		*base;
+	int			l;
 
 	i = nb;
-	len_base = 16;
 	base = "0123456789abcdef";
 	l = 1;
 	if (i < 0)
@@ -47,21 +32,21 @@ int	convert_to_hex(int nb)
 		i *= -1;
 		ft_putchar('-');
 	}
-	if (i < len_base)
+	if (i < 16)
 	{
-		ft_putchar(base[i % len_base]);
+		ft_putchar(base[i % 16]);
 		l++;
 	}
 	else
 	{
-		convert_to_hex(i / len_base);
-		ft_putchar(i % len_base + '0');
+		convert_to_hex(i / 16);
+		ft_putchar(i % 16 + '0');
 		l++;
 	}
 	return (l);
 }
 
-int ft_output_pointer(t_print *mytab, const char *format, int pos)
+int		ft_output_pointer(t_print *mytab, const char *format, int pos)
 {
 	int i;
 	int j;
