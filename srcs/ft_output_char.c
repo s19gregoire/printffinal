@@ -19,26 +19,12 @@ int ft_output_char(t_print *mytab, const char *format, int pos)
 
 	a = va_arg(mytab->args, int);
 	(void)format;
-	if (mytab->width > 0)
-	{
-		mytab->total_length += mytab->width;
-		if (mytab->zero == 1)
-		{
-			while (mytab->width-- > 1)
-				write(1, "0", 1);
-			write(1, &a, 1);
-		}
-		else
-		{
-			while (mytab->width-- > 1)
-				write(1, " ", 1);
-			write(1, &a, 1);
-		}
-	}
+	if (mytab->width > 1 && mytab->dash == 0)
+		ft_fill_width(mytab, 1);
+	write(1, &a, 1);
+	if (mytab->dash)
+		ft_fill_width(mytab, 1);
 	else
-	{
-		write(1, &a, 1);
 		mytab->total_length += 1;
-	}
 	return (pos);
 }
