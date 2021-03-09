@@ -22,7 +22,7 @@ int ft_output_char(t_print *mytab, const char *format, int pos)
 	if (mytab->width > 1 && mytab->dash == 0)
 		ft_fill_width(mytab, 1);
 	write(1, &a, 1);
-	if (mytab->dash)
+	if (mytab->width > 1 && mytab->dash == 1)
 		ft_fill_width(mytab, 1);
 	else
 		mytab->total_length += 1;

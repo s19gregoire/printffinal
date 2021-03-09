@@ -25,18 +25,6 @@ void ft_fill_width(t_print *mytab, int len)
 			write(1, " ", 1);
 }
 
-// void ft_fill_width_right(t_print *mytab, int len)
-// {
-// 	mytab->total_length += mytab->width;
-// 	if (mytab->zero == 1)
-// 		while (mytab->width-- > len)
-// 			write(1, "0", 1);
-// 	else
-// 		while (mytab->width-- > len)
-// 			write(1, " ", 1);
-// }
-
-
 int ft_len(int num)
 {
 	int i;
@@ -49,16 +37,14 @@ int ft_len(int num)
 		i++;
 		num /= 10;
 	}
-	return (i - 1);
+	return (i);
 }
 
 int ft_eval_width(t_print *mytab, const char *format, int pos)
 {
 	int i;
 
-	i = 0;
-	while (ft_isdigit(format[pos]))
-		i = i * 10 + ft_atoi(&format[pos++]);
+	i = ft_atoi(&format[pos]);
 	mytab->width = i;
 	pos += ft_len(i);
 	return (pos);
