@@ -40,6 +40,5 @@ int ft_output_char(t_print *mytab, const char *format, int pos)
 		write(1, &a, 1);
 		mytab->total_length += 1;
 	}
-	//printf("%d\n", mytab->total_length);
 	return (pos);
 }

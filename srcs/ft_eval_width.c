@@ -13,6 +13,18 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
+void ft_fill_width(t_print *mytab, int len)
+{
+	mytab->total_length += mytab->width;
+	if (mytab->zero == 1)
+		while (mytab->width-- > len)
+			write(1, "0", 1);
+	else
+		while (mytab->width-- > len)
+			write(1, " ", 1);
+}
+
+
 int ft_len(int num)
 {
 	int i;
