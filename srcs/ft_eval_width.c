@@ -15,6 +15,7 @@
 
 void ft_fill_width(t_print *mytab, int len)
 {
+
 	mytab->total_length += mytab->width;
 	if (mytab->zero == 1)
 		while (mytab->width-- > len)
@@ -23,6 +24,17 @@ void ft_fill_width(t_print *mytab, int len)
 		while (mytab->width-- > len)
 			write(1, " ", 1);
 }
+
+// void ft_fill_width_right(t_print *mytab, int len)
+// {
+// 	mytab->total_length += mytab->width;
+// 	if (mytab->zero == 1)
+// 		while (mytab->width-- > len)
+// 			write(1, "0", 1);
+// 	else
+// 		while (mytab->width-- > len)
+// 			write(1, " ", 1);
+// }
 
 
 int ft_len(int num)

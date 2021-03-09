@@ -63,12 +63,14 @@ int ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	(void)format;
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
-	if (mytab->width > 0 && mytab->width > len)
+	if (mytab->width > 0 && mytab->width > len && mytab->dash == 0)
+		ft_fill_width(mytab,len);
+	while(num[i])
+		write(1, &num[i++], 1);
+	if (mytab->dash)
 		ft_fill_width(mytab,len);
 	else
 		mytab->total_length += len;
-	while(num[i])
-		write(1, &num[i++], 1);
 	free(num);
 	//printf("%d\n", mytab->total_length);
 	return (pos);
