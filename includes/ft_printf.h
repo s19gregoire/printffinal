@@ -66,6 +66,6 @@ int	n_len(long n);
 int ft_len(int num);
 void ft_fill_width_right(t_print *mytab, int len);
 void ft_fill_width_left(t_print *mytab, int len);
-void ft_write_null();
+int ft_write_null(t_print *mytab);
 
 # endif
