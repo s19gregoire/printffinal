@@ -64,6 +64,7 @@ void	ft_putchar(char c);
 char		*ft_unsigned_itoa(unsigned int nb);
 int	n_len(long n);
 int ft_len(int num);
-void ft_fill_width(t_print *mytab, int len);
+void ft_fill_width_right(t_print *mytab, int len);
+void ft_fill_width_left(t_print *mytab, int len);
 
 # endif

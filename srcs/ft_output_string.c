@@ -27,11 +27,11 @@ int ft_output_string(t_print *mytab, const char *format, int pos)
 	s = va_arg(mytab->args, char *);
 	len = ft_strlen(s);
 	if (mytab->width > len && mytab->dash == 0)
-		ft_fill_width(mytab, len);
+		ft_fill_width_right(mytab, len);
 	while(s[i])
 		write(1, &s[i++], 1);
 	if (mytab->width > len && mytab->dash)
-		ft_fill_width(mytab, len);
+		ft_fill_width_left(mytab, len);
 	else
 		mytab->total_length += len;
 	return (pos);

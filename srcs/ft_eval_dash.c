@@ -16,8 +16,7 @@
 int ft_eval_dash(t_print *mytab, const char *format, int pos)
 {
 	pos++;
-	(void)mytab;
-	(void)format;
 	mytab->dash = 1;
+	pos = ft_eval_width(mytab, format, pos);
 	return (pos);
 }
