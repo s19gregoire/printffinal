@@ -16,17 +16,9 @@
 int	ft_eval_dash(t_print *mytab, const char *format, int pos)
 {
 	pos++;
-	(void)mytab;
-	(void)format;
 	mytab->dash = 1;
-	// if (ft_isdigit(format[pos]))
-	// {
-	// 	while (ft_isdigit(format[pos]))
-	// 		i = i * 10 + ft_atoi(&format[pos++]);
-	// 	mytab->precision = i;
-	// 	//pos += ft_len(i);
-	// }
-	// else
-	// 	mytab->precision = 0;
+	while (format[pos] == '-')
+		pos++;
+	pos = ft_eval_width(mytab, format, pos);
 	return (pos);
 }

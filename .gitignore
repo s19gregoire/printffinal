@@ -1,4 +1,9 @@
 .vscode
+<<<<<<< HEAD
 */*.o
 a.out
 *.a
+=======
+a.out
+*/*.o
+>>>>>>> main

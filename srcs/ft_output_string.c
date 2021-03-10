@@ -13,33 +13,59 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
+<<<<<<< HEAD
 int	ft_output_string(t_print *mytab, const char *format, int pos)
+=======
+int ft_write_null(t_print *mytab)
+>>>>>>> main
 {
 	char *s;
 	int i;
-	int l;
 
-	(void)format;
-	(void)pos;
-	if (mytab->point == 1 && mytab->precision == 0)
-		return (pos);
-	i = -1;
-	s = va_arg(mytab->args, char *);
-	l = ft_strlen(s);
-	if (l >= mytab->width)
-		mytab->total_length += l;
-	else
+	s = "(null)";
+	i = 0;
+	if (mytab->width > 0 && mytab->point)
 	{
-		mytab->total_length += mytab->width;
-		while (mytab->width-- > l)
+		while (mytab->width-- > 0)
 		{
-			if (mytab->zero == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
+			write(1, " ", 1);
+			i++;
 		}
 	}
+<<<<<<< HEAD
 	while (s[++i])
 		write(1, &s[i], 1);
+=======
+	else
+		while(s[i])
+			write(1, &s[i++], 1);
+	return (i);
+}
+
+int ft_output_string(t_print *mytab, const char *format, int pos)
+{
+	char *s;
+	int i;
+	int len;
+
+	i = 0;
+	(void)format;
+	s = va_arg(mytab->args, char *);
+	if (s && mytab->point == 1 && mytab->precision == 0)
+		return (pos);
+	if (s)
+		len = ft_strlen(s);
+	if (mytab->width > len && mytab->dash == 0)
+		ft_fill_width_right(mytab, len);
+	if (!s)
+		len = ft_write_null(mytab);
+	else
+		while(s[i])
+			write(1, &s[i++], 1);
+	if (mytab->width > len && mytab->dash)
+		ft_fill_width_left(mytab, len);
+	else
+		mytab->total_length += len;
+>>>>>>> main
 	return (pos);
 }
