@@ -13,6 +13,15 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
+void ft_write_null()
+{
+	char *s;
+
+	s = "(null)";
+	while(*s)
+		write(1, s++, 1);
+}
+
 int ft_output_string(t_print *mytab, const char *format, int pos)
 {
 	char *s;
@@ -25,11 +34,17 @@ int ft_output_string(t_print *mytab, const char *format, int pos)
 		return (pos);
 	i = 0;
 	s = va_arg(mytab->args, char *);
-	len = ft_strlen(s);
+	if (!s)
+		len = 6;
+	else
+		len = ft_strlen(s);
 	if (mytab->width > len && mytab->dash == 0)
 		ft_fill_width_right(mytab, len);
-	while(s[i])
-		write(1, &s[i++], 1);
+	if (!s)
+		ft_write_null();
+	else
+		while(s[i])
+			write(1, &s[i++], 1);
 	if (mytab->width > len && mytab->dash)
 		ft_fill_width_left(mytab, len);
 	else
