@@ -6,19 +6,15 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/04 09:20:03 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/11 10:19:54 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-<<<<<<< HEAD
-int	ft_len(int num)
-=======
-void ft_fill_width_right(t_print *mytab, int len)
+void	ft_fill_width_right(t_print *mytab, int len)
 {
-
 	mytab->total_length += mytab->width - len;
 	if (mytab->zero == 1)
 		while (mytab->width-- > len)
@@ -28,9 +24,8 @@ void ft_fill_width_right(t_print *mytab, int len)
 			write(1, " ", 1);
 }
 
-void ft_fill_width_left(t_print *mytab, int len)
+void	ft_fill_width_left(t_print *mytab, int len)
 {
-
 	mytab->total_length += mytab->width;
 	if (mytab->zero == 1)
 		while (mytab->width-- > len)
@@ -40,8 +35,7 @@ void ft_fill_width_left(t_print *mytab, int len)
 			write(1, " ", 1);
 }
 
-int ft_len(int num)
->>>>>>> main
+int		ft_len(int num)
 {
 	int i;
 
@@ -56,7 +50,7 @@ int ft_len(int num)
 	return (i);
 }
 
-int	ft_eval_width(t_print *mytab, const char *format, int pos)
+int		ft_eval_width(t_print *mytab, const char *format, int pos)
 {
 	int i;
 

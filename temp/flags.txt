@@ -13,11 +13,11 @@ int	ft_output_char : 27 lines
 int	convert_to_hex : 26 lines
 int	ft_output_string : 27 lines
 -------------
-s W
+s W Null
 p
 c W
-i
-u
-d
+i w
+u w
+d w
 x +
 X +
