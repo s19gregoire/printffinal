@@ -21,3 +21,7 @@ u w
 d w
 x +
 X +
+---------------
+removed the 
+//void ft_write_variable(t_print mytab, const char *format, int pos);
+in ft_print.h for comment norms
