@@ -49,7 +49,7 @@ int	ft_unsigned_int(char *s);
 int ft_eval_input(t_print *mytab, const char *format, int pos);
 int ft_eval_variable(t_print *mytab, const char *format, int pos);
 int ft_eval_dash(t_print *mytab, const char *format, int pos);
-int ft_eval_width(t_print *mytab, const char *format, int pos);
+int ft_eval_zero(t_print *mytab, const char *format, int pos);
 int ft_output_char(t_print *mytab, const char *format, int pos);
 int ft_output_string(t_print *mytab, const char *format, int pos);
 int ft_output_int(t_print *mytab, const char *format, int pos);

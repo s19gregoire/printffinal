@@ -30,29 +30,9 @@ int 	ft_eval_variable(t_print *mytab, const char *format, int pos)
 	return (pos);
 }
 
-int ft_eval_precision(t_print *mytab, const char *format, int pos)
-{
-	int i;
-
-	i = 0;
-	pos++;
-	(void)mytab;
-	mytab->point = 1;
-	if (ft_isdigit(format[pos]))
-	{
-		while (ft_isdigit(format[pos]))
-			i = i * 10 + ft_atoi(&format[pos++]);
-		mytab->precision = i;
-		//pos += ft_len(i);
-	}
-	else
-		mytab->precision = 0;
-	return (pos);
-}
-
 int ft_eval_input(t_print *mytab, const char *format, int pos)
 {
-	while (!(ft_isalpha(format[pos])))
+	while (!(ft_isalnum(format[pos])))
 	{
 		// if (format[pos] == ' ' && format[pos + 1] == 's')
 		// {
@@ -64,19 +44,15 @@ int ft_eval_input(t_print *mytab, const char *format, int pos)
 			write(1, "%", 1);
 			break ;
 		}
+		if (format[pos] == '0')
+			pos = ft_eval_zero(mytab, format, pos);
 		if (format[pos] == '-')
 			pos = ft_eval_dash(mytab, format, pos);
 		if (format[pos] == '.')
 			pos = ft_eval_precision(mytab, format, pos);
 		if (format[pos] == '*')
 			pos = ft_eval_width(mytab, format, pos);
-		if (format[pos] == '0')
-		{
-			mytab->zero = 1;
-			pos++;
-		}
-		if (ft_isdigit(format[pos]))
-			break ;
+
 	}
 	if (ft_isdigit(format[pos]))
 		pos = ft_eval_width(mytab, format, pos);
