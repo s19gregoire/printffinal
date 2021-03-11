@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/11 10:24:54 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/11 13:07:03 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ int			ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	else
 		mytab->total_length += len;
 	free(num);
-	//printf("%d\n", mytab->total_length);
 	return (pos);
 }
