@@ -24,12 +24,12 @@ int ft_output_int(t_print *mytab, const char *format, int pos)
 	j = va_arg(mytab->args, int);
 	(void)format;
 	num = ft_itoa(j);
-	len = ft_len(j);
-	if (mytab->width > len && mytab->dash == 0)
+	len = ft_strlen(num);
+	if (mytab->width > mytab->precision && mytab->width > len && mytab->dash == 0)
 		ft_fill_width_right(mytab,len);
 	while(num[i])
 		write(1, &num[i++], 1);
-	if (mytab->width > len && mytab->dash)
+	if (mytab->width > mytab->precision && mytab->width > len && mytab->dash)
 		ft_fill_width_left(mytab,len);
 	else
 		mytab->total_length += len;
