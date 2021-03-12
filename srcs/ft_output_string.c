@@ -20,6 +20,8 @@ int ft_write_null(t_print *mytab)
 
 	s = "(null)";
 	i = 0;
+	if (s && mytab->point == 1 && mytab->precision == 0)
+		return (i);
 	if (mytab->width > 0 && mytab->point)
 	{
 		while (mytab->width-- > 0)
@@ -47,16 +49,21 @@ int ft_output_string(t_print *mytab, const char *format, int pos)
 		return (pos);
 	if (s)
 		len = ft_strlen(s);
-	if (mytab->width > len && mytab->dash == 0)
-		ft_fill_width_right(mytab, len);
+	ft_update_total_length_string(mytab, len);
+	if (!mytab->dash && mytab->width > len)
+		ft_right_justify(mytab, len);
 	if (!s)
 		len = ft_write_null(mytab);
 	else
-		while(s[i])
-			write(1, &s[i++], 1);
-	if (mytab->width > len && mytab->dash)
-		ft_fill_width_left(mytab, len);
-	else
-		mytab->total_length += len;
+	{
+		if (mytab->precision > 0)
+			while(s[i] && mytab->precision--)
+				write(1, &s[i++], 1);
+		else
+			while(s[i])
+				write(1, &s[i++], 1);
+	}
+	if (mytab->dash && mytab->width)
+		ft_left_justify(mytab, len);
 	return (pos);
 }

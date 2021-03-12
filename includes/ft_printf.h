@@ -64,8 +64,12 @@ void	ft_putchar(char c);
 char		*ft_unsigned_itoa(unsigned int nb);
 int	n_len(long n);
 int ft_len(int num);
-void ft_fill_width_right(t_print *mytab, int len);
-void ft_fill_width_left(t_print *mytab, int len);
+void ft_align_right(t_print *mytab, int len);
+void ft_align_left(t_print *mytab, int len);
 int ft_write_null(t_print *mytab);
+void ft_update_total_length(t_print *mytab, int len);
+void ft_left_justify(t_print *mytab, int len);
+void ft_right_justify(t_print *mytab, int len);
+void ft_update_total_length_string(t_print *mytab, int len);
 
 # endif
