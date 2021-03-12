@@ -16,12 +16,16 @@
 void	ft_fill_width_right(t_print *mytab, int len)
 {
 	mytab->total_length += mytab->width - len;
-	if (mytab->zero == 1)
+	if (mytab->zero == 1 || mytab->width == mytab->precision)
 		while (mytab->width-- > len)
 			write(1, "0", 1);
 	else
-		while (mytab->width-- > len)
+	{
+		while (mytab->width-- > len && mytab->width >= mytab->precision)
 			write(1, " ", 1);
+		while (mytab->precision-- > len)
+			write(1, "0", 1);
+	}
 }
 
 void	ft_fill_width_left(t_print *mytab, int len)
@@ -61,5 +65,7 @@ int		ft_eval_width(t_print *mytab, const char *format, int pos)
 		pos += ft_len(i);
 	}
 	mytab->width = i;
+	if (format[pos] == '.')
+		pos = ft_eval_precision(mytab, format, pos);
 	return (pos);
 }

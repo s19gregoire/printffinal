@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/04 09:19:32 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/12 13:48:14 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,20 @@ int	ft_eval_input(t_print *mytab, const char *format, int pos)
 			write(1, "%", 1);
 			break ;
 		}
+		if (format[pos] == '0')
+			pos = ft_eval_zero(mytab, format, pos);
+		if (format[pos] == '*' || (ft_isdigit(format[pos])))
+			pos = ft_eval_width(mytab, format, pos);
 		if (format[pos] == '-')
 			pos = ft_eval_dash(mytab, format, pos);
 		if (format[pos] == '.')
 			pos = ft_eval_precision(mytab, format, pos);
-		if (format[pos] == '*')
+		if (format[pos] == '*' || (ft_isdigit(format[pos])))
 			pos = ft_eval_width(mytab, format, pos);
-		if (format[pos] == '0')
-		{
-			mytab->zero = 1;
-			pos++;
-		}
-		if (ft_isdigit(format[pos]))
-			break ;
+
 	}
-	if (ft_isdigit(format[pos]))
-		pos = ft_eval_width(mytab, format, pos);
+	// if (ft_isdigit(format[pos]))
+	// 	pos = ft_eval_width(mytab, format, pos);
 	if (ft_isalpha(format[pos]))
 		pos = ft_eval_variable(mytab, format, pos);
 	//ft_update_total_length(mytab, pos);
