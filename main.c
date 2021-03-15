@@ -20,9 +20,12 @@ int main(void)
   int ret2;
 
   c = 'A';
-  ret = ft_printf("myfirstline %c and %c beyond\n", c, c);
+  ret = ft_printf("%.03s", NULL);
   printf("|%i\n", ret);
-  ret2 = printf("myfirstline %c and %c beyond\n", c, c);
+  // ret = ft_printf("%p", NULL);
+//   - [OUTPUT] ft_printf()
+// - [OUTPUT] ft_printf("%p", NULL)
+  ret2 = printf("%.03s", NULL);
   printf("|%i\n", ret2);
   return (0);
 }
