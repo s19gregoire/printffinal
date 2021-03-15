@@ -13,6 +13,16 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
+int ft_write_str_with_point(t_print *mytab, int pos)
+{
+	ft_update_total_length_string(NULL, mytab, 0);
+	while (mytab->width--)
+	{
+		write(1, " ", 1);
+	}
+	return (pos);
+}
+
 int ft_write_null(t_print *mytab)
 {
 	char *s;
@@ -20,9 +30,12 @@ int ft_write_null(t_print *mytab)
 
 	s = "(null)";
 	i = 0;
-	if (s && mytab->point == 1 && mytab->precision == 0)
+	if (mytab->point == 1 && mytab->precision == 0)
+	{
+		ft_update_total_length_string(NULL, mytab, 0);
 		return (i);
-	if (mytab->width > 0 && mytab->point)
+	}
+	if (!mytab->dash && mytab->width && mytab->width < 6 && mytab->precision < 6) // > 0 && mytab->point)
 	{
 		while (mytab->width-- > 0)
 		{
@@ -31,8 +44,14 @@ int ft_write_null(t_print *mytab)
 		}
 	}
 	else
+	{
+		while (!mytab->dash && mytab->width-- > 6)
+			write(1, " ", 1);
 		while(s[i])
 			write(1, &s[i++], 1);
+		while (mytab->dash && mytab->width-- > 6)
+			write(1, " ", 1);
+	}
 	return (i);
 }
 
@@ -44,26 +63,29 @@ int ft_output_string(t_print *mytab, const char *format, int pos)
 
 	i = 0;
 	(void)format;
+	len = 6;
 	s = va_arg(mytab->args, char *);
 	if (s && mytab->point == 1 && mytab->precision == 0)
-		return (pos);
-	if (s)
-		len = ft_strlen(s);
-	ft_update_total_length_string(mytab, len);
-	if (!mytab->dash && mytab->width > len)
+		return (pos = ft_write_str_with_point(mytab, pos));
+	len = ft_update_total_length_string(s, mytab, len);
+	if (s && !mytab->dash && mytab->width > len)
 		ft_right_justify(mytab, len);
 	if (!s)
 		len = ft_write_null(mytab);
 	else
 	{
 		if (mytab->precision > 0)
+		{
 			while(s[i] && mytab->precision--)
 				write(1, &s[i++], 1);
+		}
 		else
+		{
 			while(s[i])
 				write(1, &s[i++], 1);
+		}
 	}
-	if (mytab->dash && mytab->width)
+	if (s && mytab->dash && mytab->width)
 		ft_left_justify(mytab, len);
 	return (pos);
 }

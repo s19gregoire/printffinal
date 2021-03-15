@@ -61,7 +61,7 @@ void ft_right_justify(t_print *mytab, int len)
 			write(1, "0", 1);
 	else
 	{
-		if (mytab->precision < len)
+		if (mytab->precision && mytab->precision < len)
 			while (mytab->width-- > mytab->precision)
 				write(1, " ", 1);
 		else

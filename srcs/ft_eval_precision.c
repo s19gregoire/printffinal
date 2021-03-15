@@ -36,6 +36,8 @@ int ft_eval_precision(t_print *mytab, const char *format, int pos)
 	i = 0;
 	pos++;
 	mytab->point = 1;
+	while (format[pos] == '0')
+		pos++;
 	if (ft_isdigit(format[pos]))
 	{
 		i = ft_atoi(&format[pos]);

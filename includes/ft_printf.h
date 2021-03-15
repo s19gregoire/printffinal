@@ -70,6 +70,7 @@ int ft_write_null(t_print *mytab);
 void ft_update_total_length(t_print *mytab, int len);
 void ft_left_justify(t_print *mytab, int len);
 void ft_right_justify(t_print *mytab, int len);
-void ft_update_total_length_string(t_print *mytab, int len);
+int ft_update_total_length_string(char *s, t_print *mytab, int len);
+int ft_write_str_with_point(t_print *mytab, int pos);
 
 # endif

@@ -13,12 +13,19 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void ft_update_total_length_string(t_print *mytab, int len)
+int ft_update_total_length_string(char *s, t_print *mytab, int len)
 {
-	if (mytab->width >= mytab->precision)
+	if (s)
+		len = ft_strlen(s);
+	if (!s && mytab->point)
+		return (0);
+	if (mytab->precision && len > mytab->precision)
+		len = mytab->precision;
+	if ((s && mytab->point && mytab->width) || (mytab->width >= mytab->precision && mytab->width > len))
 		mytab->total_length += mytab->width;
 	else
 		mytab->total_length += len;
+	return (len);
 }
 
 void ft_update_total_length(t_print *mytab, int len)
