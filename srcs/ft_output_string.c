@@ -30,34 +30,34 @@ void ft_write_null(t_print *mytab)
 
 	s = "(null)";
 	i = 0;
-	if (!mytab->width && mytab->point == 1 && mytab->precision == 0)
+	if (!mytab->width && mytab->point && !mytab->precision)
 	{
-		ft_update_total_length_string(NULL, mytab, 0);
+		mytab->total_length = 0;
 		return ;
 	}
-	if (mytab->point)
-	{
-		while (mytab->width--)
-			write(1, " ", 1);
-		return ;
-	}
-	if (!mytab->dash && mytab->point && mytab->width && mytab->width < 6 && mytab->precision < 6) // > 0 )
-	{
-		while (mytab->width-- > 0)
-		{
-			write(1, " ", 1);
-			i++;
-		}
-	}
-	else
-	{
+	// if (mytab->point)
+	// {
+	// 	while (mytab->width--)
+	// 		write(1, " ", 1);
+	// 	return ;
+	// }
+	// if (!mytab->dash && mytab->point && mytab->width && mytab->width < 6 && mytab->precision < 6) // > 0 )
+	// {
+	// 	while (mytab->width-- > 0)
+	// 	{
+	// 		write(1, " ", 1);
+	// 		i++;
+	// 	}
+	// }
+	// else
+	// {
 		while (!mytab->dash && mytab->width-- > 6)
 			write(1, " ", 1);
-		while(s[i] && !mytab->point)
+		while(s[i]) // && !mytab->point)
 			write(1, &s[i++], 1);
 		while (mytab->dash && mytab->width-- > 6)
-			write(1, " ", 1);
-	}
+		 	write(1, " ", 1);
+	// }
 }
 
 int ft_output_string(t_print *mytab, const char *format, int pos)

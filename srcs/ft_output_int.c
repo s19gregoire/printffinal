@@ -23,6 +23,13 @@ int ft_output_int(t_print *mytab, const char *format, int pos)
 	i = 0;
 	j = va_arg(mytab->args, int);
 	(void)format;
+	if (j < 0)
+	{
+		write(1, "-", 1);
+		mytab->total_length += 1;
+		mytab->width -= 1;
+		j *= -1;
+	}
 	num = ft_itoa(j);
 	len = ft_strlen(num);
 	ft_update_total_length(mytab, len);

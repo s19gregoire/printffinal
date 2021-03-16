@@ -17,9 +17,12 @@ int ft_update_total_length_string(char *s, t_print *mytab, int len)
 {
 	if (s)
 		len = ft_strlen(s);
-	if (!s && mytab->point)
+	if (!s) // && mytab->point)
 	{
-		mytab->total_length += mytab->width;
+		if (mytab->width > 6)
+			mytab->total_length += mytab->width;
+		else
+			mytab->total_length += 6; //mytab->width;
 		return (len); //+= o solo =?
 	}
 	if (mytab->precision && len > mytab->precision)
