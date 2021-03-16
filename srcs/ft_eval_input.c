@@ -34,11 +34,6 @@ int ft_eval_input(t_print *mytab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos])))
 	{
-		// if (format[pos] == ' ' && format[pos + 1] == 's')
-		// {
-		// 	write(1, " ", 1);
-		// 	pos++;
-		// }
 		if (format[pos] == '%')
 		{
 			write(1, "%", 1);

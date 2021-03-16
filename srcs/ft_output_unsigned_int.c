@@ -72,6 +72,5 @@ int ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	else
 		mytab->total_length += len;
 	free(num);
-	//printf("%d\n", mytab->total_length);
 	return (pos);
 }

@@ -13,6 +13,19 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
+int ft_check_sign(t_print *mytab, int j)
+{
+	if (mytab->precision >= mytab->width || !mytab->precision)
+	{
+		write(1, "-", 1);
+		mytab->total_length += 1;
+		mytab->width -= 1;
+	}
+	else if (j < 0)
+		mytab->sign = 1;
+	return (j * -1);
+}
+
 int ft_output_int(t_print *mytab, const char *format, int pos)
 {
 	int i;
@@ -23,22 +36,11 @@ int ft_output_int(t_print *mytab, const char *format, int pos)
 	i = 0;
 	j = va_arg(mytab->args, int);
 	(void)format;
-	if ((j < 0 && mytab->precision >= mytab->width) || (j < 0 && !mytab->precision))
-	{
-		write(1, "-", 1);
-		mytab->total_length += 1;
-		mytab->width -= 1;
-		j *= -1;
-	}
-	else if (j < 0)
-	{
-		mytab->sign = 1;
-		//mytab->width -= 1;
-		j *= -1;
-	}
+	if (j < 0)
+		j = ft_check_sign(mytab, j);
 	num = ft_itoa(j);
 	len = ft_strlen(num);
-	ft_update_total_length(mytab, len);
+	ft_update_mytab(mytab, len);
 	//if (mytab->width > len && mytab->width >= mytab->precision)
 	ft_align_right(mytab, len);
 	while(num[i])
@@ -46,6 +48,5 @@ int ft_output_int(t_print *mytab, const char *format, int pos)
 	//if (mytab->dash && mytab->width > len && mytab->width > mytab->precision)
 	ft_align_left(mytab,len);
 	free(num);
-	//printf("%d\n", mytab->total_length);
 	return (pos);
 }

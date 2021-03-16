@@ -34,12 +34,24 @@ int ft_update_total_length_string(char *s, t_print *mytab, int len)
 	return (len);
 }
 
-void ft_update_total_length(t_print *mytab, int len)
+void ft_update_mytab(t_print *mytab, int len)
 {
-	if (mytab->width >= mytab->precision)
+	if (mytab->width && mytab->width >= mytab->precision)
+	{
 		mytab->total_length += mytab->width;
+		mytab->width = mytab->width - mytab->precision - len;
+		if (mytab->precision > len)
+			mytab->precision -= len;
+	  else
+			mytab->precision = 0;
+	}
+
 	else if (mytab->precision > mytab->width)
+	{
 		mytab->total_length += mytab->precision;
+		mytab->width = 0;
+		mytab->precision -= len;
+	}
 	else
 		mytab->total_length += len;
 }

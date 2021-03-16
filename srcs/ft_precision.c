@@ -44,6 +44,5 @@ int ft_eval_precision(t_print *mytab, const char *format, int pos)
 		pos += ft_len(i);
 	}
 	mytab->precision = i;
-	//printf("prec %d\n", mytab->precision);
 	return (pos);
 }
