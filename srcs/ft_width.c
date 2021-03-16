@@ -19,28 +19,36 @@ void ft_align_right(t_print *mytab, int len)
 	//mytab->total_length += mytab->width; // - len;
 	if (mytab->point && !mytab->precision)
 	{
-		while (mytab->width)
+		while (mytab->width--)
 			write(1, " ", 1);
 		return ;
 	}
 	if (!mytab->dash && mytab->width >= mytab->precision)
 	{
-	if (mytab->zero == 1 || mytab->width == mytab->precision)
-		while (mytab->width-- > len)
-			write(1, "0", 1);
-	else
-	{
-		while (mytab->width-- > len && mytab->width >= mytab->precision)
-			write(1, " ", 1);
-		while (mytab->precision-- > len)
-			write(1, "0", 1);
-	}
+		if (mytab->zero || mytab->width == mytab->precision)
+		{
+			while (mytab->width-- > len)
+				write(1, "0", 1);
+			if (mytab->sign)
+				write(1, "-", 1);
+			}
+			else
+			{
+				while (mytab->width-- > len && mytab->width > mytab->precision) //>=
+					write(1, " ", 1);
+				if (mytab->sign)
+					write(1, "-", 1);
+				while (mytab->precision-- > len)
+					write(1, "0", 1);
+				}
 	}
 	else
 	{
 		mytab->width -= mytab->precision;
 		while (mytab->precision-- > len)
 					write(1, "0", 1);
+		if (mytab->sign)
+					write(1, "-", 1);
 	}
 }
 

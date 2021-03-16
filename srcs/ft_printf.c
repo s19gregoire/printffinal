@@ -57,7 +57,9 @@ int ft_printf(const char *format, ...)
 {
 	t_print *mytab;
 	int i;
+	int r;
 
+	r = 0;
 	if (!(mytab = (t_print*)malloc(sizeof(t_print))))
 		return (-1);
 	ft_initialise_tab(mytab);
@@ -77,6 +79,7 @@ int ft_printf(const char *format, ...)
 			write(1, &format[i], 1);
   	}
 	va_end(mytab->args);
-	mytab->total_length += i - mytab->flag_chars;
-	return (mytab->total_length);
+	r = mytab->total_length + i - mytab->flag_chars;
+	free(mytab);
+	return (r);
 }
