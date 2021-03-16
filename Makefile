@@ -15,12 +15,13 @@ OBJDIR	=	bin/
 INCDIR	= includes/
 LIBFTDIR	= libft/
 
-SRCS = \
+mySRCS = \
 	./srcs/ft_printf.c \
 	./srcs/ft_eval_input.c \
-	./srcs/ft_eval_width.c \
-	./srcs/ft_eval_precision.c \
-	./srcs/ft_eval_dash.c \
+	./srcs/ft_width.c \
+	./srcs/ft_length.c \
+	./srcs/ft_precision.c \
+	./srcs/ft_dash_and_star.c \
 	./srcs/ft_output_char.c \
 	./srcs/ft_output_int.c \
 	./srcs/ft_output_unsigned_int.c \
@@ -32,7 +33,7 @@ HEADERS = \
 	./includes/ft_printf.h \
 	./includes/libft.h
 
-SRC		:= $(notdir $(SRCS)) # 				Files only
+SRC		:= $(notdir $(mySRCS)) # 				Files only
 OBJ		:= $(SRC:.c=.o)	#					Files only
 OBJS	:= $(addprefix $(OBJDIR), $(OBJ)) #		Full path
 
@@ -59,7 +60,7 @@ $(OBJDIR)%.o: %.c
 	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):	$(SRCS) $(HEADERS) $(OBJS)
+$(NAME):	$(mySRCS) $(HEADERS) $(OBJS)
 			$(AR) $(NAME) $(OBJS) $(LIBFTDIR)*.o
 
 

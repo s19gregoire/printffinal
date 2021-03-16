@@ -54,11 +54,6 @@ int	ft_eval_input(t_print *mytab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos])))
 	{
-		// if (format[pos] == ' ' && format[pos + 1] == 's')
-		// {
-		// 	write(1, " ", 1);
-		// 	pos++;
-		// }
 		if (format[pos] == '%')
 		{
 			write(1, "%", 1);
@@ -76,11 +71,7 @@ int	ft_eval_input(t_print *mytab, const char *format, int pos)
 			pos = ft_eval_width(mytab, format, pos);
 
 	}
-	// if (ft_isdigit(format[pos]))
-	// 	pos = ft_eval_width(mytab, format, pos);
 	if (ft_isalpha(format[pos]))
 		pos = ft_eval_variable(mytab, format, pos);
-	//ft_update_total_length(mytab, pos);
-	//printf("%d\n", mytab->total_length);
 	return (pos);
 }

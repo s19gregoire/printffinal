@@ -15,65 +15,75 @@
 
 void ft_align_right(t_print *mytab, int len)
 {
-
-	//mytab->total_length += mytab->width; // - len;
-	if (!mytab->dash && mytab->width >= mytab->precision)
+	(void)len;
+	if (mytab->point && !mytab->precision)
 	{
-	if (mytab->zero == 1 || mytab->width == mytab->precision)
-		while (mytab->width-- > len)
-			write(1, "0", 1);
-	else
-	{
-		while (mytab->width-- > len && mytab->width >= mytab->precision)
+		while (--mytab->width > -1)
 			write(1, " ", 1);
-		while (mytab->precision-- > len)
-			write(1, "0", 1);
+		return ;
 	}
+	if (!mytab->dash) // && mytab->width >= mytab->precision)
+	{
+		if (mytab->zero) // || mytab->width == mytab->precision)
+		{
+			while (--mytab->width > -1)
+				write(1, "0", 1);
+			if (mytab->sign)
+				write(1, "-", 1);
+		}
+		else
+		{
+				while (--mytab->width > -1) // > len && mytab->width >= mytab->precision) //>=
+					write(1, " ", 1);
+				if (mytab->sign)
+					write(1, "-", 1);
+				while (--mytab->precision > -1)
+					write(1, "0", 1);
+			}
 	}
 	else
 	{
-		mytab->width -= mytab->precision;
-		while (mytab->precision-- > len)
+		while (--mytab->precision > -1)
 					write(1, "0", 1);
+		if (mytab->sign)
+					write(1, "-", 1);
 	}
 }
 
 void ft_align_left(t_print *mytab, int len)
 {
-
-	//mytab->total_length += mytab->width;
+	(void)len;
 	if (mytab->dash)
 	{
-	if (mytab->zero == 1 || mytab->precision >=  mytab->width)
-		while (mytab->precision-- > len)
+	if (mytab->zero == 1) // || mytab->precision >=  mytab->width)
+		while (--mytab->precision > -1)
 			write(1, "0", 1);
 	else
-		while (mytab->width-- > len)
+		while (--mytab->width > -1)
 			write(1, " ", 1);
 	}
 }
 
 void ft_right_justify(t_print *mytab, int len)
 {
-	//mytab->total_length += mytab->width - len;
 	if (mytab->zero == 1)
 		while (mytab->width-- > len)
 			write(1, "0", 1);
 	else
 	{
-		if (mytab->precision < len)
+		if (mytab->precision && mytab->precision < len)
 			while (mytab->width-- > mytab->precision)
 				write(1, " ", 1);
 		else
+		{
 			while (mytab->width-- > len)
 				write(1, " ", 1);
+		}
 	}
-
 }
 
 void ft_left_justify(t_print *mytab, int len)
 {
-	//mytab->total_length += mytab->width;
 		if (mytab->zero == 1)
 			while (mytab->width-- > len)
 				write(1, "0", 1);

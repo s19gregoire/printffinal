@@ -37,7 +37,8 @@ typedef struct	s_print
 	int			position;
 	int			flag_chars;
 	int			total_length;
-}				t_print;
+	int 		sign;
+}					t_print;
 
 int		ft_printf(const char *format, ...);
 int		ft_percentage_check(const char *format, int pos);
@@ -73,11 +74,17 @@ int	n_len(long n);
 int ft_len(int num);
 void ft_align_right(t_print *mytab, int len);
 void ft_align_left(t_print *mytab, int len);
-int ft_write_null(t_print *mytab);
-void ft_update_total_length(t_print *mytab, int len);
+void ft_write_null(t_print *mytab);
+void ft_update_mytab(t_print *mytab, int len);
 void ft_left_justify(t_print *mytab, int len);
 void ft_right_justify(t_print *mytab, int len);
+<<<<<<< HEAD
 void ft_update_total_length_string(t_print *mytab, int len);
+>>>>>>> mlazzare
+=======
+int ft_update_total_length_string(char *s, t_print *mytab, int len);
+int ft_write_str_with_point(t_print *mytab, int pos);
+int ft_check_sign(t_print *mytab, int j);
 >>>>>>> mlazzare
 
 #	endif
