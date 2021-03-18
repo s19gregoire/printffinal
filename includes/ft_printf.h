@@ -38,6 +38,7 @@ typedef struct		s_print
 	int			flag_chars;
 	int			total_length;
 	int 		sign;
+	int			is_zero;
 }					t_print;
 
 int	ft_printf(const char *format, ...);

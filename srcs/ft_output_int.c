@@ -17,13 +17,32 @@ int ft_check_sign(t_print *mytab, int j)
 {
 	if (mytab->precision >= mytab->width || !mytab->precision)
 	{
-		write(1, "-", 1);
-		mytab->total_length += 1;
-		mytab->width -= 1;
+		if (mytab->dash)
+		 write(1, "-", 1);
+		// mytab->total_length += 1;
+		if (mytab->width)
+			mytab->width -= 1;
 	}
-	else if (j < 0)
-		mytab->sign = 1;
+	mytab->sign = 1;
 	return (j * -1);
+}
+
+void ft_write_zero(t_print *mytab)
+{
+	mytab->is_zero = 1;
+	if (mytab->point)// && mytab->width)
+	{
+		mytab->total_length = mytab->width;
+		while (mytab->width--)
+			write(1, " ", 1);
+		return ;
+	}
+	ft_update_mytab(mytab, 1);
+		while (!mytab->dash && --mytab->width > 0)
+			write(1, " ", 1);
+		write(1, "0", 1);
+		while (mytab->dash && --mytab->width > 0)
+		 	write(1, " ", 1);
 }
 
 int ft_output_int(t_print *mytab, const char *format, int pos)
@@ -36,16 +55,19 @@ int ft_output_int(t_print *mytab, const char *format, int pos)
 	i = 0;
 	j = va_arg(mytab->args, int);
 	(void)format;
+	if (!j)
+	{
+		ft_write_zero(mytab);
+		return (pos);
+	}
 	if (j < 0)
 		j = ft_check_sign(mytab, j);
 	num = ft_itoa(j);
 	len = ft_strlen(num);
 	ft_update_mytab(mytab, len);
-	//if (mytab->width > len && mytab->width >= mytab->precision)
 	ft_align_right(mytab, len);
-	while(num[i])
+	while(j && num[i])
 		write(1, &num[i++], 1);
-	//if (mytab->dash && mytab->width > len && mytab->width > mytab->precision)
 	ft_align_left(mytab,len);
 	free(num);
 	return (pos);
