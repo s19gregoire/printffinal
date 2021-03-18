@@ -30,12 +30,12 @@ void ft_write_null(t_print *mytab)
 
 	s = "(null)";
 	i = 0;
-	if ((!mytab->width && mytab->point)) // || (mytab->point && mytab->precision > 0)) // && !mytab->precision)
-	{
-		mytab->total_length = 0;
-		return ;
-	}
-	if (mytab->point && (!mytab->precision || mytab->width > mytab->precision)) //&& mytab->precision == 0) PROBLEM: when print (null) and when not
+	// if ((!mytab->width && mytab->point)) // || (mytab->point && mytab->precision > 0)) // && !mytab->precision)
+	// {
+	// 	mytab->total_length = 0;
+	// 	return ;
+	// }
+	if (mytab->point && mytab->precision < 6 ) //(!mytab->precision || mytab->width > mytab->precision)) //&& mytab->precision == 0) PROBLEM: when print (null) and when not
 	{
 		mytab->total_length = mytab->width;
 		while (mytab->width--)

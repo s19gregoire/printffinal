@@ -1,82 +1,56 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/14 11:33:03 by mlazzare          #+#    #+#              #
-#    Updated: 2021/02/26 12:09:51 by mlazzare         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME        = libftprintf.a
 
-SRCDIR	=	srcs/
-OBJDIR	=	bin/
-INCDIR	= includes/
-LIBFTDIR	= libft/
+SRCS_PATH    = srcs/
 
-mySRCS = \
-	./srcs/ft_printf.c \
-	./srcs/ft_eval_input.c \
-	./srcs/ft_width.c \
-	./srcs/ft_length.c \
-	./srcs/ft_precision.c \
-	./srcs/ft_dash_and_star.c \
-	./srcs/ft_output_char.c \
-	./srcs/ft_output_int.c \
-	./srcs/ft_output_unsigned_int.c \
-	./srcs/ft_output_hexa_int.c \
-	./srcs/ft_output_pointer.c \
-	./srcs/ft_output_string.c \
+LIBFT_PATH    = libft/
 
-HEADERS = \
-	./includes/ft_printf.h \
-	./includes/libft.h
+LIBFT_LIB    = libft.a
 
-SRC		:= $(notdir $(mySRCS)) # 				Files only
-OBJ		:= $(SRC:.c=.o)	#					Files only
-OBJS	:= $(addprefix $(OBJDIR), $(OBJ)) #		Full path
+HEADERS_FOLDER    = includes/
 
-LIBFT		= $(LIBFTDIR)libft.a
+SRCS_FILES    = \
+./srcs/ft_printf.c \
+./srcs/ft_eval_input.c \
+./srcs/ft_width.c \
+./srcs/ft_length.c \
+./srcs/ft_precision.c \
+./srcs/ft_dash_and_star.c \
+./srcs/ft_output_char.c \
+./srcs/ft_output_int.c \
+./srcs/ft_output_unsigned_int.c \
+./srcs/ft_output_hexa_int.c \
+./srcs/ft_output_pointer.c \
+./srcs/ft_output_string.c \
 
-NAME		= libftprintf.a
+SRCS_OBJS     = ${SRCS_FILES:.c=.o}
 
-CC			= gcc
+CC         = gcc
 
+CFLAGS         = -Wall -Wextra -Werror
 
-CFLAGS	= -Wall -Wextra -Werror
-CFLAGS	+= -g
-CFLAGS	+= -I$(INCDIR)
+RM         = rm -f
 
-AR			= ar -rc
+AR         = ar crs
 
-RM			= rm -f
+LIBFT_OBJS    = ${LIBFT_PATH}*.o
 
-VPATH = $(SRCDIR)
+LIBFTMAKE    = $(MAKE) -C ${LIBFT_PATH}
 
-all:	$(LIBFT) $(NAME)
+all:				${NAME}
 
-$(OBJDIR)%.o: %.c
-	@mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+${NAME}:		${SRCS_OBJS} pmake
+						${AR} ${NAME} ${SRCS_OBJS} ${LIBFT_OBJS}
 
-$(NAME):	$(mySRCS) $(HEADERS) $(OBJS)
-			$(AR) $(NAME) $(OBJS) $(LIBFTDIR)*.o
-
-
-$(LIBFT):
-			$(MAKE) -C $(LIBFTDIR)
+pmake:
+						${LIBFTMAKE}
 
 clean:
-			$(RM) -rf $(OBJDIR)
-			$(MAKE) -C $(LIBFTDIR) clean
+				make -C ${LIBFT_PATH} clean
+				${RM} ${SRCS_OBJS}
 
-fclean:		clean
-			$(RM) $(NAME)
-			$(MAKE) -C $(LIBFTDIR) fclean
+fclean: clean
+	${RM} ${NAME} ${LIBFT_PATH}${LIBFT_LIB}
 
-re:			fclean all
+re:         fclean all
 
-bonus:		all
-
-.PHONY:		all clean fclean re
+.PHONY:        all clean fclean re
