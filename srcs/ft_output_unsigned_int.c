@@ -6,14 +6,14 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/11 13:07:03 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:34:32 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int			n_len(long n)
+int	n_len(long n)
 {
 	int	count;
 
@@ -31,7 +31,7 @@ int			n_len(long n)
 	return (count);
 }
 
-char		*ft_unsigned_itoa(unsigned int nb)
+char	*ft_unsigned_itoa(unsigned int nb)
 {
 	char	*a;
 	int		l;
@@ -50,7 +50,7 @@ char		*ft_unsigned_itoa(unsigned int nb)
 	return (a);
 }
 
-int			ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
+int	ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 {
 	int				i;
 	unsigned int	j;
@@ -63,11 +63,11 @@ int			ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
 	if (mytab->width > len && mytab->dash == 0)
-		ft_align_right(mytab,len);
-	while(num[i])
+		ft_align_right(mytab, len);
+	while (num[i])
 		write(1, &num[i++], 1);
 	if (mytab->width > len && mytab->dash)
-		ft_align_left(mytab,len);
+		ft_align_left(mytab, len);
 	else
 		mytab->total_length += len;
 	free(num);

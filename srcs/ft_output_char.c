@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/04 09:20:09 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:10:16 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	ft_output_char(t_print *mytab, const char *format, int pos)
 {
-	char a;
+	char	a;
 
 	a = va_arg(mytab->args, int);
 	(void)format;

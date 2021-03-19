@@ -18,7 +18,7 @@ LIBFTDIR	= libft/
 SRCS = \
 	./srcs/ft_printf.c \
 	./srcs/ft_eval_input.c \
-	./srcs/ft_eval_width.c \
+	./srcs/ft_width.c \
 	./srcs/ft_eval_precision.c \
 	./srcs/ft_eval_dash.c \
 	./srcs/ft_output_char.c \

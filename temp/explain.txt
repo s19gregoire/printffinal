@@ -1,0 +1,9 @@
+starg
+"salut" gregoire neve
+%s %s %s
+va_list c
+c[1] = "salut"
+c[2] = "gregoire";
+c[3] = "neve"
+printf("Salut comment ça vas %s ?", name);
+c[1] = name = "gregoire"

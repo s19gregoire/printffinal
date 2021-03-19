@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/12 13:48:14 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/19 13:56:19 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,10 @@ int	ft_eval_variable(t_print *mytab, const char *format, int pos)
 	return (pos);
 }
 
-int	ft_eval_precision(t_print *mytab, const char *format, int pos)
-{
-	int i;
-
-	i = 0;
-	pos++;
-	(void)mytab;
-	mytab->point = 1;
-	if (ft_isdigit(format[pos]))
-	{
-		while (ft_isdigit(format[pos]))
-			i = i * 10 + ft_atoi(&format[pos++]);
-		mytab->precision = i;
-		//pos += ft_len(i);
-	}
-	else
-		mytab->precision = 0;
-	return (pos);
-}
-
 int	ft_eval_input(t_print *mytab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos])))
 	{
-		// if (format[pos] == ' ' && format[pos + 1] == 's')
-		// {
-		// 	write(1, " ", 1);
-		// 	pos++;
-		// }
 		if (format[pos] == '%')
 		{
 			write(1, "%", 1);
@@ -74,13 +49,8 @@ int	ft_eval_input(t_print *mytab, const char *format, int pos)
 			pos = ft_eval_precision(mytab, format, pos);
 		if (format[pos] == '*' || (ft_isdigit(format[pos])))
 			pos = ft_eval_width(mytab, format, pos);
-
 	}
-	// if (ft_isdigit(format[pos]))
-	// 	pos = ft_eval_width(mytab, format, pos);
 	if (ft_isalpha(format[pos]))
 		pos = ft_eval_variable(mytab, format, pos);
-	//ft_update_total_length(mytab, pos);
-	//printf("%d\n", mytab->total_length);
 	return (pos);
 }

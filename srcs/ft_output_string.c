@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/11 10:22:53 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:00:25 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	ft_output_string(t_print *mytab, const char *format, int pos)
 	else
 	{
 		if (mytab->precision > 0)
-			while(s[i] && mytab->precision--)
+			while (s[i] && mytab->precision--)
 				write(1, &s[i++], 1);
 		else
-			while(s[i])
+			while (s[i])
 				write(1, &s[i++], 1);
 	}
 	if (mytab->dash && mytab->width)

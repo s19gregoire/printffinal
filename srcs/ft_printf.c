@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:02:19 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/11 13:13:15 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/16 18:11:34 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	ft_update_char_counts(t_print *mytab, int pos)
 	mytab->flag_chars += pos - mytab->position;
 }
 
-int		is_a_flag(char c)
+int	is_a_flag(char c)
 {
-	char *flags;
+	char	*flags;
 
 	flags = "csiduxXp";
 	while (*flags)
@@ -46,14 +46,14 @@ int		is_a_flag(char c)
 	return (0);
 }
 
-int		ft_percentage_check(const char *format, int pos)
+int	ft_percentage_check(const char *format, int pos)
 {
 	if (ft_isalpha(format[pos]) && (is_a_flag(format[pos])))
 		return (0);
 	return (1);
 }
 
-int		ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	t_print	*mytab;
 	int		i;
