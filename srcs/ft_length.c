@@ -39,12 +39,12 @@ void ft_update_mytab(t_print *mytab, int len)
 	if (mytab->width && mytab->width >= mytab->precision)
 	{
 		mytab->total_length += mytab->width;
-		if (!mytab->is_zero)
-			mytab->width = mytab->width - mytab->precision - len;
 		if (mytab->precision > len)
 			mytab->precision -= len;
 	  else
 			mytab->precision = 0;
+		if (!mytab->is_zero)
+				mytab->width = mytab->width - mytab->precision - len;
 	}
 	else if (mytab->precision > mytab->width)
 	{
@@ -55,5 +55,9 @@ void ft_update_mytab(t_print *mytab, int len)
 	else
 		mytab->total_length += len;
 	if (mytab->sign)
+	{
 		mytab->total_length += 1;
+		if (mytab->width)
+			mytab->width -= 1;
+	}
 }

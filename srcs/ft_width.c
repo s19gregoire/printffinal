@@ -16,11 +16,10 @@
 void ft_align_right(t_print *mytab, int len)
 {
 	(void)len;
-	if (mytab->point && !mytab->precision)
+	if (!mytab->dash && mytab->point && !mytab->precision)
 	{
 		while (--mytab->width > -1)
 			write(1, " ", 1);
-		//return ;
 	}
 	if (!mytab->dash) // && mytab->width >= mytab->precision)
 	{
@@ -28,8 +27,6 @@ void ft_align_right(t_print *mytab, int len)
 		{
 			while (--mytab->width > -1)
 				write(1, "0", 1);
-			if (mytab->sign)
-				write(1, "-", 1);
 		}
 		else
 		{
@@ -55,7 +52,7 @@ void ft_align_left(t_print *mytab, int len)
 	(void)len;
 	if (mytab->dash)
 	{
-	if (mytab->zero == 1) // || mytab->precision >=  mytab->width)
+	if (mytab->zero && mytab->precision > 0) // || mytab->precision >=  mytab->width)
 		while (--mytab->precision > -1)
 			write(1, "0", 1);
 	else

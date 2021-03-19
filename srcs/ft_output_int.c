@@ -15,13 +15,10 @@
 
 int ft_check_sign(t_print *mytab, int j)
 {
-	if (mytab->precision >= mytab->width || !mytab->precision)
+	if (mytab->precision >= mytab->width || !mytab->precision || mytab->zero)
 	{
-		if (mytab->dash)
+		if (mytab->zero)
 		 write(1, "-", 1);
-		// mytab->total_length += 1;
-		if (mytab->width)
-			mytab->width -= 1;
 	}
 	mytab->sign = 1;
 	return (j * -1);
@@ -30,19 +27,62 @@ int ft_check_sign(t_print *mytab, int j)
 void ft_write_zero(t_print *mytab)
 {
 	mytab->is_zero = 1;
-	if (mytab->point)// && mytab->width)
+	if ((mytab->point && mytab->width) || (mytab->zero && mytab->width))
 	{
 		mytab->total_length = mytab->width;
-		while (mytab->width--)
-			write(1, " ", 1);
+		if (!mytab->precision)
+		{
+			if (mytab->zero)
+			{
+				while (mytab->width--)
+					write(1, "0", 1);
+			}
+			else
+			{
+				while (mytab->width--)
+					write(1, " ", 1);
+			}
+		}
+		else
+		{
+			mytab->width -= mytab->precision;
+			if (mytab->dash)
+			{
+				while (mytab->precision--)
+					write(1, "0", 1);
+			}
+			while (mytab->width--)
+				write(1, " ", 1);
+			if (!mytab->dash)
+			{
+				while (mytab->precision--)
+					write(1, "0", 1);
+			}
+		}
+		return ;
+	}
+	if (mytab->point)// && mytab->width)
+	{
+		if (!mytab->width && mytab->precision)
+		{
+			mytab->total_length = mytab->precision;
+			while (mytab->precision--)
+				write(1, "0", 1);
+		}
+		else
+		{
+			mytab->total_length = mytab->width;
+			while (mytab->width--)
+				write(1, " ", 1);
+		}
 		return ;
 	}
 	ft_update_mytab(mytab, 1);
-		while (!mytab->dash && --mytab->width > 0)
-			write(1, " ", 1);
-		write(1, "0", 1);
-		while (mytab->dash && --mytab->width > 0)
-		 	write(1, " ", 1);
+	while (!mytab->dash && --mytab->width > 0)
+		write(1, " ", 1);
+	write(1, "0", 1);
+	while (mytab->dash && --mytab->width > 0)
+	 	write(1, " ", 1);
 }
 
 int ft_output_int(t_print *mytab, const char *format, int pos)
