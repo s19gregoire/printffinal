@@ -42,7 +42,11 @@ int ft_eval_precision(t_print *mytab, const char *format, int pos)
 	{
 		i = ft_atoi(&format[pos]);
 		pos += ft_len(i);
+		mytab->precision = i;
 	}
-	mytab->precision = i;
+	if (format[pos] == '*')
+	{
+		pos = ft_eval_star(mytab, format, pos);
+	}
 	return (pos);
 }

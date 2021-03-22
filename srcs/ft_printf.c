@@ -69,17 +69,18 @@ int ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			mytab->position = i;
-			mytab->flag_chars++;
+			// mytab->position = i;
+			// mytab->flag_chars++;
 			i++;
 			i = ft_eval_input(mytab, format, i);
-			ft_update_char_counts(mytab, i);
+			//ft_update_char_counts(mytab, i);
+			r += mytab->total_length;
 		}
 		else
-			write(1, &format[i], 1);
+			r += write(1, &format[i], 1);
   	}
 	va_end(mytab->args);
-	r = mytab->total_length + i - mytab->flag_chars;
+	r = mytab->total_length; // + i - mytab->flag_chars;
 	free(mytab);
 	return (r);
 }
