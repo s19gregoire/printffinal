@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 10:46:12 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 13:59:04 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:15:23 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define MAX_INT	2147483648
 # define MIN_INT	-2147483647
 
-typedef	struct		s_list
+typedef struct	s_list
 {
 	void			*content;
 	struct s_list	*next;
