@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME		= libftprintf.a
+
 SRCDIR	=	srcs/
 OBJDIR	=	bin/
 INCDIR	= includes/
@@ -39,8 +41,6 @@ OBJS	:= $(addprefix $(OBJDIR), $(OBJ)) #		Full path
 
 LIBFT		= $(LIBFTDIR)libft.a
 
-NAME		= libftprintf.a
-
 CC			= gcc
 
 
@@ -62,7 +62,6 @@ $(OBJDIR)%.o: %.c
 
 $(NAME):	$(mySRCS) $(HEADERS) $(OBJS)
 			$(AR) $(NAME) $(OBJS) $(LIBFTDIR)*.o
-
 
 $(LIBFT):
 			$(MAKE) -C $(LIBFTDIR)
