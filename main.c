@@ -18,7 +18,9 @@ int main(void)
   int ret;
   int ret2;
 
-  ret = ft_printf("%.09s", NULL);
+  ret = 0;
+  ret2 = 0;
+  ret = ft_printf("%-7i", -14);
   printf("|%i\n", ret);
   // - [OUTPUT] ft_printf("%-10.5i", -216)
   // - [OUTPUT] ft_printf("%-8.5i", 0)
@@ -36,12 +38,9 @@ int main(void)
   // - [OUTPUT] ft_printf("%5.0i", 0)
   // - [OUTPUT] ft_printf("%5.i", 0)
   // - [OUTPUT] ft_printf("%-5.0i", 0)
-  // - [OUTPUT] ft_printf("%-5.i", 0)
+  // - [OUTPUT] ft_printf("%.3i", 0)
   // - [OUTPUT] ft_printf("%p", NULL)
-  // - [OUTPUT] ft_printf("%.09s", NULL)
-  // - [OUTPUT] ft_printf("%20.6s", NULL)
-  // - [OUTPUT] ft_printf("%-10.8s", NULL)
-  ret2 = printf("%.09s", NULL);
+  ret2 = printf("%-7i", -14);
   printf("|%i\n", ret2);
   return (0);
 }

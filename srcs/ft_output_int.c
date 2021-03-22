@@ -15,9 +15,9 @@
 
 int ft_check_sign(t_print *mytab, int j)
 {
-	if (mytab->precision >= mytab->width || !mytab->precision || mytab->zero)
+	if (mytab->precision >= mytab->width || mytab->dash) //(mytab->zero && mytab->dash)) // && mytab->width < mytab->precision)) //!mytab->precision ||
 	{
-		if (mytab->zero)
+		//if (mytab->zero)
 		 write(1, "-", 1);
 	}
 	mytab->sign = 1;

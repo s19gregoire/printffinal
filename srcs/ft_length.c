@@ -56,7 +56,7 @@ void ft_update_mytab(t_print *mytab, int len)
 		mytab->total_length += len;
 	if (mytab->sign)
 	{
-		mytab->total_length += 1;
+		// mytab->total_length += 1;
 		if (mytab->width)
 			mytab->width -= 1;
 	}
