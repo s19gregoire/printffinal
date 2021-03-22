@@ -20,8 +20,9 @@ int main(void)
 
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%-7i", -14);
+  ret = ft_printf("%05i", 43);
   printf("|%i\n", ret);
+// "%07i", -54
   // - [OUTPUT] ft_printf("%-10.5i", -216)
   // - [OUTPUT] ft_printf("%-8.5i", 0)
   // - [OUTPUT] ft_printf("%-8.3i", 8375)
@@ -40,7 +41,7 @@ int main(void)
   // - [OUTPUT] ft_printf("%-5.0i", 0)
   // - [OUTPUT] ft_printf("%.3i", 0)
   // - [OUTPUT] ft_printf("%p", NULL)
-  ret2 = printf("%-7i", -14);
+  ret2 = printf("%05i", 43);
   printf("|%i\n", ret2);
   return (0);
 }
