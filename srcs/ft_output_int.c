@@ -24,29 +24,25 @@ int	ft_check_sign(t_print *mytab, int j)
 void	ft_write_zero(t_print *mytab)
 {
 	mytab->is_zero = 1;
-	if ((mytab->point && mytab->width) || (mytab->zero && mytab->width))
+	if (mytab->width && (mytab->point || mytab->zero))
 	{
 		mytab->total_length = mytab->width;
 		if (!mytab->precision)
 		{
-			if (mytab->zero)
-				while (mytab->width--)
+				while (mytab->zero && mytab->width-- > 0)
 					write(1, "0", 1);
-			else
-				while (mytab->width--)
+				while (!mytab->zero && mytab->width-- > 0)
 					write(1, " ", 1);
 		}
 		else
 		{
 			mytab->width -= mytab->precision;
-			if (mytab->dash)
-				while (mytab->precision--)
-					write(1, "0", 1);
-			while (mytab->width--)
+			while (mytab->dash && mytab->precision-- > 0)
+				write(1, "0", 1);
+			while (mytab->width-- > 0)
 				write(1, " ", 1);
-			if (!mytab->dash)
-				while (mytab->precision--)
-					write(1, "0", 1);
+			while (!mytab->dash && mytab->precision-- > 0)
+				write(1, "0", 1);
 		}
 		return ;
 	}
@@ -55,13 +51,13 @@ void	ft_write_zero(t_print *mytab)
 		if (!mytab->width && mytab->precision)
 		{
 			mytab->total_length = mytab->precision;
-			while (mytab->precision--)
+			while (mytab->precision-- > 0)
 				write(1, "0", 1);
 		}
 		else
 		{
 			mytab->total_length = mytab->width;
-			while (mytab->width--)
+			while (mytab->width-- > 0)
 				write(1, " ", 1);
 		}
 		return ;

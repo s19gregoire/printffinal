@@ -2,5 +2,6 @@
 a.out
 */*.o
 pft/
-pft/
-ft_printf_test/pft/
+ft_print_test
+*.a
+libft/*.a

@@ -30,18 +30,18 @@ void	ft_write_null(t_print *mytab)
 
 	s = "(null)";
 	i = 0;
-	if (mytab->point && mytab->precision < 6 )
+	if (mytab->point && mytab->precision < 6 && mytab->precision >= 0)
 	{
 		mytab->total_length = mytab->width;
 		while (mytab->width--)
 			write(1, " ", 1);
 		return ;
 	}
-	while (!mytab->dash && mytab->width-- > 6)
-		write(1, " ", 1);
-	while (s[i])
-		write(1, &s[i++], 1);
-	while (mytab->dash && mytab->width-- > 6)
+		while (!mytab->dash && mytab->width-- > 6)
+			write(1, " ", 1);
+		while(s[i])
+			write(1, &s[i++], 1);
+		while (mytab->dash && mytab->width-- > 6)
 		 	write(1, " ", 1);
 }
 

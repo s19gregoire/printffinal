@@ -29,6 +29,8 @@ int	ft_eval_star(t_print *mytab, const char *format, int pos)
 	mytab->star = 1;
 	if (!mytab->point)
 		mytab->width = va_arg(mytab->args, int);
+	else
+		mytab->precision = va_arg(mytab->args, int);
 	if (format[pos] == '.')
 	{
 		mytab->point = 1;
