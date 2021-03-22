@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 10:00:08 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:06:54 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,9 @@ void ft_write_null(t_print *mytab)
 			write(1, " ", 1);
 		return ;
 	}
-<<<<<<< HEAD
-	else
-		while (s[i])
-=======
 		while (!mytab->dash && mytab->width-- > 6)
 			write(1, " ", 1);
 		while(s[i]) // && !mytab->point)
->>>>>>> mlazzare
 			write(1, &s[i++], 1);
 		while (mytab->dash && mytab->width-- > 6)
 		 	write(1, " ", 1);
