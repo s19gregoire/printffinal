@@ -76,5 +76,7 @@ void ft_right_justify(t_print *mytab, int len);
 int ft_update_total_length_string(char *s, t_print *mytab, int len);
 int ft_write_str_with_point(t_print *mytab, int pos);
 int ft_check_sign(t_print *mytab, int j);
+int	ft_output_hexa_intx(t_print *mytab, const char *format, int pos);
+int	ft_output_hexa_intm(t_print *mytab, const char *format, int pos);
 
 # endif

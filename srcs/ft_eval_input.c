@@ -25,8 +25,10 @@ int 	ft_eval_variable(t_print *mytab, const char *format, int pos)
 			pos = ft_output_unsigned_int(mytab, format, pos);
 	else if (format[pos] == 'p')
 			pos = ft_output_pointer(mytab, format, pos);
-	else if (format[pos] == 'x' || format[pos] == 'X')
-			pos = ft_output_hexa_int(mytab, format, pos);
+	else if (format[pos] == 'x')
+			pos = ft_output_hexa_intm(mytab, format, pos);
+	else if (format[pos] == 'X')
+			pos = ft_output_hexa_intx(mytab, format, pos);
 	return (pos);
 }
 
