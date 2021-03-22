@@ -6,14 +6,14 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 10:00:29 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:04:45 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_check_sign(t_print *mytab, int j)
+int	ft_check_sign(t_print *mytab, int j)
 {
 	if (mytab->dash)
 		 write(1, "-", 1);
@@ -21,7 +21,7 @@ int ft_check_sign(t_print *mytab, int j)
 	return (j * -1);
 }
 
-void ft_write_zero(t_print *mytab)
+void	ft_write_zero(t_print *mytab)
 {
 	mytab->is_zero = 1;
 	if ((mytab->point && mytab->width) || (mytab->zero && mytab->width))
@@ -30,35 +30,27 @@ void ft_write_zero(t_print *mytab)
 		if (!mytab->precision)
 		{
 			if (mytab->zero)
-			{
 				while (mytab->width--)
 					write(1, "0", 1);
-			}
 			else
-			{
 				while (mytab->width--)
 					write(1, " ", 1);
-			}
 		}
 		else
 		{
 			mytab->width -= mytab->precision;
 			if (mytab->dash)
-			{
 				while (mytab->precision--)
 					write(1, "0", 1);
-			}
 			while (mytab->width--)
 				write(1, " ", 1);
 			if (!mytab->dash)
-			{
 				while (mytab->precision--)
 					write(1, "0", 1);
-			}
 		}
 		return ;
 	}
-	if (mytab->point)// && mytab->width)
+	if (mytab->point)
 	{
 		if (!mytab->width && mytab->precision)
 		{
@@ -79,7 +71,7 @@ void ft_write_zero(t_print *mytab)
 		write(1, " ", 1);
 	write(1, "0", 1);
 	while (mytab->dash && --mytab->width > 0)
-	 	write(1, " ", 1);
+		write(1, " ", 1);
 }
 
 int	ft_output_int(t_print *mytab, const char *format, int pos)
@@ -103,7 +95,7 @@ int	ft_output_int(t_print *mytab, const char *format, int pos)
 	len = ft_strlen(num);
 	ft_update_mytab(mytab, len);
 	ft_align_right(mytab);
-	while(j && num[i])
+	while (j && num[i])
 		write(1, &num[i++], 1);
 	ft_align_left(mytab);
 	free(num);

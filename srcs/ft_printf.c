@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:02:19 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/16 18:11:34 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:08:20 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	ft_percentage_check(const char *format, int pos)
 
 int	ft_printf(const char *format, ...)
 {
-	t_print *mytab;
-	int i;
-	int r;
+	t_print	*mytab;
+	int		i;
+	int		r;
 
 	r = 0;
 	if (!(mytab = (t_print*)malloc(sizeof(t_print))))

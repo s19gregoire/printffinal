@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 10:05:46 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:08:02 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,10 @@ int	ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
 	ft_update_mytab(mytab, len);
-	// if (mytab->width > len && mytab->dash == 0)
-		ft_align_right(mytab);
-	while(num[i])
+	ft_align_right(mytab);
+	while (num[i])
 		write(1, &num[i++], 1);
-	// if (mytab->width > len && mytab->dash)
-		ft_align_left(mytab);
-	// else
-	// 	mytab->total_length += len;
+	ft_align_left(mytab);
 	free(num);
 	return (pos);
 }

@@ -6,14 +6,14 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 10:06:54 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:12:37 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_write_str_with_point(t_print *mytab, int pos)
+int	ft_write_str_with_point(t_print *mytab, int pos)
 {
 	ft_update_total_length_string(NULL, mytab, 0);
 	while (mytab->width--)
@@ -23,25 +23,25 @@ int ft_write_str_with_point(t_print *mytab, int pos)
 	return (pos);
 }
 
-void ft_write_null(t_print *mytab)
+void	ft_write_null(t_print *mytab)
 {
 	char	*s;
 	int		i;
 
 	s = "(null)";
 	i = 0;
-	if (mytab->point && mytab->precision < 6 ) //(!mytab->precision || mytab->width > mytab->precision)) //&& mytab->precision == 0) PROBLEM: when print (null) and when not
+	if (mytab->point && mytab->precision < 6 )
 	{
 		mytab->total_length = mytab->width;
 		while (mytab->width--)
 			write(1, " ", 1);
 		return ;
 	}
-		while (!mytab->dash && mytab->width-- > 6)
-			write(1, " ", 1);
-		while(s[i]) // && !mytab->point)
-			write(1, &s[i++], 1);
-		while (mytab->dash && mytab->width-- > 6)
+	while (!mytab->dash && mytab->width-- > 6)
+		write(1, " ", 1);
+	while (s[i])
+		write(1, &s[i++], 1);
+	while (mytab->dash && mytab->width-- > 6)
 		 	write(1, " ", 1);
 }
 
@@ -65,15 +65,11 @@ int	ft_output_string(t_print *mytab, const char *format, int pos)
 	else
 	{
 		if (mytab->precision > 0)
-		{
-			while(s[i] && mytab->precision--)
+			while (s[i] && mytab->precision--)
 				write(1, &s[i++], 1);
-		}
 		else
-		{
-			while(s[i])
+			while (s[i])
 				write(1, &s[i++], 1);
-		}
 	}
 	if (s && mytab->dash && mytab->width)
 		ft_left_justify(mytab, len);

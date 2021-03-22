@@ -3,4 +3,4 @@ a.out
 */*.o
 pft/
 pft/
-ft_printf_test/
+ft_printf_test/pft/

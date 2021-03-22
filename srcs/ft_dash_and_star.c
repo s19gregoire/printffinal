@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eval_dash.c                                     :+:      :+:    :+:   */
+/*   ft_dash_and_star.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/04 09:19:42 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:59:16 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_eval_dash(t_print *mytab, const char *format, int pos)
 	return (pos);
 }
 
-int ft_eval_star(t_print *mytab, const char *format, int pos)
+int	ft_eval_star(t_print *mytab, const char *format, int pos)
 {
 	pos++;
 	mytab->star = 1;

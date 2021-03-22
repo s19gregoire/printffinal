@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_int.c                                    :+:      :+:    :+:   */
+/*   ft_length.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/02 16:05:56 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/22 14:00:39 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_update_total_length_string(char *s, t_print *mytab, int len)
+int	ft_update_total_length_string(char *s, t_print *mytab, int len)
 {
 	if (s)
 		len = ft_strlen(s);
-	if (!s) // && mytab->point)
+	if (!s)
 	{
 		if (mytab->width > 6)
 			mytab->total_length += mytab->width;
 		else
-			mytab->total_length += 6; //mytab->width;
-		return (len); //+= o solo =?
+			mytab->total_length += 6;
+		return (len);
 	}
 	if (mytab->precision && len > mytab->precision)
 		len = mytab->precision;
-	if ((s && mytab->point && mytab->width) || (mytab->width >= mytab->precision && mytab->width > len))
+	if	((s && mytab->point && mytab->width) || (mytab->width >= mytab->precision && mytab->width > len))
 		mytab->total_length += mytab->width;
 	else
 		mytab->total_length += len;
 	return (len);
 }
 
-void ft_update_mytab(t_print *mytab, int len)
+void	ft_update_mytab(t_print *mytab, int len)
 {
 	if (mytab->sign)
 	{
@@ -47,10 +47,10 @@ void ft_update_mytab(t_print *mytab, int len)
 		mytab->total_length += mytab->width;
 		if (mytab->precision > len)
 			mytab->precision -= len;
-	  else
+		else
 			mytab->precision = 0;
 		if (!mytab->is_zero)
-				mytab->width = mytab->width - mytab->precision - len;
+			mytab->width = mytab->width - mytab->precision - len;
 	}
 	else if (mytab->precision > mytab->width)
 	{
@@ -60,5 +60,4 @@ void ft_update_mytab(t_print *mytab, int len)
 	}
 	else
 		mytab->total_length += len;
-
 }
