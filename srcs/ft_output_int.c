@@ -102,10 +102,10 @@ int ft_output_int(t_print *mytab, const char *format, int pos)
 	num = ft_itoa(j);
 	len = ft_strlen(num);
 	ft_update_mytab(mytab, len);
-	ft_align_right(mytab, len);
+	ft_align_right(mytab);
 	while(j && num[i])
 		write(1, &num[i++], 1);
-	ft_align_left(mytab,len);
+	ft_align_left(mytab);
 	free(num);
 	return (pos);
 }

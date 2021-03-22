@@ -13,40 +13,28 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void ft_align_right(t_print *mytab, int len)
+void ft_align_right(t_print *mytab)
 {
-	(void)len;
 	if (mytab->zero && !mytab->point)
 	{
-		if (mytab->sign) // && mytab->zero)
+		if (mytab->sign)
 			write(1, "-", 1);
 		while (mytab->zero && --mytab->width > -1 && !mytab->precision)
 			write(1, "0", 1);
 	}
-	else if (!mytab->dash) // && mytab->width >= mytab->precision)
+	else if (!mytab->dash)
 	{
-			//
 			while (--mytab->width > -1)
 				write(1, " ", 1);
-			if (mytab->sign) // && mytab->zero)
+			if (mytab->sign)
 				write(1, "-", 1);
-			while (--mytab->precision > -1)
-				write(1, "0", 1);
-			// if (mytab->sign && mytab->zero)
-			// 	write(1, "-", 1);
 	}
-	else
-	{
-		while (--mytab->precision > -1)
-					write(1, "0", 1);
-		// if (!mytab->dash && mytab->sign)
-		// 			write(1, "-", 1);
-	}
+	while (--mytab->precision > -1)
+			write(1, "0", 1);
 }
 
-void ft_align_left(t_print *mytab, int len)
+void ft_align_left(t_print *mytab)
 {
-	(void)len;
 	if (mytab->dash)
 	{
 		while (mytab->zero && --mytab->precision > -1)
