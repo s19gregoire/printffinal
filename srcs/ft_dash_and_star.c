@@ -1,46 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eval_precision.c                                :+:      :+:    :+:   */
+/*   ft_eval_dash.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/19 14:36:18 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/04 09:19:42 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_eval_zero(t_print *mytab, const char *format, int pos)
+int	ft_eval_dash(t_print *mytab, const char *format, int pos)
 {
-	int	i;
-
-	i = 0;
 	pos++;
-	mytab->zero = 1;
-	if (ft_isdigit(format[pos]))
-	{
-		i = ft_atoi(&format[pos]);
-		pos += ft_len(i);
-	}
-	mytab->width = i;
+	mytab->dash = 1;
+	while (format[pos] == '-')
+		pos++;
+	pos = ft_eval_width(mytab, format, pos);
 	return (pos);
 }
 
-int	ft_eval_precision(t_print *mytab, const char *format, int pos)
+int ft_eval_star(t_print *mytab, const char *format, int pos)
 {
-	int	i;
-
-	i = 0;
 	pos++;
-	mytab->point = 1;
-	if (ft_isdigit(format[pos]))
+	mytab->star = 1;
+	if (!mytab->point)
+		mytab->width = va_arg(mytab->args, int);
+	if (format[pos] == '.')
 	{
-		i = ft_atoi(&format[pos]);
-		pos += ft_len(i);
+		mytab->point = 1;
+		pos++;
 	}
-	mytab->precision = i;
+	if (ft_isdigit(format[pos]) || format[pos] == 0)
+	{
+		pos = ft_eval_precision(mytab, format, pos);
+	}
+	if (format[pos] == '*')
+	{
+		mytab->precision = va_arg(mytab->args, int);
+		pos++;
+	}
 	return (pos);
 }

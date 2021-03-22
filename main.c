@@ -15,14 +15,33 @@
 
 int main(void)
 {
-  char c;
   int ret;
   int ret2;
 
-  c = 'A';
-  ret = ft_printf("myfirstline %c and %c beyond\n", c, c);
+  ret = 0;
+  ret2 = 0;
+  ret = ft_printf("%07i", -54);
   printf("|%i\n", ret);
-  ret2 = printf("myfirstline %c and %c beyond\n", c, c);
+//
+  // - [OUTPUT] ft_printf("%-10.5i", -216)
+  // - [OUTPUT] ft_printf("%-8.5i", 0)
+  // - [OUTPUT] ft_printf("%-8.3i", 8375)
+  // - [OUTPUT] ft_printf("%-8.3i", -8473)
+  // - [OUTPUT] ft_printf("%-3.7i", -2375)
+  // - [OUTPUT] ft_printf("%08.5i", 34)
+  // - [OUTPUT] ft_printf("%010.5i", -216)
+  // - [OUTPUT] ft_printf("%08.5i", 0)
+  // - [OUTPUT] ft_printf("%08.3i", 8375)
+  // - [OUTPUT] ft_printf("%08.3i", -8473)
+  // - [OUTPUT] ft_printf("%03.7i", -2375)
+  // - [OUTPUT] ft_printf("%.0i", 0)
+  // - [OUTPUT] ft_printf("%.i", 0)
+  // - [OUTPUT] ft_printf("%5.0i", 0)
+  // - [OUTPUT] ft_printf("%5.i", 0)
+  // - [OUTPUT] ft_printf("%-5.0i", 0)
+  // - [OUTPUT] ft_printf("%.3i", 0)
+  // - [OUTPUT] ft_printf("%p", NULL)
+  ret2 = printf("%07i", -54);
   printf("|%i\n", ret2);
   return (0);
 }

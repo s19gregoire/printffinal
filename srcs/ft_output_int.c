@@ -6,29 +6,80 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/19 14:27:50 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:00:29 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void	ft_update_total_length_string(t_print *mytab, int len)
+int ft_check_sign(t_print *mytab, int j)
 {
-	if (mytab->width >= mytab->precision)
-		mytab->total_length += mytab->width;
-	else
-		mytab->total_length += len;
+	if (mytab->dash)
+		 write(1, "-", 1);
+	mytab->sign = 1;
+	return (j * -1);
 }
 
-void	ft_update_total_length(t_print *mytab, int len)
+void ft_write_zero(t_print *mytab)
 {
-	if (mytab->width >= mytab->precision)
-		mytab->total_length += mytab->width;
-	else if (mytab->precision > mytab->width)
-		mytab->total_length += mytab->precision;
-	else
-		mytab->total_length += len;
+	mytab->is_zero = 1;
+	if ((mytab->point && mytab->width) || (mytab->zero && mytab->width))
+	{
+		mytab->total_length = mytab->width;
+		if (!mytab->precision)
+		{
+			if (mytab->zero)
+			{
+				while (mytab->width--)
+					write(1, "0", 1);
+			}
+			else
+			{
+				while (mytab->width--)
+					write(1, " ", 1);
+			}
+		}
+		else
+		{
+			mytab->width -= mytab->precision;
+			if (mytab->dash)
+			{
+				while (mytab->precision--)
+					write(1, "0", 1);
+			}
+			while (mytab->width--)
+				write(1, " ", 1);
+			if (!mytab->dash)
+			{
+				while (mytab->precision--)
+					write(1, "0", 1);
+			}
+		}
+		return ;
+	}
+	if (mytab->point)// && mytab->width)
+	{
+		if (!mytab->width && mytab->precision)
+		{
+			mytab->total_length = mytab->precision;
+			while (mytab->precision--)
+				write(1, "0", 1);
+		}
+		else
+		{
+			mytab->total_length = mytab->width;
+			while (mytab->width--)
+				write(1, " ", 1);
+		}
+		return ;
+	}
+	ft_update_mytab(mytab, 1);
+	while (!mytab->dash && --mytab->width > 0)
+		write(1, " ", 1);
+	write(1, "0", 1);
+	while (mytab->dash && --mytab->width > 0)
+	 	write(1, " ", 1);
 }
 
 int	ft_output_int(t_print *mytab, const char *format, int pos)
@@ -41,13 +92,20 @@ int	ft_output_int(t_print *mytab, const char *format, int pos)
 	i = 0;
 	j = va_arg(mytab->args, int);
 	(void)format;
+	if (!j)
+	{
+		ft_write_zero(mytab);
+		return (pos);
+	}
+	if (j < 0)
+		j = ft_check_sign(mytab, j);
 	num = ft_itoa(j);
 	len = ft_strlen(num);
-	ft_update_total_length(mytab, len);
-	ft_align_right(mytab, len);
-	while (num[i])
+	ft_update_mytab(mytab, len);
+	ft_align_right(mytab);
+	while(j && num[i])
 		write(1, &num[i++], 1);
-	ft_align_left(mytab, len);
+	ft_align_left(mytab);
 	free(num);
 	return (pos);
 }

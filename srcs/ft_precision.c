@@ -1,24 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eval_dash.c                                     :+:      :+:    :+:   */
+/*   ft_eval_precision.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/04 09:19:42 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:36:18 by gregoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_eval_dash(t_print *mytab, const char *format, int pos)
+int	ft_eval_zero(t_print *mytab, const char *format, int pos)
 {
+	int	i;
+
+	i = 0;
 	pos++;
-	mytab->dash = 1;
-	while (format[pos] == '-')
+	mytab->zero = 1;
+	if (ft_isdigit(format[pos]))
+	{
+		i = ft_atoi(&format[pos]);
+		pos += ft_len(i);
+	}
+	mytab->width = i;
+	return (pos);
+}
+
+int	ft_eval_precision(t_print *mytab, const char *format, int pos)
+{
+	int	i;
+
+	i = 0;
+	pos++;
+	mytab->point = 1;
+	while (format[pos] == '0')
 		pos++;
-	pos = ft_eval_width(mytab, format, pos);
+	if (ft_isdigit(format[pos]))
+	{
+		i = ft_atoi(&format[pos]);
+		pos += ft_len(i);
+	}
+	mytab->precision = i;
 	return (pos);
 }
