@@ -13,32 +13,55 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void	ft_putnbr_base(int n, char *base)
+int	ft_putnbr_base(long long n, char *base)
 {
-	int	tb;
+	long long	tb;
+	int l;
 
+	l = 0;
 	tb = ft_strlen(base);
 	if (n < 0)
 	{
 		n = -n;
-		ft_putchar(45);
+		l += ft_putchar(45);
 	}
 	if (n >= 9)
 	{
+		l++;
 		ft_putnbr_base(n / tb, base);
 		ft_putchar(base[n % tb]);
 	}
 	if (n <= 9 && n >= 0)
-		ft_putchar(base[n]);
+		l += ft_putchar(base[n]);
+	return (l);
+}
+
+
+int	ft_putnbr_base_unsigned(long long n, char *base)
+{
+	long long base_len;
+	int l;
+
+	l = 0;
+	base_len = ft_strlen(base);
+	if (n >= base_len)
+	{
+		l++;
+		ft_putnbr_base_unsigned(n / base_len, base);
+		ft_putchar(base[n % base_len]);
+	}
+	if (n < base_len)
+		l += ft_putchar(base[n]);
+	return (l);
 }
 
 int	ft_output_hexa_intm(t_print *mytab, const char *format, int pos)
 {
 	int		i;
-	int		j;
+	unsigned int		j;
 
 	i = 0;
-	j = va_arg(mytab->args, int);
+	j = va_arg(mytab->args, long long);
 	(void)format;
 	ft_putnbr_base(j, "0123456789abcdef");
 	mytab->total_length += i;
@@ -48,12 +71,12 @@ int	ft_output_hexa_intm(t_print *mytab, const char *format, int pos)
 int	ft_output_hexa_intx(t_print *mytab, const char *format, int pos)
 {
 	int		i;
-	int		j;
+	unsigned long long		j;
 
 	i = 0;
-	j = va_arg(mytab->args, int);
+	j = va_arg(mytab->args, long long);
 	(void)format;
-	ft_putnbr_base(j, "0123456789ABCDEF");
+	i += ft_putnbr_base(j, "0123456789ABCDEF");
 	mytab->total_length += i;
 	return (pos);
 }

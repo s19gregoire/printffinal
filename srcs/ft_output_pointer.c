@@ -13,50 +13,48 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }
 
-int	convert_to_hex(int nb)
+void ft_write_nil(t_print *mytab)
 {
-	long int	i;
-	long		len_base;
-	char *base;
-	int l;
+	char *s;
+	int i;
 
-	i = nb;
-	len_base = 16;
-	base = "0123456789abcdef";
-	l = 1;
-	if (i < 0)
+	s = "(nil)";
+	i = 0;
+	if (mytab->point && mytab->precision < 5 && mytab->precision >= 0)
 	{
-		i *= -1;
-		ft_putchar('-');
+		mytab->total_length = mytab->width;
+		while (mytab->width--)
+			write(1, " ", 1);
+		return ;
 	}
-	if (i < len_base)
-	{
-		ft_putchar(base[i % len_base]);
-		l++;
-	}
-	else
-	{
-		l += convert_to_hex(i / len_base);
-		ft_putchar(i % len_base + '0');
-	}
-	return (l);
+		while (!mytab->dash && mytab->width-- > 5)
+			write(1, " ", 1);
+		while(s[i])
+			write(1, &s[i++], 1);
+		while (mytab->dash && mytab->width-- > 5)
+			write(1, " ", 1);
 }
 
 int ft_output_pointer(t_print *mytab, const char *format, int pos)
 {
 	int i;
-	int j;
+	unsigned long long j;
 
 	i = 1;
-	j = va_arg(mytab->args, int);
+	j = va_arg(mytab->args, unsigned long long);
 	(void)format;
+	if (!j)
+	{
+		ft_write_nil(mytab);
+		return (pos);
+	}
 	write(1, "0x", 2);
-	i += convert_to_hex(j);
+	i += ft_putnbr_base_unsigned(j, "0123456789abcdef");
 	mytab->total_length += i;
 	return (pos);
 }

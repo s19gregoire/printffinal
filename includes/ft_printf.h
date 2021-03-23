@@ -62,8 +62,8 @@ int ft_output_pointer(t_print *mytab, const char *format, int pos);
 //void ft_write_variable(t_print mytab, const char *format, int pos);
 t_print *ft_initialise_tab(t_print *mytab);
 void ft_update_char_counts(t_print *mytab, int pos);
-int convert_to_hex(int nb);
-void	ft_putchar(char c);
+// int convert_to_hex(int nb);
+int	ft_putchar(char c);
 char		*ft_unsigned_itoa(unsigned int nb);
 int	n_len(long n);
 int ft_len(int num);
@@ -79,5 +79,7 @@ int ft_check_sign(t_print *mytab, int j);
 int	ft_output_hexa_intx(t_print *mytab, const char *format, int pos);
 int	ft_output_hexa_intm(t_print *mytab, const char *format, int pos);
 void ft_write_zero(t_print *mytab);
+int	ft_putnbr_base(long long n, char *base);
+int	ft_putnbr_base_unsigned(long long n, char *base);
 
 # endif
