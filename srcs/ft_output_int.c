@@ -48,7 +48,12 @@ void ft_write_zero(t_print *mytab)
 	}
 	if (mytab->point)
 	{
-		if (!mytab->width && mytab->precision)
+		if (mytab->precision < 0)
+		{
+			mytab->total_length = 1;
+			write(1, "0", 1);
+		}
+		if (!mytab->width && mytab->precision > 0)
 		{
 			mytab->total_length = mytab->precision;
 			while (mytab->precision-- > 0)
