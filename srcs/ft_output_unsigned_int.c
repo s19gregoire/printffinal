@@ -61,17 +61,18 @@ int ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	i = 0;
 	j = va_arg(mytab->args, int);
 	(void)format;
+	if (!j)
+	{
+		ft_write_zero(mytab);
+		return (pos);
+	}
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
 	ft_update_mytab(mytab, len);
-	// if (mytab->width > len && mytab->dash == 0)
-		ft_align_right(mytab);
+	ft_align_right(mytab);
 	while(num[i])
 		write(1, &num[i++], 1);
-	// if (mytab->width > len && mytab->dash)
-		ft_align_left(mytab);
-	// else
-	// 	mytab->total_length += len;
+	ft_align_left(mytab);
 	free(num);
 	return (pos);
 }

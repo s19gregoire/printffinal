@@ -20,7 +20,7 @@ int main(void)
 
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%.*s", -3, 0);
+  ret = ft_printf("%7u", 33);
   printf("|%i\n", ret);
 //
   // - [OUTPUT] ft_printf("%-10.5i", -216)
@@ -41,7 +41,7 @@ int main(void)
   // - [OUTPUT] ft_printf("%-5.0i", 0)
   // - [OUTPUT] ft_printf("%.3i", 0)
   // - [OUTPUT] ft_printf("%p", NULL)
-  ret2 = printf("%.*s", -3, 0);
+  ret2 = printf("%7u", 33);
   printf("|%i\n", ret2);
   return (0);
 }

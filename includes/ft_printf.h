@@ -78,5 +78,6 @@ int ft_write_str_with_point(t_print *mytab, int pos);
 int ft_check_sign(t_print *mytab, int j);
 int	ft_output_hexa_intx(t_print *mytab, const char *format, int pos);
 int	ft_output_hexa_intm(t_print *mytab, const char *format, int pos);
+void ft_write_zero(t_print *mytab);
 
 # endif
