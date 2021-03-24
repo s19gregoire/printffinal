@@ -66,7 +66,7 @@ void ft_update_char_counts(t_print *mytab, int pos);
 int	ft_putchar(char c);
 char		*ft_unsigned_itoa(unsigned int nb);
 int	n_len(long n);
-int ft_len(int num);
+int ft_len(long num);
 void ft_align_right(t_print *mytab);
 void ft_align_left(t_print *mytab);
 void ft_write_null(t_print *mytab);

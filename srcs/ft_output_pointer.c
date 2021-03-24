@@ -25,7 +25,7 @@ void ft_write_nil(t_print *mytab)
 
 	s = "(nil)";
 	i = 0;
-	if (mytab->point && mytab->precision < 5 && mytab->precision >= 0)
+	if (mytab->point && mytab->precision < 5 && mytab->precision > 0)
 	{
 		mytab->total_length = mytab->width;
 		while (mytab->width--)

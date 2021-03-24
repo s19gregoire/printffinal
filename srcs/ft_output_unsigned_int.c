@@ -13,30 +13,12 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	n_len(long n)
-{
-	int	count;
-
-	count = 0;
-	if (n <= 0)
-	{
-		count += 1;
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		count++;
-		n /= 10;
-	}
-	return (count);
-}
-
 char		*ft_unsigned_itoa(unsigned int nb)
 {
 	char	*a;
 	int		l;
 
-	l = n_len(nb);
+	l = ft_len(nb);
 	if (!(a = (char *)malloc(sizeof(char) * (l + 1))))
 		return (NULL);
 	a[l--] = '\0';

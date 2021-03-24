@@ -38,12 +38,15 @@ int ft_eval_star(t_print *mytab, const char *format, int pos)
 	}
 	if (ft_isdigit(format[pos]) || format[pos] == 0)
 	{
-		pos = ft_eval_precision(mytab, format, pos);
+		mytab->precision = ft_atoi(&format[pos]);
+		pos += ft_len(mytab->precision);
 	}
 	if (format[pos] == '*')
 	{
 		mytab->precision = va_arg(mytab->args, int);
 		pos++;
 	}
+	// printf("|%d\n", mytab->precision);
+	// printf("|%d\n", mytab->width);
 	return (pos);
 }

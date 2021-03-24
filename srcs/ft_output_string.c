@@ -55,6 +55,8 @@ int ft_output_string(t_print *mytab, const char *format, int pos)
 	(void)format;
 	len = 6;
 	s = va_arg(mytab->args, char *);
+	// printf("|%d\n", mytab->precision);
+	// printf("|%d\n", mytab->width);
 	if (s && mytab->point == 1 && mytab->precision == 0)
 		return (pos = ft_write_str_with_point(mytab, pos));
 	len = ft_update_total_length_string(s, mytab, len);

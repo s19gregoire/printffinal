@@ -43,13 +43,13 @@ int ft_eval_input(t_print *mytab, const char *format, int pos)
 		}
 		if (format[pos] == '0')
 			pos = ft_eval_zero(mytab, format, pos);
-		if (format[pos] == '*' || (ft_isdigit(format[pos])))
-			pos = ft_eval_width(mytab, format, pos);
+		if (format[pos] == '*')
+			pos = ft_eval_star(mytab, format, pos);
 		if (format[pos] == '-')
 			pos = ft_eval_dash(mytab, format, pos);
 		if (format[pos] == '.')
 			pos = ft_eval_precision(mytab, format, pos);
-		if (format[pos] == '*' || (ft_isdigit(format[pos])))
+		if (ft_isdigit(format[pos]))
 			pos = ft_eval_width(mytab, format, pos);
 
 	}

@@ -72,23 +72,6 @@ void ft_left_justify(t_print *mytab, int len)
 				write(1, " ", 1);
 }
 
-int ft_len(int num)
-{
-	int i;
-
-	i = 0;
-	if (num == 0)
-		return (i);
-	if (num < 0)
-		num *= -1;
-	while (num > 0)
-	{
-		i++;
-		num /= 10;
-	}
-	return (i);
-}
-
 int ft_eval_width(t_print *mytab, const char *format, int pos)
 {
 	int i;
