@@ -36,14 +36,18 @@ int main(void)
 	char	*s = "-2147483648";
 	char	*t = "0x12345678";
 	char	*u = "-0";
+  static unsigned int		mx_u = 235;
+static char				mx_c = 'G';
+static char			   *mx_s = "Hello, World!";
+static int				mx_i = 42;
   int ret;
   int ret2;
 
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("hello, %s.", NULL);
+  ret = ft_printf("%i", INT_MAX + 1);
   printf("|%i\n", ret);
-  ret2 = printf("hello, %s.", NULL);
+  ret2 = printf("%i", INT_MAX + 1);
   printf("|%i\n", ret2);
   return (0);
 }

@@ -15,9 +15,12 @@
 
 int ft_check_sign(t_print *tab, int j)
 {
-	if (tab->dash)
-		 write(1, "-", 1);
-	tab->sign = 1;
+	if (j > MIN_INT)
+	{
+		if (tab->dash)
+			 write(1, "-", 1);
+		tab->sign = 1;
+	}
 	return (j * -1);
 }
 
