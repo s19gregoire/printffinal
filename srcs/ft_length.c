@@ -31,52 +31,52 @@ int	ft_len(long n)
 	return (count);
 }
 
-int ft_update_total_length_string(char *s, t_print *mytab, int len)
+int ft_update_total_length_string(char *s, t_print *tab, int len)
 {
+	if (!s)
+	{
+		if (tab->wdt > 6)
+			tab->tl = tab->wdt;
+		else
+			tab->tl = 6;
+		return (len);
+	}
 	if (s)
 		len = ft_strlen(s);
-	if (!s) // && mytab->point)
-	{
-		if (mytab->width > 6)
-			mytab->total_length += mytab->width;
-		else
-			mytab->total_length += 6; //mytab->width;
-		return (len); //+= o solo =?
-	}
-	if (mytab->precision && len > mytab->precision)
-		len = mytab->precision;
-	if ((s && mytab->point && mytab->width) || (mytab->width >= mytab->precision && mytab->width > len))
-		mytab->total_length += mytab->width;
+	if (tab->prc > 0 && len > tab->prc)
+		len = tab->prc;
+	if ((s && tab->pnt && tab->wdt) || (tab->wdt >= tab->prc && tab->wdt > len))
+		tab->tl += tab->wdt;
 	else
-		mytab->total_length += len;
+		tab->tl += len;
 	return (len);
 }
 
-void ft_update_mytab(t_print *mytab, int len)
+void ft_update_tab(t_print *tab, int len)
 {
-	if (mytab->sign)
+	if (tab->sign)
 	{
-		mytab->total_length += 1;
-		if (mytab->width)
-			mytab->width -= 1;
+		tab->tl += 1;
+		if (tab->wdt)
+			tab->wdt -= 1;
 	}
-	if (mytab->width && mytab->width >= mytab->precision)
+	if (tab->wdt && tab->wdt >= tab->prc)
 	{
-		mytab->total_length += mytab->width;
-		if (mytab->precision > len)
-			mytab->precision -= len;
+		tab->tl += tab->wdt;
+		if (tab->prc > len)
+			tab->prc -= len;
 	  else
-			mytab->precision = 0;
-		if (!mytab->is_zero)
-				mytab->width = mytab->width - mytab->precision - len;
+			tab->prc = 0;
+		if (!tab->is_zero)
+				tab->wdt = tab->wdt - tab->prc - len;
 	}
-	else if (mytab->precision > mytab->width)
+	else if (tab->prc > tab->wdt)
 	{
-		mytab->total_length += mytab->precision;
-		mytab->width = 0;
-		mytab->precision -= len;
+		tab->tl += tab->prc;
+		tab->wdt = 0;
+		tab->prc -= len;
 	}
 	else
-		mytab->total_length += len;
+		tab->tl += len;
 
 }

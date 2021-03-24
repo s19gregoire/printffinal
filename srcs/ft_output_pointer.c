@@ -18,45 +18,45 @@ int	ft_putchar(char c)
 	return (write(1, &c, 1));
 }
 
-void ft_write_nil(t_print *mytab)
+void ft_write_nil(t_print *tab)
 {
 	char *s;
 	int i;
 
 	s = "(nil)";
 	i = 0;
-	if (mytab->point && mytab->precision < 5 && mytab->precision > 0)
+	if (tab->pnt && tab->prc < 5 && tab->prc > 0)
 	{
-		mytab->total_length = mytab->width;
-		while (mytab->width--)
+		tab->tl = tab->wdt;
+		while (tab->wdt--)
 			write(1, " ", 1);
 		return ;
 	}
-		while (!mytab->dash && mytab->width-- > 5)
+		while (!tab->dash && tab->wdt-- > 5)
 			write(1, " ", 1);
 		while(s[i])
 			write(1, &s[i++], 1);
-		while (mytab->dash && mytab->width-- > 5)
+		while (tab->dash && tab->wdt-- > 5)
 			write(1, " ", 1);
 }
 
-int ft_output_pointer(t_print *mytab, const char *format, int pos)
+int ft_output_pointer(t_print *tab, const char *format, int pos)
 {
 	int i;
 	unsigned long long j;
 
 	i = 1;
-	j = va_arg(mytab->args, unsigned long long);
+	j = va_arg(tab->args, unsigned long long);
 	(void)format;
 	if (!j)
 	{
-		ft_write_nil(mytab);
+		ft_write_nil(tab);
 		return (pos);
 	}
-	ft_update_mytab(mytab, 14);
-	ft_align_right(mytab);
+	ft_update_tab(tab, 14);
+	ft_right_idupx(tab);
 	write(1, "0x", 2);
 	i += ft_putnbr_base_unsigned(j, "0123456789abcdef");
-	ft_align_left(mytab);
+	ft_left_idupx(tab);
 	return (pos);
 }

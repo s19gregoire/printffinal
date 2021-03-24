@@ -13,40 +13,48 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_eval_zero(t_print *mytab, const char *format, int pos)
+int	ft_putnbr_base(long long n, char *base)
 {
-	int i;
+	long long	base_len;
+	int l;
 
-	i = 0;
-	pos++;
-	mytab->zero = 1;
-	if (ft_isdigit(format[pos]))
+	l = 1;
+	base_len = ft_strlen(base);
+	if (n < 0)
 	{
-		i = ft_atoi(&format[pos]);
-		pos += ft_len(i);
+		n = -n;
+		l += ft_putchar(45);
 	}
-	mytab->width = i;
-	return (pos);
+	if (n >= base_len)
+	{
+		l += ft_putnbr_base(n / base_len, base);
+		ft_putchar(base[n % base_len]);
+	}
+	if (n < base_len)
+	{
+		ft_putchar(base[n]);
+		l++;
+	}
+	return (l);
 }
 
-int ft_eval_precision(t_print *mytab, const char *format, int pos)
-{
-	int i;
 
-	i = 0;
-	pos++;
-	mytab->point = 1;
-	while (format[pos] == '0')
-		pos++;
-	if (ft_isdigit(format[pos]))
+int	ft_putnbr_base_unsigned(long long n, char *base)
+{
+	long long base_len;
+	int l;
+
+	l = 1;
+	base_len = ft_strlen(base);
+	if (n >= base_len)
 	{
-		i = ft_atoi(&format[pos]);
-		pos += ft_len(i);
-		mytab->precision = i;
+		l += ft_putnbr_base_unsigned(n / base_len, base);
+		ft_putchar(base[n % base_len]);
 	}
-	if (format[pos] == '*')
+	if (n < base_len)
 	{
-		pos = ft_eval_star(mytab, format, pos);
+		ft_putchar(base[n]);
+		l++;
 	}
-	return (pos);
+	return (l);
 }

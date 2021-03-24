@@ -13,40 +13,90 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_eval_dash(t_print *mytab, const char *format, int pos)
+int ft_eval_zero(t_print *tab, const char *format, int pos)
 {
+	int i;
+
+	i = 0;
 	pos++;
-	mytab->dash = 1;
-	while (format[pos] == '-')
-		pos++;
-	pos = ft_eval_width(mytab, format, pos);
+	tab->zero = 1;
+	if (ft_isdigit(format[pos]))
+	{
+		i = ft_atoi(&format[pos]);
+		pos += ft_len(i);
+	}
+	tab->wdt = i;
 	return (pos);
 }
 
-int ft_eval_star(t_print *mytab, const char *format, int pos)
+int ft_eval_precision(t_print *tab, const char *format, int pos)
+{
+	int i;
+
+	i = 0;
+	pos++;
+	tab->pnt = 1;
+	while (format[pos] == '0')
+		pos++;
+	if (ft_isdigit(format[pos]))
+	{
+		i = ft_atoi(&format[pos]);
+		pos += ft_len(i);
+	}
+	tab->prc = i;
+	if (format[pos] == '*')
+		pos = ft_eval_star(tab, format, pos);
+	return (pos);
+}
+
+int ft_eval_dash(t_print *tab, const char *format, int pos)
 {
 	pos++;
-	mytab->star = 1;
-	if (!mytab->point)
-		mytab->width = va_arg(mytab->args, int);
+	tab->dash = 1;
+	while (format[pos] == '-')
+		pos++;
+	pos = ft_eval_width(tab, format, pos);
+	return (pos);
+}
+
+int ft_eval_star(t_print *tab, const char *format, int pos)
+{
+	pos++;
+	tab->star = 1;
+	if (!tab->pnt)
+		tab->wdt = va_arg(tab->args, int);
 	else
-		mytab->precision = va_arg(mytab->args, int);
+		tab->prc = va_arg(tab->args, int);
 	if (format[pos] == '.')
 	{
-		mytab->point = 1;
+		tab->pnt = 1;
 		pos++;
 	}
 	if (ft_isdigit(format[pos]) || format[pos] == 0)
 	{
-		mytab->precision = ft_atoi(&format[pos]);
-		pos += ft_len(mytab->precision);
+		tab->prc = ft_atoi(&format[pos]);
+		pos += ft_len(tab->prc);
 	}
 	if (format[pos] == '*')
 	{
-		mytab->precision = va_arg(mytab->args, int);
+		tab->prc = va_arg(tab->args, int);
 		pos++;
 	}
-	// printf("|%d\n", mytab->precision);
-	// printf("|%d\n", mytab->width);
+	return (pos);
+}
+
+int ft_eval_width(t_print *tab, const char *format, int pos)
+{
+	int i;
+
+	i = 0;
+	if (ft_isdigit(format[pos]))
+	{
+		i = ft_atoi(&format[pos]);
+		pos += ft_len(i);
+	}
+	tab->wdt = i;
+	if (format[pos] == '.')
+		pos = ft_eval_precision(tab, format, pos);
 	return (pos);
 }

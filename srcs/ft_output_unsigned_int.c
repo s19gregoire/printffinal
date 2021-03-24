@@ -33,7 +33,7 @@ char		*ft_unsigned_itoa(unsigned int nb)
 }
 
 
-int ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
+int ft_output_unsigned_int(t_print *tab, const char *format, int pos)
 {
 	int i;
 	unsigned int j;
@@ -41,20 +41,20 @@ int ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	int len;
 
 	i = 0;
-	j = va_arg(mytab->args, int);
+	j = va_arg(tab->args, int);
 	(void)format;
 	if (!j)
 	{
-		ft_write_zero(mytab);
+		ft_write_zero(tab);
 		return (pos);
 	}
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
-	ft_update_mytab(mytab, len);
-	ft_align_right(mytab);
+	ft_update_tab(tab, len);
+	ft_right_idupx(tab);
 	while(num[i])
 		write(1, &num[i++], 1);
-	ft_align_left(mytab);
+	ft_left_idupx(tab);
 	free(num);
 	return (pos);
 }
