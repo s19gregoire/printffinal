@@ -13,78 +13,55 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-void	ft_align_right(t_print *mytab)
+void ft_right_idupx(t_print *tab)
 {
-	if (mytab->zero && !mytab->point)
+	if (tab->zero && !tab->pnt)
 	{
-		if (mytab->sign)
+		if (tab->sign)
 			write(1, "-", 1);
-		while (mytab->zero && --mytab->width > -1 && !mytab->precision)
+		while (!tab->prc && --tab->wdt > -1)
 			write(1, "0", 1);
 	}
-	else if (!mytab->dash)
+	else if (!tab->dash)
 	{
-		while (--mytab->width > -1)
-			write(1, " ", 1);
-		if (mytab->sign)
-			write(1, "-", 1);
+			while (--tab->wdt > -1)
+				write(1, " ", 1);
+			if (tab->sign)
+				write(1, "-", 1);
 	}
-	while (--mytab->precision > -1)
+	while (--tab->prc > -1)
+			write(1, "0", 1);
+}
+
+void ft_left_idupx(t_print *tab)
+{
+	if (tab->dash)
+	{
+		while (tab->dash && tab->zero && --tab->prc > -1)
+			write(1, "0", 1);
+		while (tab->dash && --tab->wdt > -1)
+			write(1, " ", 1);
+	}
+}
+
+void ft_right_cs(t_print *tab, int len)
+{
+	while (tab->zero && tab->wdt-- > len)
 		write(1, "0", 1);
-}
-
-void	ft_align_left(t_print *mytab)
-{
-	if (mytab->dash)
-	{
-		while (mytab->zero && --mytab->precision > -1)
-			write(1, "0", 1);
-		while (--mytab->width > -1)
+	if (!tab->zero && tab->prc && tab->prc < len)
+		while (tab->wdt-- > tab->prc)
 			write(1, " ", 1);
-	}
-}
-
-void	ft_right_justify(t_print *mytab, int len)
-{
-	if (mytab->zero == 1)
-		while (mytab->width-- > len)
-			write(1, "0", 1);
 	else
-	{
-		if (mytab->precision && mytab->precision < len)
-			while (mytab->width-- > mytab->precision)
-				write(1, " ", 1);
-		else
-		{
-			while (mytab->width-- > len)
-				write(1, " ", 1);
-		}
-	}
-}
-
-void	ft_left_justify(t_print *mytab, int len)
-{
-	if (mytab->zero == 1)
-		while (mytab->width-- > len)
-			write(1, "0", 1);
-	else
-		while (mytab->width-- > len)
+		while (!tab->zero && tab->wdt-- > len)
 			write(1, " ", 1);
 }
 
-int	ft_len(int num)
+void ft_left_cs(t_print *tab, int len)
 {
-	int	i;
-
-	i = 0;
-	if (num == 0)
-		return (i);
-	if (num < 0)
-		num *= -1;
-	while (num > 0)
-	{
-		i++;
-		num /= 10;
-	}
-	return (i);
+	while (tab->zero && tab->wdt-- > len)
+		write(1, "0", 1);
+	while (!tab->zero && tab->wdt-- > len)
+		write(1, " ", 1);
 }
+
+

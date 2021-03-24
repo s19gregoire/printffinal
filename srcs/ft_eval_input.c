@@ -13,46 +13,46 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_eval_variable(t_print *mytab, const char *format, int pos)
+int 	ft_eval_variable(t_print *tab, const char *format, int pos)
 {
 	if (format[pos] == 'c')
-		pos = ft_output_char(mytab, format, pos);
+		pos = ft_output_char(tab, format, pos);
 	else if (format[pos] == 's')
-		pos = ft_output_string(mytab, format, pos);
+		pos = ft_output_string(tab, format, pos);
 	else if (format[pos] == 'd' || format[pos] == 'i')
-		pos = ft_output_int(mytab, format, pos);
+		pos = ft_output_int(tab, format, pos);
 	else if (format[pos] == 'u')
-		pos = ft_output_unsigned_int(mytab, format, pos);
+			pos = ft_output_unsigned_int(tab, format, pos);
 	else if (format[pos] == 'p')
-		pos = ft_output_pointer(mytab, format, pos);
-	if (format[pos] == 'x')
-		pos = ft_output_hexa_intm(mytab, format, pos);
+			pos = ft_output_pointer(tab, format, pos);
+	else if (format[pos] == 'x')
+			pos = ft_output_hexa_intm(tab, format, pos);
 	else if (format[pos] == 'X')
-		pos = ft_output_hexa_intx(mytab, format, pos);
+			pos = ft_output_hexa_intx(tab, format, pos);
 	return (pos);
 }
 
-int	ft_eval_input(t_print *mytab, const char *format, int pos)
+int ft_eval_input(t_print *tab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos])))
 	{
 		if (format[pos] == '%')
 		{
-			write(1, "%", 1);
+			tab->tl = write(1, "%", 1);
 			break ;
 		}
 		if (format[pos] == '0')
-			pos = ft_eval_zero(mytab, format, pos);
-		if (format[pos] == '*' || (ft_isdigit(format[pos])))
-			pos = ft_eval_width(mytab, format, pos);
+			pos = ft_eval_zero(tab, format, pos);
+		if (format[pos] == '*')
+			pos = ft_eval_star(tab, format, pos);
 		if (format[pos] == '-')
-			pos = ft_eval_dash(mytab, format, pos);
+			pos = ft_eval_dash(tab, format, pos);
 		if (format[pos] == '.')
-			pos = ft_eval_precision(mytab, format, pos);
-		if (format[pos] == '*' || (ft_isdigit(format[pos])))
-			pos = ft_eval_width(mytab, format, pos);
+			pos = ft_eval_precision(tab, format, pos);
+		if (ft_isdigit(format[pos]))
+			pos = ft_eval_width(tab, format, pos);
 	}
 	if (ft_isalpha(format[pos]))
-		pos = ft_eval_variable(mytab, format, pos);
+		pos = ft_eval_variable(tab, format, pos);
 	return (pos);
 }

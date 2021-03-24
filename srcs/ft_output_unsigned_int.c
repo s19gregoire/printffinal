@@ -13,30 +13,12 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	n_len(long n)
-{
-	int	count;
-
-	count = 0;
-	if (n <= 0)
-	{
-		count += 1;
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		count++;
-		n /= 10;
-	}
-	return (count);
-}
-
-char	*ft_unsigned_itoa(unsigned int nb)
+char		*ft_unsigned_itoa(unsigned int nb)
 {
 	char	*a;
 	int		l;
 
-	l = n_len(nb);
+	l = ft_len(nb);
 	if (!(a = (char *)malloc(sizeof(char) * (l + 1))))
 		return (NULL);
 	a[l--] = '\0';
@@ -50,7 +32,8 @@ char	*ft_unsigned_itoa(unsigned int nb)
 	return (a);
 }
 
-int	ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
+
+int ft_output_unsigned_int(t_print *tab, const char *format, int pos)
 {
 	int				i;
 	unsigned int	j;
@@ -58,15 +41,20 @@ int	ft_output_unsigned_int(t_print *mytab, const char *format, int pos)
 	int				len;
 
 	i = 0;
-	j = va_arg(mytab->args, int);
+	j = va_arg(tab->args, int);
 	(void)format;
+	if (!j)
+	{
+		ft_write_zero(tab);
+		return (pos);
+	}
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
-	ft_update_mytab(mytab, len);
-	ft_align_right(mytab);
-	while (num[i])
+	ft_update_tab(tab, len);
+	ft_right_idupx(tab);
+	while(num[i])
 		write(1, &num[i++], 1);
-	ft_align_left(mytab);
+	ft_left_idupx(tab);
 	free(num);
 	return (pos);
 }

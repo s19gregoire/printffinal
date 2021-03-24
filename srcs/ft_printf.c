@@ -12,24 +12,22 @@
 
 #include "../includes/ft_printf.h"
 
-t_print	*ft_initialise_tab(t_print *mytab)
+t_print *ft_initialise_tab(t_print *tab)
 {
-	mytab->width = 0;
-	mytab->precision = 0;
-	mytab->zero = 0;
-	mytab->point = 0;
-	mytab->star = 0;
-	mytab->is_neg = 0;
-	mytab->left_aligned = 0;
-	mytab->right_aligned = 0;
-	mytab->special_chars = 0;
-	mytab->total_length = 0;
-	return (mytab);
+	tab->wdt = 0;
+	tab->prc = 0;
+	tab->zero = 0;
+	tab->pnt = 0;
+	tab->star = 0;
+	tab->is_neg = 0;
+	tab->special_chars = 0;
+	tab->tl = 0;
+	return (tab);
 }
 
-void	ft_update_char_counts(t_print *mytab, int pos)
+void 	ft_update_char_counts(t_print *tab, int pos)
 {
-	mytab->flag_chars += pos - mytab->position;
+	tab->flag_chars += pos - tab->position;
 }
 
 int	is_a_flag(char c)
@@ -55,32 +53,31 @@ int	ft_percentage_check(const char *format, int pos)
 
 int	ft_printf(const char *format, ...)
 {
-	t_print	*mytab;
-	int		i;
-	int		r;
+	t_print *tab;
+	int i;
+	int r;
 
 	r = 0;
-	if (!(mytab = (t_print*)malloc(sizeof(t_print))))
+	if (!(tab = (t_print*)malloc(sizeof(t_print))))
 		return (-1);
-	ft_initialise_tab(mytab);
+	ft_initialise_tab(tab);
 	i = -1;
-	va_start(mytab->args, format);
+	va_start(tab->args, format);
 	while (format[++i])
 	{
 		if (format[i] == '%')
 		{
-			// mytab->position = i;
-			// mytab->flag_chars++;
+			// tab->position = i;
+			// tab->flag_chars++;
 			i++;
-			i = ft_eval_input(mytab, format, i);
-			//ft_update_char_counts(mytab, i);
-			r += mytab->total_length;
+			i = ft_eval_input(tab, format, i);
+			//ft_update_char_counts(tab, i);
+			r += tab->tl;
 		}
 		else
 			r += write(1, &format[i], 1);
   	}
-	va_end(mytab->args);
-	r = mytab->total_length; // + i - mytab->flag_chars;
-	free(mytab);
+	va_end(tab->args);
+	free(tab);
 	return (r);
 }

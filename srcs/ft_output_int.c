@@ -13,64 +13,72 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_check_sign(t_print *mytab, int j)
+int ft_check_sign(t_print *tab, int j)
 {
-	if (mytab->dash)
-		 write(1, "-", 1);
-	mytab->sign = 1;
+	if (j > MIN_INT)
+	{
+		if (tab->dash)
+			 write(1, "-", 1);
+		tab->sign = 1;
+	}
 	return (j * -1);
 }
 
-void	ft_write_zero(t_print *mytab)
+void ft_write_zero(t_print *tab)
 {
-	mytab->is_zero = 1;
-	if (mytab->width && (mytab->point || mytab->zero))
+	tab->is_zero = 1;
+	if (tab->wdt && (tab->pnt || tab->zero))
 	{
-		mytab->total_length = mytab->width;
-		if (!mytab->precision)
+		tab->tl = tab->wdt;
+		if (!tab->prc)
 		{
-				while (mytab->zero && mytab->width-- > 0)
+				while (tab->zero && tab->wdt-- > 0)
 					write(1, "0", 1);
-				while (!mytab->zero && mytab->width-- > 0)
+				while (!tab->zero && tab->wdt-- > 0)
 					write(1, " ", 1);
 		}
 		else
 		{
-			mytab->width -= mytab->precision;
-			while (mytab->dash && mytab->precision-- > 0)
+			tab->wdt -= tab->prc;
+			while (tab->dash && tab->prc-- > 0)
 				write(1, "0", 1);
-			while (mytab->width-- > 0)
+			while (tab->wdt-- > 0)
 				write(1, " ", 1);
-			while (!mytab->dash && mytab->precision-- > 0)
+			while (!tab->dash && tab->prc-- > 0)
 				write(1, "0", 1);
 		}
 		return ;
 	}
-	if (mytab->point)
+	if (tab->pnt)
 	{
-		if (!mytab->width && mytab->precision)
+		if (tab->prc < 0)
 		{
-			mytab->total_length = mytab->precision;
-			while (mytab->precision-- > 0)
+			tab->tl = 1;
+			write(1, "0", 1);
+		}
+		if (!tab->wdt && tab->prc > 0)
+		{
+			tab->tl = tab->prc;
+			while (tab->prc-- > 0)
 				write(1, "0", 1);
 		}
 		else
 		{
-			mytab->total_length = mytab->width;
-			while (mytab->width-- > 0)
+			tab->tl = tab->wdt;
+			while (tab->wdt-- > 0)
 				write(1, " ", 1);
 		}
 		return ;
 	}
-	ft_update_mytab(mytab, 1);
-	while (!mytab->dash && --mytab->width > 0)
+	ft_update_tab(tab, 1);
+	while (!tab->dash && --tab->wdt > 0)
 		write(1, " ", 1);
 	write(1, "0", 1);
-	while (mytab->dash && --mytab->width > 0)
-		write(1, " ", 1);
+	while (tab->dash && --tab->wdt > 0)
+	 	write(1, " ", 1);
 }
 
-int	ft_output_int(t_print *mytab, const char *format, int pos)
+int ft_output_int(t_print *tab, const char *format, int pos)
 {
 	int		i;
 	int		j;
@@ -78,22 +86,22 @@ int	ft_output_int(t_print *mytab, const char *format, int pos)
 	int		len;
 
 	i = 0;
-	j = va_arg(mytab->args, int);
+	j = va_arg(tab->args, int);
 	(void)format;
 	if (!j)
 	{
-		ft_write_zero(mytab);
+		ft_write_zero(tab);
 		return (pos);
 	}
 	if (j < 0)
-		j = ft_check_sign(mytab, j);
+		j = ft_check_sign(tab, j);
 	num = ft_itoa(j);
 	len = ft_strlen(num);
-	ft_update_mytab(mytab, len);
-	ft_align_right(mytab);
-	while (j && num[i])
+	ft_update_tab(tab, len);
+	ft_right_idupx(tab);
+	while(j && num[i])
 		write(1, &num[i++], 1);
-	ft_align_left(mytab);
+	ft_left_idupx(tab);
 	free(num);
 	return (pos);
 }
