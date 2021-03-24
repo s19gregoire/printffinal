@@ -45,9 +45,23 @@ static int				mx_i = 42;
 
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%i", INT_MAX + 1);
+  ret = ft_printf("  %u    %%    %p    %x    %s    %i  ",  mx_u, &mx_i, mx_u, mx_s, mx_i);
   printf("|%i\n", ret);
-  ret2 = printf("%i", INT_MAX + 1);
+//   First line of code: {return test("%02.7X", 3267);}
+//
+// Test 471 (X_prec_width_fn_pos_ljzp_ignoreflag) : FAILED.
+// First line of code: {return test("%0-2.7X", 3267);}
+//
+// Test 489 (new2019_negstar_1) : FAILED.
+// First line of code: {return test("%*s", -32, "abc");}
+//
+// Test 490 (new2019_negstar_2) : FAILED.
+// First line of code: {return test("%-*s", -32, "abc");}
+// First line of code: {return test("%-*.*s", -7, -3, "yolo");}
+// Test 495 (new2019_negstar_7) : FAILED.
+// First line of code: {return test();}
+
+  ret2 = printf("  %u    %%    %p    %x    %s    %i  ",   mx_u, &mx_i, mx_u, mx_s, mx_i);
   printf("|%i\n", ret2);
   return (0);
 }
