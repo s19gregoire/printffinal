@@ -32,10 +32,10 @@ static void *a12;
 
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
+  ret = ft_printf("%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32pp",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
   printf("|%i\n", ret);
   // - [OUTPUT] ft_printf("%p", NULL)
-  ret2 = printf("%p%p%p%p%p%p%p%p%p%p%p%p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
+  ret2 = printf("%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p%32p",&a01,&a02,&a03,&a04,&a05,&a06,&a07,&a08,&a09,&a10,&a11,&a12);
   printf("|%i\n", ret2);
   return (0);
 }

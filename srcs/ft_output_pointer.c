@@ -53,8 +53,10 @@ int ft_output_pointer(t_print *mytab, const char *format, int pos)
 		ft_write_nil(mytab);
 		return (pos);
 	}
+	ft_update_mytab(mytab, 14);
+	ft_align_right(mytab);
 	write(1, "0x", 2);
 	i += ft_putnbr_base_unsigned(j, "0123456789abcdef");
-	mytab->total_length += i;
+	ft_align_left(mytab);
 	return (pos);
 }
