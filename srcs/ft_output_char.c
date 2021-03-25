@@ -13,15 +13,14 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_output_char(t_print *tab, const char *format, int pos)
+int ft_output_char(t_print *tab, int pos)
 {
 	char a;
 
 	a = va_arg(tab->args, int);
-	(void)format;
 	ft_update_tab(tab, 1);
 	if (tab->wdt && !tab->dash)
-		ft_right_cs(tab, 0); // len should be removed from the function
+		ft_right_cs(tab, 0);
 	tab->tl += write(1, &a, 1);
 	if (tab->wdt && tab->dash)
 		ft_left_cs(tab, 0);

@@ -40,60 +40,31 @@ char	*ft_itoabase(unsigned long long n, int base, int uppercase)
 	return (str);
 }
 
-int	ft_output_hexa_intm(t_print *tab, const char *format, int pos)
+int	ft_output_hexa_int(t_print *tab, const char *format, int pos)
 {
 	unsigned long long		j;
 	int len;
 	char *num;
+	int uppercase;
 
 	len = 0;
+	uppercase = 1;
 	j = va_arg(tab->args, long long);
-	(void)format;
+
 	if (!j)
 	{
 		ft_write_zero(tab);
 		return (pos);
 	}
-	num = ft_itoabase(j, 16, 0);
+	if (format[pos] == 'X')
+		num = ft_itoabase(j, 16, uppercase);
+	else
+		num = ft_itoabase(j, 16, 0);
 	len = ft_strlen(num);
 	ft_update_tab(tab, len);
 	ft_right_idupx(tab);
-	// len = ft_putnbr_base();
 	while(num[--len])
 		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
-	// if (len > tab->wdt)
-	// 	tab->tl = len;
-	// else
-	// 	tab->tl = tab->wdt;
-	return (pos);
-}
-
-int	ft_output_hexa_intx(t_print *tab, const char *format, int pos)
-{
-	unsigned long long		j;
-	int len;
-	char *num;
-
-	len = 0;
-	j = va_arg(tab->args, long long);
-	(void)format;
-	if (!j)
-	{
-		ft_write_zero(tab);
-		return (pos);
-	}
-	num = ft_itoabase(j, 16, 1);
-	len = ft_strlen(num);
-	ft_update_tab(tab, len);
-	ft_right_idupx(tab);
-	// len = ft_putnbr_base();
-	while(num[--len])
-		tab->tl += write(1, &num[len], 1);
-	ft_left_idupx(tab);
-	// if (len > tab->wdt)
-	// 	tab->tl = len;
-	// else
-	// 	tab->tl = tab->wdt;
 	return (pos);
 }

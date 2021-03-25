@@ -13,42 +13,15 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-void ft_write_nil(t_print *tab)
-{
-	char *s;
-	int i;
-
-	s = "(nil)";
-	i = 0;
-	if (tab->pnt && tab->prc < 5 && tab->prc > 0)
-	{
-		// tab->tl = tab->wdt;
-		while (tab->wdt--)
-			tab->tl += write(1, " ", 1);
-		return ;
-	}
-		while (!tab->dash && tab->wdt-- > 5)
-			tab->tl += write(1, " ", 1);
-		while(s[i])
-			tab->tl += write(1, &s[i++], 1);
-		while (tab->dash && tab->wdt-- > 5)
-			tab->tl += write(1, " ", 1);
-}
-
-int ft_output_pointer(t_print *tab, const char *format, int pos)
+int ft_output_pointer(t_print *tab, int pos)
 {
 	unsigned long long j;
 
 	j = va_arg(tab->args, unsigned long long);
-	(void)format;
+
 	if (!j)
 	{
-		ft_write_nil(tab);
+		ft_write_null(tab, "(nil)");
 		return (pos);
 	}
 	ft_update_tab(tab, 14);

@@ -24,10 +24,7 @@ SRC	=	ft_strlen.c				\
 		ft_substr.c				\
 		ft_split.c				\
 		ft_itoa.c				\
-		ft_putchar_fd.c			\
-		ft_putstr_fd.c			\
-		ft_putendl_fd.c			\
-		ft_putnbr_fd.c			\
+		ft_putchar.c			\
 
 OBJS = $(SRC:%.c=%.o)
 

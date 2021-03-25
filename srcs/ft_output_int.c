@@ -78,7 +78,7 @@ void ft_write_zero(t_print *tab)
 	 	tab->tl += write(1, " ", 1);
 }
 
-int ft_output_int(t_print *tab, const char *format, int pos)
+int ft_output_int(t_print *tab, int pos)
 {
 	int i;
 	int j;
@@ -87,7 +87,7 @@ int ft_output_int(t_print *tab, const char *format, int pos)
 
 	i = 0;
 	j = va_arg(tab->args, int);
-	(void)format;
+
 	if (!j)
 	{
 		ft_write_zero(tab);

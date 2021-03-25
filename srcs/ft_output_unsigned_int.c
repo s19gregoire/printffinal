@@ -33,7 +33,7 @@ char		*ft_unsigned_itoa(unsigned int nb)
 }
 
 
-int ft_output_unsigned_int(t_print *tab, const char *format, int pos)
+int ft_output_unsigned_int(t_print *tab, int pos)
 {
 	int i;
 	unsigned int j;
@@ -42,7 +42,7 @@ int ft_output_unsigned_int(t_print *tab, const char *format, int pos)
 
 	i = 0;
 	j = va_arg(tab->args, int);
-	(void)format;
+
 	if (!j)
 	{
 		ft_write_zero(tab);
