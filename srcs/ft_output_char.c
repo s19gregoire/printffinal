@@ -22,7 +22,7 @@ int ft_output_char(t_print *tab, const char *format, int pos)
 	ft_update_tab(tab, 1);
 	if (tab->wdt && !tab->dash)
 		ft_right_cs(tab, 0); // len should be removed from the function
-	write(1, &a, 1);
+	tab->tl += write(1, &a, 1);
 	if (tab->wdt && tab->dash)
 		ft_left_cs(tab, 0);
 	return (pos);

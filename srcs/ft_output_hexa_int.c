@@ -13,61 +13,6 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-// char	*ft_itoabase(int n, char *base)
-// {
-// 	int					c;
-// 	unsigned int		tmp;
-// 	char				*res;
-// 	unsigned int		base_length;
-//
-// 	base_length = ft_strlen(base);
-// 	c = (n < 0) ? 2 : 1;
-// 	tmp = (n < 0) ? -n : n;
-// 	while (tmp >= base_length && (tmp /= base_length))
-// 		c++;
-// 	// tmp = (n < 0) ? -n : n;
-// 	if (!(res = (char*)malloc(sizeof(char) * (c + 1))))
-// 		return (NULL);
-// 	if (n < 0)
-// 		res[0] = '-';
-// 	res[c--] = '\0';
-// 	while (tmp >= base_length)
-// 	{
-// 		res[c--] = base[tmp % base_length];
-// 		tmp /= base_length;
-// 	}
-// 	res[--c] = base[tmp % base_length];
-// 	return (res);
-// }
-//
-// char		*ft_itoa(int n)
-// {
-// 	char	*a;
-// 	int		l;
-// 	long	long nb;
-//
-// 	nb = n;
-// 	l = n_len(nb);
-// 	if (!(a = (char *)malloc(sizeof(char) * (l + 1))))
-// 		return (NULL);
-// 	a[l--] = '\0';
-// 	if (nb < 0)
-// 	{
-// 		nb *= -1;
-// 		a[0] = '-';
-// 	}
-// 	if (nb == 0)
-// 	{
-// 		a[l] = 0 + '0';
-// 	}
-// 	while (nb > 0)
-// 	{
-// 		a[l--] = nb % 10 + '0';
-// 		nb /= 10;
-// 	}
-// 	return (a);
-// }
-
 char	*ft_itoabase(unsigned long long n, int base, int uppercase)
 {
 	char	*str;
@@ -115,12 +60,12 @@ int	ft_output_hexa_intm(t_print *tab, const char *format, int pos)
 	ft_right_idupx(tab);
 	// len = ft_putnbr_base();
 	while(num[--len])
-		write(1, &num[len], 1);
+		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
-	if (len > tab->wdt)
-		tab->tl = len;
-	else
-		tab->tl = tab->wdt;
+	// if (len > tab->wdt)
+	// 	tab->tl = len;
+	// else
+	// 	tab->tl = tab->wdt;
 	return (pos);
 }
 
@@ -144,11 +89,11 @@ int	ft_output_hexa_intx(t_print *tab, const char *format, int pos)
 	ft_right_idupx(tab);
 	// len = ft_putnbr_base();
 	while(num[--len])
-		write(1, &num[len], 1);
+		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
-	if (len > tab->wdt)
-		tab->tl = len;
-	else
-		tab->tl = tab->wdt;
+	// if (len > tab->wdt)
+	// 	tab->tl = len;
+	// else
+	// 	tab->tl = tab->wdt;
 	return (pos);
 }

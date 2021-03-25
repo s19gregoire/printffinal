@@ -53,7 +53,7 @@ int ft_output_unsigned_int(t_print *tab, const char *format, int pos)
 	ft_update_tab(tab, len);
 	ft_right_idupx(tab);
 	while(num[i])
-		write(1, &num[i++], 1);
+		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
 	free(num);
 	return (pos);

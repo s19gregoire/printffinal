@@ -20,14 +20,8 @@ t_print *ft_initialise_tab(t_print *tab)
 	tab->pnt = 0;
 	tab->star = 0;
 	tab->is_neg = 0;
-	tab->special_chars = 0;
 	tab->tl = 0;
 	return (tab);
-}
-
-void 	ft_update_char_counts(t_print *tab, int pos)
-{
-	tab->flag_chars += pos - tab->position;
 }
 
 int is_a_flag(char c)
@@ -66,17 +60,11 @@ int ft_printf(const char *format, ...)
 	while (format[++i])
 	{
 		if (format[i] == '%')
-		{
-			// tab->position = i;
-			// tab->flag_chars++;
-			i++;
-			i = ft_eval_input(tab, format, i);
-			//ft_update_char_counts(tab, i);
-			r += tab->tl;
-		}
+			i = ft_eval_input(tab, format, i + 1);
 		else
 			r += write(1, &format[i], 1);
   	}
+	r += tab->tl;
 	va_end(tab->args);
 	free(tab);
 	return (r);

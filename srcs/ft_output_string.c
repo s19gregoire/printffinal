@@ -17,7 +17,7 @@ int ft_write_str_with_point(t_print *tab, int pos)
 {
 	ft_update_total_length_string(NULL, tab, 0);
 	while (tab->wdt--)
-		write(1, " ", 1);
+		tab->tl += write(1, " ", 1);
 	return (pos);
 }
 
@@ -32,15 +32,15 @@ void ft_write_null(t_print *tab)
 	{
 		tab->tl = tab->wdt;
 		while (tab->wdt--)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 		return ;
 	}
 	while (!tab->dash && tab->wdt-- > 6)
-		write(1, " ", 1);
+		tab->tl += write(1, " ", 1);
 	while(s[i])
-		write(1, &s[i++], 1);
+		tab->tl += write(1, &s[i++], 1);
 	while (tab->dash && tab->wdt-- > 6)
-	 	write(1, " ", 1);
+	 	tab->tl += write(1, " ", 1);
 }
 
 int ft_output_string(t_print *tab, const char *format, int pos)
@@ -64,10 +64,10 @@ int ft_output_string(t_print *tab, const char *format, int pos)
 	{
 		if (tab->prc > 0)
 			while (s[i] && tab->prc--)
-				write(1, &s[i++], 1);
+				tab->tl += write(1, &s[i++], 1);
 		else
 			while (s[i])
-				write(1, &s[i++], 1);
+				tab->tl += write(1, &s[i++], 1);
 	}
 	if (s && tab->dash && tab->wdt)
 		ft_left_cs(tab, len);

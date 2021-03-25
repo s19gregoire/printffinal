@@ -38,7 +38,7 @@ int ft_eval_input(t_print *tab, const char *format, int pos)
 	{
 		if (format[pos] == '%')
 		{
-			tab->tl = write(1, "%", 1);
+			tab->tl += write(1, "%", 1); //+= or =?
 			break ;
 		}
 		if (format[pos] == '0')

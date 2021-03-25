@@ -27,25 +27,23 @@ void ft_write_nil(t_print *tab)
 	i = 0;
 	if (tab->pnt && tab->prc < 5 && tab->prc > 0)
 	{
-		tab->tl = tab->wdt;
+		// tab->tl = tab->wdt;
 		while (tab->wdt--)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 		return ;
 	}
 		while (!tab->dash && tab->wdt-- > 5)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 		while(s[i])
-			write(1, &s[i++], 1);
+			tab->tl += write(1, &s[i++], 1);
 		while (tab->dash && tab->wdt-- > 5)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 }
 
 int ft_output_pointer(t_print *tab, const char *format, int pos)
 {
-	int i;
 	unsigned long long j;
 
-	i = 1;
 	j = va_arg(tab->args, unsigned long long);
 	(void)format;
 	if (!j)
@@ -55,8 +53,8 @@ int ft_output_pointer(t_print *tab, const char *format, int pos)
 	}
 	ft_update_tab(tab, 14);
 	ft_right_idupx(tab);
-	write(1, "0x", 2);
-	i += ft_putnbr_base_unsigned(j, "0123456789abcdef");
+	tab->tl += write(1, "0x", 2);
+	tab->tl += ft_putnbr_base_unsigned(j, "0123456789abcdef");
 	ft_left_idupx(tab);
 	return (pos);
 }
