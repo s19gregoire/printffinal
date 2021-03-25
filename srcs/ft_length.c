@@ -31,24 +31,12 @@ int	ft_len(long n)
 	return (count);
 }
 
-int ft_update_total_length_string(char *s, t_print *tab, int len)
+int ft_update_tab_string(char *s, t_print *tab, int len)
 {
-	if (!s)
-	{
-		if (tab->wdt > 6)
-			tab->tl = tab->wdt;
-		else
-			tab->tl = 6;
-		return (len);
-	}
 	if (s)
 		len = ft_strlen(s);
 	if (tab->prc > 0 && len > tab->prc)
 		len = tab->prc;
-	if ((s && tab->pnt && tab->wdt) || (tab->wdt >= tab->prc && tab->wdt > len))
-		tab->tl += tab->wdt;
-	else
-		tab->tl += len;
 	return (len);
 }
 
@@ -56,13 +44,11 @@ void ft_update_tab(t_print *tab, int len)
 {
 	if (tab->sign)
 	{
-		tab->tl += 1;
 		if (tab->wdt)
 			tab->wdt -= 1;
 	}
 	if (tab->wdt && tab->wdt >= tab->prc)
 	{
-		tab->tl += tab->wdt;
 		if (tab->prc > len)
 			tab->prc -= len;
 	  else
@@ -72,11 +58,7 @@ void ft_update_tab(t_print *tab, int len)
 	}
 	else if (tab->prc > tab->wdt)
 	{
-		tab->tl += tab->prc;
 		tab->wdt = 0;
 		tab->prc -= len;
 	}
-	else
-		tab->tl += len;
-
 }

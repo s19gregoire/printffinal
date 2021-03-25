@@ -18,19 +18,19 @@ void ft_right_idupx(t_print *tab)
 	if (tab->zero && !tab->pnt)
 	{
 		if (tab->sign)
-			write(1, "-", 1);
+			tab->tl += write(1, "-", 1);
 		while (!tab->prc && --tab->wdt > -1)
-			write(1, "0", 1);
+			tab->tl += write(1, "0", 1);
 	}
 	else if (!tab->dash)
 	{
 			while (--tab->wdt > -1)
-				write(1, " ", 1);
+				tab->tl += write(1, " ", 1);
 			if (tab->sign)
-				write(1, "-", 1);
+				tab->tl += write(1, "-", 1);
 	}
 	while (--tab->prc > -1)
-			write(1, "0", 1);
+			tab->tl += write(1, "0", 1);
 }
 
 void ft_left_idupx(t_print *tab)
@@ -38,30 +38,30 @@ void ft_left_idupx(t_print *tab)
 	if (tab->dash)
 	{
 		while (tab->dash && tab->zero && --tab->prc > -1)
-			write(1, "0", 1);
+			tab->tl += write(1, "0", 1);
 		while (tab->dash && --tab->wdt > -1)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 	}
 }
 
 void ft_right_cs(t_print *tab, int len)
 {
 	while (tab->zero && tab->wdt-- > len)
-		write(1, "0", 1);
+		tab->tl += write(1, "0", 1);
 	if (!tab->zero && tab->prc && tab->prc < len)
 		while (tab->wdt-- > tab->prc)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 	else
 		while (!tab->zero && tab->wdt-- > len)
-			write(1, " ", 1);
+			tab->tl += write(1, " ", 1);
 }
 
 void ft_left_cs(t_print *tab, int len)
 {
 	while (tab->zero && tab->wdt-- > len)
-		write(1, "0", 1);
+		tab->tl += write(1, "0", 1);
 	while (!tab->zero && tab->wdt-- > len)
-		write(1, " ", 1);
+		tab->tl += write(1, " ", 1);
 }
 
 
