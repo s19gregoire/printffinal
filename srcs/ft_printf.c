@@ -19,8 +19,7 @@ t_print *ft_initialise_tab(t_print *tab)
 	tab->zero = 0;
 	tab->pnt = 0;
 	tab->star = 0;
-	tab->is_neg = 0;
-	tab->tl = 0;
+	tab->sign = 0;
 	return (tab);
 }
 
@@ -60,7 +59,9 @@ int ft_printf(const char *format, ...)
 	while (format[++i])
 	{
 		if (format[i] == '%')
+		{
 			i = ft_eval_input(tab, format, i + 1);
+		}
 		else
 			r += write(1, &format[i], 1);
   	}
