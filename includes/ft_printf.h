@@ -22,7 +22,6 @@
 
 typedef struct		s_print
 {
-	char		type;
 	va_list		args;
 	int			wdt;
 	int			prc;
@@ -30,10 +29,6 @@ typedef struct		s_print
 	int			pnt;
 	int			star;
 	int			dash;
-	int			is_neg;
-	int			special_chars;
-	int			position;
-	int			flag_chars;
 	int			tl;
 	int 		sign;
 	int			is_zero;
@@ -70,5 +65,6 @@ int ft_check_sign(t_print *tab, int j);
 int	ft_putnbr_base(long long n, char *base);
 int	ft_putnbr_base_unsigned(long long n, char *base);
 t_print *ft_initialise_tab(t_print *tab);
+t_print *ft_reset_tab(t_print *tab);
 
 # endif
