@@ -38,12 +38,12 @@ int is_a_flag(char c)
 	return (0);
 }
 
-int ft_percentage_check(const char *format, int pos)
-{
-	if (ft_isalpha(format[pos]) && (is_a_flag(format[pos])))
-			return (0);
-	return (1);
-}
+// int ft_percentage_check(const char *format, int pos)
+// {
+// 	if (ft_isalpha(format[pos]) && (is_a_flag(format[pos])))
+// 			return (0);
+// 	return (1);
+// }
 
 int ft_printf(const char *format, ...)
 {

@@ -13,12 +13,11 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_write_point(t_print *tab, int pos)
+void ft_write_point(t_print *tab)
 {
 	ft_update_tab_string(NULL, tab, 0);
 	while (tab->wdt--)
 		tab->tl += write(1, " ", 1);
-	return (pos);
 }
 
 void ft_write_null(t_print *tab, char *s)
@@ -42,7 +41,7 @@ void ft_write_null(t_print *tab, char *s)
 	 	tab->tl += write(1, " ", 1);
 }
 
-int ft_output_string(t_print *tab, int pos)
+void ft_output_string(t_print *tab)
 {
 	char *s;
 	int i;
@@ -53,7 +52,7 @@ int ft_output_string(t_print *tab, int pos)
 	len = 6;
 	s = va_arg(tab->args, char *);
 	if (s && tab->pnt == 1 && tab->prc == 0)
-		return (pos = ft_write_point(tab, pos));
+		return (ft_write_point(tab));
 	len = ft_update_tab_string(s, tab, len);
 	if (s && !tab->dash && tab->wdt > len)
 		ft_right_cs(tab, len);
@@ -70,5 +69,4 @@ int ft_output_string(t_print *tab, int pos)
 	}
 	if (s && tab->dash && tab->wdt)
 		ft_left_cs(tab, len);
-	return (pos);
 }

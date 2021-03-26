@@ -33,7 +33,7 @@ char		*ft_unsigned_itoa(unsigned int nb)
 }
 
 
-int ft_output_unsigned_int(t_print *tab, int pos)
+void ft_output_unsigned_int(t_print *tab)
 {
 	int i;
 	unsigned int j;
@@ -46,7 +46,7 @@ int ft_output_unsigned_int(t_print *tab, int pos)
 	if (!j)
 	{
 		ft_write_zero(tab);
-		return (pos);
+		return ;
 	}
 	num = ft_unsigned_itoa(j);
 	len = ft_len(j);
@@ -56,5 +56,4 @@ int ft_output_unsigned_int(t_print *tab, int pos)
 		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
 	free(num);
-	return (pos);
 }

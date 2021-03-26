@@ -13,7 +13,7 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_output_pointer(t_print *tab, int pos)
+void ft_output_pointer(t_print *tab)
 {
 	unsigned long long j;
 
@@ -25,13 +25,12 @@ int ft_output_pointer(t_print *tab, int pos)
 			ft_write_null(tab, "0x0");
 		else
 			ft_write_null(tab, "(nil)");
-		return (pos);
+		return ;
 	}
 	ft_update_tab(tab, 14);
 	ft_right_idupx(tab);
 	tab->tl += write(1, "0x", 2);
 	tab->tl += ft_putnbr_base_unsigned(j, "0123456789abcdef");
 	ft_left_idupx(tab);
-	return (pos);
 }
 

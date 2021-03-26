@@ -13,7 +13,7 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_output_char(t_print *tab, int pos)
+void ft_output_char(t_print *tab)
 {
 	char a;
 
@@ -24,5 +24,15 @@ int ft_output_char(t_print *tab, int pos)
 	tab->tl += write(1, &a, 1);
 	if (tab->wdt && tab->dash)
 		ft_left_cs(tab, 0);
-	return (pos);
+}
+
+void ft_percentage(t_print *tab)
+{
+	while(tab->pnt && !tab->dash && --tab->wdt > 0)
+			tab->tl += write(1, "0", 1);
+	while(!tab->pnt && !tab->dash && --tab->wdt > 0)
+			tab->tl += write(1, " ", 1);
+	tab->tl += write(1, "%", 1);
+	while(tab->dash && --tab->wdt > 0)
+			tab->tl += write(1, " ", 1);
 }

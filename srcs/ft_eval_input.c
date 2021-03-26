@@ -16,17 +16,17 @@
 int 	ft_eval_variable(t_print *tab, const char *format, int pos)
 {
 	if (format[pos] == 'c')
-		pos = ft_output_char(tab, pos);
+		ft_output_char(tab);
 	else if (format[pos] == 's')
-		pos = ft_output_string(tab, pos);
+		ft_output_string(tab);
 	else if (format[pos] == 'd' || format[pos] == 'i')
-		pos = ft_output_int(tab, pos);
+		ft_output_int(tab);
 	else if (format[pos] == 'u')
-			pos = ft_output_unsigned_int(tab, pos);
+		ft_output_unsigned_int(tab);
 	else if (format[pos] == 'p')
-			pos = ft_output_pointer(tab, pos);
+		ft_output_pointer(tab);
 	else if (format[pos] == 'x' || format[pos] == 'X')
-			pos = ft_output_hexa_int(tab, format, pos);
+		ft_output_hexa_int(tab, format, pos);
 	return (pos);
 }
 
@@ -36,14 +36,7 @@ int ft_eval_input(t_print *tab, const char *format, int pos)
 	{
 		if (format[pos] == '%')
 		{
-			
-			while(tab->pnt && !tab->dash && --tab->wdt > 0)
-				tab->tl += write(1, "0", 1);
-			while(!tab->pnt && !tab->dash && --tab->wdt > 0)
-				tab->tl += write(1, " ", 1);
-			tab->tl += write(1, "%", 1);
-			while(tab->dash && --tab->wdt > 0)
-				tab->tl += write(1, " ", 1);
+			ft_percentage(tab);
 			break ;
 		}
 		if (format[pos] == '0')
