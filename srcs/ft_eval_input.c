@@ -57,6 +57,6 @@ int ft_eval_input(t_print *tab, const char *format, int pos)
 	}
 	if (ft_isalpha(format[pos]))
 		pos = ft_eval_variable(tab, format, pos);
-	ft_reset_tab(tab);
+	ft_initialise_tab(tab);
 	return (pos);
 }

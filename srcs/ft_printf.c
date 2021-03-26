@@ -12,17 +12,6 @@
 
 #include "../includes/ft_printf.h"
 
-t_print *ft_reset_tab(t_print *tab)
-{
-	tab->wdt = 0;
-	tab->prc = 0;
-	tab->zero = 0;
-	tab->pnt = 0;
-	tab->star = 0;
-	tab->sign = 0;
-	return (tab);
-}
-
 t_print *ft_initialise_tab(t_print *tab)
 {
 	tab->wdt = 0;
@@ -31,8 +20,6 @@ t_print *ft_initialise_tab(t_print *tab)
 	tab->pnt = 0;
 	tab->star = 0;
 	tab->sign = 0;
-	tab->tl = 0;
-	tab->is_zero = 0;
 	return (tab);
 }
 
@@ -49,6 +36,13 @@ int is_a_flag(char c)
 	}
 	return (0);
 }
+
+// int ft_percentage_check(const char *format, int pos)
+// {
+// 	if (ft_isalpha(format[pos]) && (is_a_flag(format[pos])))
+// 			return (0);
+// 	return (1);
+// }
 
 int ft_printf(const char *format, ...)
 {
