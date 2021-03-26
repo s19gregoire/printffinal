@@ -28,7 +28,7 @@ void ft_output_char(t_print *tab)
 
 void ft_percentage(t_print *tab)
 {
-	while(tab->pnt && !tab->dash && --tab->wdt > 0)
+	while(tab->zero && !tab->dash && --tab->wdt > 0)
 			tab->tl += write(1, "0", 1);
 	while(!tab->pnt && !tab->dash && --tab->wdt > 0)
 			tab->tl += write(1, " ", 1);

@@ -34,6 +34,11 @@ int ft_eval_input(t_print *tab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos])))
 	{
+		if (format[pos] == ' ')
+		{
+			write(1, " ", 1);
+			pos++;
+		}
 		if (format[pos] == '%')
 		{
 			ft_percentage(tab);

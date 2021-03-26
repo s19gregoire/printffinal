@@ -45,7 +45,7 @@ static int				mx_i = 42;
 
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%5%");
+  ret = ft_printf("%% *.5i 42 == |% *.5i|", 4, 42);
   //ret = ft_printf("  %u    %%    %p    %x    %s    %i  ",  mx_u, &mx_i, mx_u, mx_s, mx_i);
   printf("|%i\n", ret);
 //   First line of code: {return test("%02.7X", 3267);}
@@ -62,7 +62,7 @@ static int				mx_i = 42;
 // Test 495 (new2019_negstar_7) : FAILED.
 // First line of code: {return test();}
 
-  ret2 = printf("%5%");
+  ret2 = printf("%% *.5i 42 == |% *.5i|", 4, 42);
   printf("|%i\n", ret2);
   return (0);
 }

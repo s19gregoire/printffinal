@@ -18,7 +18,7 @@ int ft_check_sign(t_print *tab, int j)
 	if (j > MIN_INT)
 	{
 		if (tab->dash)
-			 write(1, "-", 1);
+			tab->tl +=write(1, "-", 1);
 		tab->sign = 1;
 	}
 	return (j * -1);
@@ -53,7 +53,6 @@ void ft_write_zero(t_print *tab)
 	{
 		if (tab->prc < 0)
 		{
-			// tab->tl = 1;
 			tab->tl += write(1, "0", 1);
 		}
 		if (!tab->wdt && tab->prc > 0)
