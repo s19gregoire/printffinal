@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/02 16:53:13 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:51:17 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,14 @@ int ft_eval_input(t_print *tab, const char *format, int pos)
 	{
 		if (format[pos] == '%')
 		{
+			
+			while(tab->pnt && !tab->dash && --tab->wdt > 0)
+				tab->tl += write(1, "0", 1);
+			while(!tab->pnt && !tab->dash && --tab->wdt > 0)
+				tab->tl += write(1, " ", 1);
 			tab->tl += write(1, "%", 1);
+			while(tab->dash && --tab->wdt > 0)
+				tab->tl += write(1, " ", 1);
 			break ;
 		}
 		if (format[pos] == '0')

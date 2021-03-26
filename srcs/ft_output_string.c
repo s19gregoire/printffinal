@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/02/27 11:42:59 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:53:23 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void ft_write_null(t_print *tab, char *s)
 	l = ft_strlen(s);
 	if (tab->pnt && tab->prc >= 0 && tab->prc < l)
 	{
-		tab->tl = tab->wdt;
 		while (tab->wdt--)
 			tab->tl += write(1, " ", 1);
 		return ;

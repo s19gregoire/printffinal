@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:45:09 by mlazzare          #+#    #+#             */
-/*   Updated: 2020/11/17 19:02:57 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:00:22 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int	ft_putchar(char c)
 {
+	if (!c)
+		return (0);
 	return (write(1, &c, 1));
 }
