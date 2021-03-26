@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-t_print *ft_initialise_tab(t_print *tab)
+t_print *ft_reset_tab(t_print *tab)
 {
 	tab->wdt = 0;
 	tab->prc = 0;
@@ -23,26 +23,19 @@ t_print *ft_initialise_tab(t_print *tab)
 	return (tab);
 }
 
-int is_a_flag(char c)
+t_print *ft_initialise_tab(t_print *tab)
 {
-	char *flags;
-
-	flags = "csiduxXp";
-	while (*flags)
-	{
-		if (*flags == c)
-			return (1);
-		flags++;
-	}
-	return (0);
+	tab->wdt = 0;
+	tab->prc = 0;
+	tab->zero = 0;
+	tab->pnt = 0;
+	tab->star = 0;
+	tab->sign = 0;
+	tab->tl = 0;
+	tab->is_zero = 0;
+	tab->dash = 0;
+	return (tab);
 }
-
-// int ft_percentage_check(const char *format, int pos)
-// {
-// 	if (ft_isalpha(format[pos]) && (is_a_flag(format[pos])))
-// 			return (0);
-// 	return (1);
-// }
 
 int ft_printf(const char *format, ...)
 {
