@@ -48,7 +48,7 @@ void ft_output_string(t_print *tab);
 void ft_output_int(t_print *tab);
 void ft_output_unsigned_int(t_print *tab);
 void ft_output_pointer(t_print *tab);
-int	ft_output_hexa_int(t_print *tab, const char *format, int pos);
+void	ft_output_hexa_int(t_print *tab, int c);
 char		*ft_unsigned_itoa(unsigned int nb);
 int ft_len(long num);
 void ft_right_idupx(t_print *tab);
@@ -66,7 +66,5 @@ int	ft_putnbr_base(long long n, char *base);
 int	ft_putnbr_base_unsigned(long long n, char *base);
 t_print *ft_initialise_tab(t_print *tab);
 t_print *ft_reset_tab(t_print *tab);
-int ft_hexa_len(unsigned long long n, int base);
-
 
 # endif

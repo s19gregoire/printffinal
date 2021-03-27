@@ -26,7 +26,7 @@ int 	ft_eval_variable(t_print *tab, const char *format, int pos)
 	else if (format[pos] == 'p')
 		ft_output_pointer(tab);
 	else if (format[pos] == 'x' || format[pos] == 'X')
-		ft_output_hexa_int(tab, format, pos);
+		ft_output_hexa_int(tab, format[pos] - 23);
 	return (pos);
 }
 

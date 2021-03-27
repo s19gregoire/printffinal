@@ -29,7 +29,6 @@ void ft_write_zero(t_print *tab)
 	tab->is_zero = 1;
 	if (tab->wdt && (tab->pnt || tab->zero))
 	{
-		tab->tl = tab->wdt;
 		if (!tab->prc)
 		{
 				while (tab->zero && tab->wdt-- > 0)
@@ -52,20 +51,11 @@ void ft_write_zero(t_print *tab)
 	if (tab->pnt)
 	{
 		if (tab->prc < 0)
-		{
 			tab->tl += write(1, "0", 1);
-		}
 		if (!tab->wdt && tab->prc > 0)
 		{
-			tab->tl = tab->prc;
 			while (tab->prc-- > 0)
 				tab->tl += write(1, "0", 1);
-		}
-		else
-		{
-			tab->tl = tab->wdt;
-			while (tab->wdt-- > 0)
-				tab->tl += write(1, " ", 1);
 		}
 		return ;
 	}
@@ -86,7 +76,6 @@ void ft_output_int(t_print *tab)
 
 	i = 0;
 	j = va_arg(tab->args, int);
-
 	if (!j)
 	{
 		ft_write_zero(tab);

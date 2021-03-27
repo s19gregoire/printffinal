@@ -42,7 +42,6 @@ void ft_output_unsigned_int(t_print *tab)
 
 	i = 0;
 	j = va_arg(tab->args, int);
-
 	if (!j)
 	{
 		ft_write_zero(tab);
