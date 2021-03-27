@@ -62,8 +62,6 @@ void ft_write_null(t_print *tab, char *s);
 void ft_write_zero(t_print *tab);
 void ft_percentage(t_print *tab);
 int ft_check_sign(t_print *tab, int j);
-int	ft_putnbr_base(long long n, char *base);
-int	ft_putnbr_base_unsigned(long long n, char *base);
 t_print *ft_initialise_tab(t_print *tab);
 t_print *ft_reset_tab(t_print *tab);
 

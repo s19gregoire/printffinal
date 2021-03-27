@@ -30,6 +30,7 @@ typedef	struct		s_list
 
 size_t			ft_strlen(const char *s);
 int 				ft_numlen_base(unsigned long long n, int base);
+int					ft_putnbr_base(long long n, char *base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

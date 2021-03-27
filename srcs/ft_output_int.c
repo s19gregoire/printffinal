@@ -52,11 +52,8 @@ void ft_write_zero(t_print *tab)
 	{
 		if (tab->prc < 0)
 			tab->tl += write(1, "0", 1);
-		if (!tab->wdt && tab->prc > 0)
-		{
-			while (tab->prc-- > 0)
-				tab->tl += write(1, "0", 1);
-		}
+		while (!tab->wdt && tab->prc-- > 0)
+			tab->tl += write(1, "0", 1);
 		return ;
 	}
 	ft_update_tab(tab, 1);

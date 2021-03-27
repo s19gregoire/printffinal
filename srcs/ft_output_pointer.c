@@ -30,7 +30,7 @@ void ft_output_pointer(t_print *tab)
 	ft_update_tab(tab, 14);
 	ft_right_idupx(tab);
 	tab->tl += write(1, "0x", 2);
-	tab->tl += ft_putnbr_base_unsigned(j, "0123456789abcdef");
+	tab->tl += ft_putnbr_base(j, "0123456789abcdef");
 	ft_left_idupx(tab);
 }
 
