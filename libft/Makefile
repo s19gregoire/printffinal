@@ -24,6 +24,9 @@ SRC	=	ft_strlen.c				\
 		ft_substr.c				\
 		ft_split.c				\
 		ft_itoa.c				\
+		ft_itoa_base.c				\
+		ft_numlen_base.c				\
+		ft_putnbr_base.c				\
 		ft_putchar.c			\
 
 OBJS = $(SRC:%.c=%.o)

@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: mlazzare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 18:45:09 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/25 18:00:22 by mlazzare         ###   ########.fr       */
+/*   Created: 2020/10/14 13:16:38 by mlazzare          #+#    #+#             */
+/*   Updated: 2021/01/17 17:09:26 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putchar(char c)
+int ft_numlen_base(unsigned long long n, int base)
 {
-	if (!c)
-		return (0);
-	return (write(1, &c, 1));
+	int		i;
+
+	i = 0;
+	if (n <= 0)
+	{
+		i += 1;
+		n *= -1;
+	}
+	while (n > 0)
+	{
+		i++;
+		n /= base;
+	}
+	return (i);
 }
+

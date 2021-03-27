@@ -12,29 +12,19 @@
 
 #include "libft.h"
 
-char	*ft_itoa_base(int n, char *base)
+char *ft_itoa_base(char *str, unsigned long long n, int base, int c)
 {
-	int					c;
-	unsigned int		tmp;
-	char				*res;
-	unsigned int		base_length;
+	int		i;
 
-	base_length = ft_strlen(base);
-	c = (n < 0) ? 1 : 0;
-	tmp = (n < 0) ? -n : n;
-	// while (tmp >= base_length && (tmp /= base_length))
-	// 	c++;
-	// tmp = (n < 0) ? -n : n;
-	if (!(res = (char*)malloc(sizeof(char) * (c + 1))))
-		return (NULL);
-	if (n < 0)
-		res[0] = '-';
-	res[c--] = '\0';
-	while (tmp >= base_length)
+	i = 0;
+	while (n > 0)
 	{
-		res[c--] = base[tmp % base_length];
-		tmp /= base_length;
+		if (base > 10 && (n % base >= 10))
+			str[i++] = (n % base) - 10 + c;
+		else
+			str[i++] = (n % base) + '0';
+		n /= base;
 	}
-	res[--c] = base[tmp % base_length];
-	return (res);
+	str[i] = '\0';
+	return (str);
 }

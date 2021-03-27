@@ -22,7 +22,6 @@ mySRCS = \
 	./srcs/ft_eval_input.c \
 	./srcs/ft_width.c \
 	./srcs/ft_length.c \
-	./srcs/ft_conversions.c \
 	./srcs/ft_dash_and_star.c \
 	./srcs/ft_output_char.c \
 	./srcs/ft_output_int.c \

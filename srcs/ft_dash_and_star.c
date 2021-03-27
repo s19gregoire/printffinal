@@ -70,6 +70,7 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 		{
 			tab->wdt *= -1;
 			tab->dash = 1;
+			tab->zero = 0;
 		}
 	}
 	else

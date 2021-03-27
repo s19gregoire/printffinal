@@ -18,7 +18,7 @@ int ft_check_sign(t_print *tab, int j)
 	if (j > MIN_INT)
 	{
 		if (tab->dash)
-			 write(1, "-", 1);
+			tab->tl +=write(1, "-", 1);
 		tab->sign = 1;
 	}
 	return (j * -1);
@@ -29,7 +29,6 @@ void ft_write_zero(t_print *tab)
 	tab->is_zero = 1;
 	if (tab->wdt && (tab->pnt || tab->zero))
 	{
-		tab->tl = tab->wdt;
 		if (!tab->prc)
 		{
 				while (tab->zero && tab->wdt-- > 0)
@@ -52,22 +51,9 @@ void ft_write_zero(t_print *tab)
 	if (tab->pnt)
 	{
 		if (tab->prc < 0)
-		{
-			// tab->tl = 1;
 			tab->tl += write(1, "0", 1);
-		}
-		if (!tab->wdt && tab->prc > 0)
-		{
-			tab->tl = tab->prc;
-			while (tab->prc-- > 0)
-				tab->tl += write(1, "0", 1);
-		}
-		else
-		{
-			tab->tl = tab->wdt;
-			while (tab->wdt-- > 0)
-				tab->tl += write(1, " ", 1);
-		}
+		while (!tab->wdt && tab->prc-- > 0)
+			tab->tl += write(1, "0", 1);
 		return ;
 	}
 	ft_update_tab(tab, 1);
@@ -78,7 +64,7 @@ void ft_write_zero(t_print *tab)
 	 	tab->tl += write(1, " ", 1);
 }
 
-int ft_output_int(t_print *tab, int pos)
+void ft_output_int(t_print *tab)
 {
 	int		i;
 	int		j;
@@ -87,11 +73,10 @@ int ft_output_int(t_print *tab, int pos)
 
 	i = 0;
 	j = va_arg(tab->args, int);
-
 	if (!j)
 	{
 		ft_write_zero(tab);
-		return (pos);
+		return ;
 	}
 	if (j < 0)
 		j = ft_check_sign(tab, j);
@@ -103,5 +88,4 @@ int ft_output_int(t_print *tab, int pos)
 		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
 	free(num);
-	return (pos);
 }

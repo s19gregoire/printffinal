@@ -12,6 +12,19 @@
 
 #include "../includes/ft_printf.h"
 
+t_print *ft_reset_tab(t_print *tab)
+{
+	tab->wdt = 0;
+	tab->prc = 0;
+	tab->zero = 0;
+	tab->pnt = 0;
+	tab->star = 0;
+	tab->sign = 0;
+	tab->is_zero = 0;
+	tab->dash = 0;
+	return (tab);
+}
+
 t_print *ft_initialise_tab(t_print *tab)
 {
 	tab->wdt = 0;
@@ -19,30 +32,12 @@ t_print *ft_initialise_tab(t_print *tab)
 	tab->zero = 0;
 	tab->pnt = 0;
 	tab->star = 0;
-	tab->is_neg = 0;
+	tab->sign = 0;
 	tab->tl = 0;
+	tab->is_zero = 0;
+	tab->dash = 0;
+	// tab->args = {};
 	return (tab);
-}
-
-int is_a_flag(char c)
-{
-	char	*flags;
-
-	flags = "csiduxXp";
-	while (*flags)
-	{
-		if (*flags == c)
-			return (1);
-		flags++;
-	}
-	return (0);
-}
-
-int	ft_percentage_check(const char *format, int pos)
-{
-	if (ft_isalpha(format[pos]) && (is_a_flag(format[pos])))
-		return (0);
-	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -60,7 +55,9 @@ int	ft_printf(const char *format, ...)
 	while (format[++i])
 	{
 		if (format[i] == '%')
+		{
 			i = ft_eval_input(tab, format, i + 1);
+		}
 		else
 			r += write(1, &format[i], 1);
   	}

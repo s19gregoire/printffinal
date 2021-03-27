@@ -13,58 +13,27 @@
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-char	*ft_itoabase(unsigned long long n, int base, int uppercase)
-{
-	char	*str;
-	int		i;
-	int		l;
-
-	if (base == 10)
-		return (ft_itoa(n));
-	l = 14;
-	str = (char*)malloc(sizeof(*str) * (l + 1));
-	i = 0;
-	while (n > 0)
-	{
-		if (uppercase && base > 10 && (n % base >= 10))
-			str[i++] = (n % base) - 10 + 'A';
-		else if (base > 10 && (n % base >= 10))
-			str[i++] = (n % base) - 10 + 'a';
-		else
-			str[i++] = (n % base) + '0';
-		n /= base;
-	}
-	str[i] = '\0';
-	// if (str[i+1] != '\0')
-	// 	free(&str[i+1]);
-	return (str);
-}
-
-int	ft_output_hexa_int(t_print *tab, const char *format, int pos)
+void	ft_output_hexa_int(t_print *tab, int c)
 {
 	unsigned long long		j;
 	int len;
 	char *num;
-	int uppercase;
 
-	len = 0;
-	uppercase = 1;
 	j = va_arg(tab->args, long long);
-
 	if (!j)
 	{
 		ft_write_zero(tab);
-		return (pos);
+		return ;
 	}
-	if (format[pos] == 'X')
-		num = ft_itoabase(j, 16, uppercase);
-	else
-		num = ft_itoabase(j, 16, 0);
-	len = ft_strlen(num);
+	len = ft_numlen_base(j, 16);
+	num = (char*)malloc(sizeof(char) * (len + 1));
+	if (!num)
+		return ;
+	num = ft_itoa_base(num, j, 16, c);
 	ft_update_tab(tab, len);
 	ft_right_idupx(tab);
-	while(num[--len])
+	while(num && len-- > 0)
 		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
-	return (pos);
+	free(num);
 }
