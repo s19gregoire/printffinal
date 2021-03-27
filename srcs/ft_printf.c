@@ -20,6 +20,8 @@ t_print *ft_reset_tab(t_print *tab)
 	tab->pnt = 0;
 	tab->star = 0;
 	tab->sign = 0;
+	tab->is_zero = 0;
+	tab->dash = 0;
 	return (tab);
 }
 
@@ -34,6 +36,7 @@ t_print *ft_initialise_tab(t_print *tab)
 	tab->tl = 0;
 	tab->is_zero = 0;
 	tab->dash = 0;
+	// tab->args = {};
 	return (tab);
 }
 

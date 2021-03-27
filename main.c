@@ -24,7 +24,7 @@ int main(void)
 	int		g = 25;
 	int		h = 4200;
 	int		i = 8;
-	int		j = -12;
+	int		j;
 	int		k = 123456789;
 	int		l = 0;
 	int		m = -12345678;
@@ -42,10 +42,10 @@ static char			   *mx_s = "Hello, World!";
 static int				mx_i = 42;
   int ret;
   int ret2;
-
+  j = -12;
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X", i, j, k, l, m, n, c, c, j, j, j);
+  ret = ft_printf("%u, %x, %X", j, j, j);
   //ret = ft_printf("  %u    %%    %p    %x    %s    %i  ",  mx_u, &mx_i, mx_u, mx_s, mx_i);
   printf("|%i\n", ret);
 //   First line of code: {return test("%02.7X", 3267);}
@@ -62,7 +62,7 @@ static int				mx_i = 42;
 // Test 495 (new2019_negstar_7) : FAILED.
 // First line of code: {return test();}
 
-  ret2 = printf("%i, %d, %d, %d, %d, %s, %c, %d, %u, %x, %X", i, j, k, l, m, n, c, c, j, j, j);
+  ret2 = printf("%u, %x, %X", j, j, j);
   printf("|%i\n", ret2);
   return (0);
 }

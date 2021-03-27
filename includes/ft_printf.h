@@ -35,7 +35,7 @@ typedef struct		s_print
 }					t_print;
 
 int	ft_printf(const char *format, ...);
-// int ft_percentage_check(const char *format);
+char *ft_itoabase(char *str, unsigned long long n, int base, int c);
 int ft_eval_width(t_print *tab, const char *format, int pos);
 int ft_eval_precision(t_print *tab, const char *format, int pos);
 int ft_eval_input(t_print *tab, const char *format, int pos);
@@ -66,5 +66,7 @@ int	ft_putnbr_base(long long n, char *base);
 int	ft_putnbr_base_unsigned(long long n, char *base);
 t_print *ft_initialise_tab(t_print *tab);
 t_print *ft_reset_tab(t_print *tab);
+int ft_hexa_len(unsigned long long n, int base);
+
 
 # endif
