@@ -88,6 +88,11 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 	if (format[pos] == '*')
 	{
 		tab->prc = va_arg(tab->args, int);
+		if (tab->prc < 0)
+		{
+			tab->prc = 0;
+			tab->pnt = 0;
+		}
 		pos++;
 	}
 	return (pos);
