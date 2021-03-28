@@ -6,15 +6,15 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:45:09 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/25 18:00:22 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/28 15:35:36 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putnbr_base(long long n, char *base)
+int	ft_putnbr_base(unsigned long long n, char *base)
 {
-	long long	base_len;
+	unsigned long long	base_len;
 	int l;
 
 	l = 1;
