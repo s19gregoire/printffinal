@@ -43,9 +43,23 @@ static int				mx_i = 42;
   int ret;
   int ret2;
   j = -12;
+  static char	a01;
+  static unsigned char a02;
+  static short a03;
+  static unsigned short a04;
+  static int a05;
+  static unsigned int a06;
+  static long a07;
+  static unsigned long a08;
+  static long long a09;
+  static unsigned long long a10;
+  static char *a11;
+  static void *a12;
+
   ret = 0;
   ret2 = 0;
-  ret = ft_printf("%u, %x, %X", j, j, j);
+  // ft_printf("%32s\n", "ciao");
+  ret = ft_printf("%--*.110x%--23.182%", 68, 2920216226u);
   //ret = ft_printf("  %u    %%    %p    %x    %s    %i  ",  mx_u, &mx_i, mx_u, mx_s, mx_i);
   printf("|%i\n", ret);
 //   First line of code: {return test("%02.7X", 3267);}
@@ -62,7 +76,7 @@ static int				mx_i = 42;
 // Test 495 (new2019_negstar_7) : FAILED.
 // First line of code: {return test();}
 
-  ret2 = printf("%u, %x, %X", j, j, j);
+  ret2 = printf("%--*.110x%--23.182%", 68, 2920216226u);
   printf("|%i\n", ret2);
   return (0);
 }
