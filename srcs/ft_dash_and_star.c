@@ -74,7 +74,14 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 		}
 	}
 	else
+	{
 		tab->prc = va_arg(tab->args, int);
+		if (tab->prc < 0)
+		{
+			tab->prc = 0;
+			tab->pnt = 0;
+		}
+	}
 	if (format[pos] == '.')
 	{
 		tab->pnt = 1;
