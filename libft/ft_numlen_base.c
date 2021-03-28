@@ -18,13 +18,9 @@ int ft_numlen_base(long long n, int base)
 
 	i = 0;
 	if (n == 0)
-	{
 		i += 1;
-	}
 	else if (n < 0)
-	{
 		n *= -1;
-	}
 	while (n > 0)
 	{
 		i++;
