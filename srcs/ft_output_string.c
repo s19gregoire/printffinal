@@ -61,16 +61,13 @@ void ft_output_string(t_print *tab)
 	if (s && !tab->dash && tab->wdt > len)
 		ft_right_cs(tab, len);
 	if (!s)
-		ft_write_null(tab, "(null)");
+		s = "(null)";
+	if (tab->prc > 0)
+		while (s[i] && tab->prc--)
+			tab->tl += write(1, &s[i++], 1);
 	else
-	{
-		if (tab->prc > 0)
-			while (s[i] && tab->prc--)
-				tab->tl += write(1, &s[i++], 1);
-		else
-			while (s[i])
-				tab->tl += write(1, &s[i++], 1);
-	}
+		while (s[i])
+			tab->tl += write(1, &s[i++], 1);
 	if (s && tab->dash && tab->wdt)
 		ft_left_cs(tab, len);
 }
