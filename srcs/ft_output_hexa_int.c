@@ -19,13 +19,15 @@ void	ft_output_hexa_int(t_print *tab, int c)
 	int len;
 	char *num;
 
-	j = va_arg(tab->args, long long);
+	j = va_arg(tab->args, unsigned long long);
 	if (!j)
 	{
 		ft_write_zero(tab);
 		return ;
 	}
+	// printf("j %lld\n", j);
 	len = ft_numlen_base(j, 16);
+	// printf("len %d\n", len);
 	num = (char*)malloc(sizeof(char) * (len + 1));
 	if (!num)
 		return ;
@@ -35,5 +37,6 @@ void	ft_output_hexa_int(t_print *tab, int c)
 	while(num && len-- > 0)
 		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
+	len = 0;
 	free(num);
 }

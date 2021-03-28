@@ -87,5 +87,6 @@ void ft_output_int(t_print *tab)
 	while(j && num[i])
 		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
+	len = 0;
 	free(num);
 }
