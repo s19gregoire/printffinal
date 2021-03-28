@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 11:26:39 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/28 21:09:41 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	ft_output_hexa_int(t_print *tab, int c)
 	int len;
 	char *num;
 
-	j = va_arg(tab->args, unsigned long long);
+	j = va_arg(tab->args, unsigned);
 	if (!j)
 	{
 		ft_write_zero(tab);
 		return ;
 	}
-	// printf("j %lld\n", j);
+	//printf("j %lld\n", j);
 	len = ft_numlen_base(j, 16);
-	// printf("len %d\n", len);
+	//printf("len %d\n", len);
 	num = (char*)malloc(sizeof(char) * (len + 1));
 	if (!num)
 		return ;
