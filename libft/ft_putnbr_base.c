@@ -19,11 +19,11 @@ int	ft_putnbr_base(unsigned long long n, char *base)
 
 	l = 1;
 	base_len = ft_strlen(base);
-	if (n < 0)
-	{
-		n = -n;
-		l += ft_putchar(45);
-	}
+	// if (n < 0)
+	// {
+	// 	n = -n;
+	// 	l += ft_putchar(45);
+	// }
 	if (n >= base_len)
 	{
 		l += ft_putnbr_base(n / base_len, base);

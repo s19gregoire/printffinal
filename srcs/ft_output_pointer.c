@@ -19,16 +19,8 @@ void ft_output_pointer(t_print *tab)
 	int l;
 
 	j = va_arg(tab->args, unsigned long long);
-	l = ft_numlen_base(j, 16);
-	//if (!j)
-	//{
-		//if (!tab->prc || tab->prc < 0)
-			//ft_write_null(tab, "0x0");
-		//else
-			//ft_write_null(tab, "(nil)");
-		//return ;
-	//}
-	ft_update_tab(tab, j);
+	l = ft_numlen_base(j, 16) + 2;
+	ft_update_tab(tab, l);
 	ft_right_idupx(tab);
 	tab->tl += write(1, "0x", 2);
 	tab->tl += ft_putnbr_base(j, "0123456789abcdef");
