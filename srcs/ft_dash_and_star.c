@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/02/26 12:11:22 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:22:08 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int ft_eval_dash(t_print *tab, const char *format, int pos)
 {
 	pos++;
 	tab->dash = 1;
-	while (format[pos] == '-')
+	while (format[pos] == '-' || format[pos] == '0')
 		pos++;
 	pos = ft_eval_width(tab, format, pos);
 	return (pos);
