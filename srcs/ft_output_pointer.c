@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/25 17:59:23 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/28 21:53:05 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,17 @@
 void ft_output_pointer(t_print *tab)
 {
 	unsigned long long j;
+	int l;
 
+	l = 2;
 	j = va_arg(tab->args, unsigned long long);
-
-	if (!j)
-	{
-		if (tab->prc < 0)
-			ft_write_null(tab, "0x0");
-		else
-			ft_write_null(tab, "(nil)");
-		return ;
-	}
-	ft_update_tab(tab, 14);
+	if (!(!j && tab->pnt))
+		l += ft_numlen_base(j, 16);
+	ft_update_tab(tab, l);
 	ft_right_idupx(tab);
 	tab->tl += write(1, "0x", 2);
-	tab->tl += ft_putnbr_base(j, "0123456789abcdef");
+	if (!(!j && tab->pnt))
+		tab->tl += ft_putnbr_base(j, "0123456789abcdef");		
 	ft_left_idupx(tab);
 }
 

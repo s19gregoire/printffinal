@@ -53,24 +53,21 @@ void ft_output_string(t_print *tab)
 
 	i = 0;
 
-	len = 6;
+	len = 0;
 	s = va_arg(tab->args, char *);
+	if (!s)
+		s = "(null)";
 	if (s && tab->pnt == 1 && tab->prc == 0)
 		return (ft_write_point(tab));
 	len = ft_update_tab_string(s, tab, len);
-	if (s && !tab->dash && tab->wdt > len)
+	if (!tab->dash && tab->wdt > len)
 		ft_right_cs(tab, len);
-	if (!s)
-		ft_write_null(tab, "(null)");
+	if (tab->prc > 0)
+		while (s[i] && tab->prc--)
+			tab->tl += write(1, &s[i++], 1);
 	else
-	{
-		if (tab->prc > 0)
-			while (s[i] && tab->prc--)
-				tab->tl += write(1, &s[i++], 1);
-		else
-			while (s[i])
-				tab->tl += write(1, &s[i++], 1);
-	}
+		while (s[i])
+			tab->tl += write(1, &s[i++], 1);
 	if (s && tab->dash && tab->wdt)
 		ft_left_cs(tab, len);
 }

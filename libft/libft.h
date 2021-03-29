@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 10:46:12 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/22 14:15:23 by gregoire         ###   ########.fr       */
+/*   Updated: 2021/03/28 15:36:00 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct	s_list
 }					t_list;
 
 size_t			ft_strlen(const char *s);
-int 				ft_numlen_base(unsigned long long n, int base);
-int					ft_putnbr_base(long long n, char *base);
+int 				ft_numlen_base(long long n, int base);
+int					ft_putnbr_base(unsigned long long n, char *base);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
