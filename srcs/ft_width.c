@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/02 17:30:13 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/29 10:07:26 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,23 @@
 
 void ft_right_idupx(t_print *tab)
 {
-	if (tab->zero && !tab->pnt)
+	if (tab->dash)//&& tab->zero)
 	{
 		if (tab->sign)
 			tab->tl += write(1, "-", 1);
-		while (!tab->prc && --tab->wdt > -1)
-			tab->tl += write(1, "0", 1);
-	}
-	else if (!tab->dash)
+	}	
+	else
 	{
+		while (tab->zero && !tab->prc && --tab->wdt > -1)
+			tab->tl += write(1, "0", 1);
+	//if (!tab->dash)
 			while (--tab->wdt > -1)
 				tab->tl += write(1, " ", 1);
 			if (tab->sign)
 				tab->tl += write(1, "-", 1);
 	}
 	while (--tab->prc > -1)
-			tab->tl += write(1, "0", 1);
+		tab->tl += write(1, "0", 1);
 }
 
 void ft_left_idupx(t_print *tab)
