@@ -54,7 +54,7 @@ int	ft_printf(const char *format, ...)
 	while (format[++i])
 	{
 		if (format[i] == '%')
-			i = ft_eval_input(tab, format, i + 1);
+			i = ft_eval_format(tab, format, i + 1);
 		else
 			r += write(1, &format[i], 1);
   }

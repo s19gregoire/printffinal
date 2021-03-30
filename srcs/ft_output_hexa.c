@@ -40,3 +40,20 @@ void	ft_output_hexa_int(t_print *tab, int c)
 	len = 0;
 	free(num);
 }
+
+void ft_output_pointer(t_print *tab)
+{
+	unsigned long long j;
+	int l;
+
+	l = 2;
+	j = va_arg(tab->args, unsigned long long);
+	if (!(!j && tab->pnt))
+		l += ft_numlen_base(j, 16);
+	ft_update_tab(tab, l);
+	ft_right_idupx(tab);
+	tab->tl += write(1, "0x", 2);
+	if (!(!j && tab->pnt))
+		tab->tl += ft_putnbr_base(j, "0123456789abcdef") - 1;
+	ft_left_idupx(tab);
+}

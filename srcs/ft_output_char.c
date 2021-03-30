@@ -36,3 +36,11 @@ void ft_percentage(t_print *tab)
 	while(tab->dash && --tab->wdt > 0)
 			tab->tl += write(1, " ", 1);
 }
+
+int ft_space(t_print *tab, int pos)
+{
+	pos++;
+	tab->tl += write(1, " ", 1);
+	return (pos);
+}
+

@@ -64,4 +64,33 @@ void ft_left_cs(t_print *tab, int len)
 		tab->tl += write(1, " ", 1);
 }
 
-
+void ft_right_zero(t_print *tab)
+{
+	if (tab->wdt && (tab->pnt || tab->zero))
+	{
+		if (!tab->prc)
+		{
+				while (tab->zero && tab->wdt-- > 0)
+					tab->tl += write(1, "0", 1);
+				while (!tab->zero && tab->wdt-- > 0)
+					tab->tl += write(1, " ", 1);
+		}
+		else
+		{
+			tab->wdt -= tab->prc;
+			while (tab->dash && tab->prc-- > 0)
+				tab->tl += write(1, "0", 1);
+			while (tab->wdt-- > 0)
+				tab->tl += write(1, " ", 1);
+			while (!tab->dash && tab->prc-- > 0)
+				tab->tl += write(1, "0", 1);
+		}
+	}
+	else if (tab->pnt)
+	{
+		if (tab->prc < 0)
+			tab->tl += write(1, "0", 1);
+		while (!tab->wdt && tab->prc-- > 0)
+			tab->tl += write(1, "0", 1);
+	}
+}
