@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/29 10:04:38 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/29 11:40:42 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,7 @@
 int ft_check_sign(t_print *tab, int j)
 {
 	if (j > MIN_INT)
-	{
-		if (tab->dash)
-			tab->zero = 0;
-			//tab->tl +=write(1, "-", 1);
 		tab->sign = 1;
-	}
 	return (j * -1);
 }
 
@@ -32,6 +27,8 @@ void ft_write_zero(t_print *tab)
 	{
 		if (!tab->prc)
 		{
+				if (tab->star && tab->pnt)
+					tab->zero = 0;
 				while (tab->zero && tab->wdt-- > 0)
 					tab->tl += write(1, "0", 1);
 				while (!tab->zero && tab->wdt-- > 0)
