@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 17:52:23 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 20:11:51 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,9 @@ void ft_right_zero(t_print *tab)
 			while (!tab->dash && tab->prc-- > 0)
 				tab->tl += write(1, "0", 1);
 		}
+		return ;
 	}
-	else if (tab->pnt)
+	if (tab->pnt)
 	{
 		if (tab->prc < 0)
 			tab->tl += write(1, "0", 1);

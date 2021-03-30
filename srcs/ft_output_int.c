@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/29 11:40:42 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 20:10:12 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int ft_check_sign(t_print *tab, int j)
 void ft_write_zero(t_print *tab)
 {
 	tab->is_zero = 1;
-	if (tab->wdt || tab->pnt)
+	if ((tab->wdt && tab->zero) || tab->pnt)
 	{
 		ft_right_zero(tab);
 		return ;
