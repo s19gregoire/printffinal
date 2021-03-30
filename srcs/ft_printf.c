@@ -36,7 +36,6 @@ t_print *ft_initialise_tab(t_print *tab)
 	tab->tl = 0;
 	tab->is_zero = 0;
 	tab->dash = 0;
-	// tab->args = {};
 	return (tab);
 }
 
@@ -55,12 +54,10 @@ int	ft_printf(const char *format, ...)
 	while (format[++i])
 	{
 		if (format[i] == '%')
-		{
 			i = ft_eval_input(tab, format, i + 1);
-		}
 		else
 			r += write(1, &format[i], 1);
-  	}
+  }
 	r += tab->tl;
 	va_end(tab->args);
 	free(tab);

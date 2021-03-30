@@ -6,7 +6,11 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/03/22 13:59:16 by gregoire         ###   ########.fr       */
+=======
+/*   Updated: 2021/03/30 18:24:38 by mlazzare         ###   ########.fr       */
+>>>>>>> mlazzare
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +41,10 @@ int ft_eval_precision(t_print *tab, const char *format, int pos)
 	pos++;
 	tab->pnt = 1;
 	while (format[pos] == '0')
+	{
 		pos++;
+		tab->zero = 0;
+	}
 	if (ft_isdigit(format[pos]))
 	{
 		i = ft_atoi(&format[pos]);
@@ -53,7 +60,8 @@ int ft_eval_dash(t_print *tab, const char *format, int pos)
 {
 	pos++;
 	tab->dash = 1;
-	while (format[pos] == '-')
+	tab->zero = 0;
+	while (format[pos] == '-' || format[pos] == '0')
 		pos++;
 	pos = ft_eval_width(tab, format, pos);
 	return (pos);
@@ -76,6 +84,8 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 	else
 	{
 		tab->prc = va_arg(tab->args, int);
+		if (tab->prc == 0)
+			tab->zero = 0;
 		if (tab->prc < 0)
 		{
 			tab->prc = 0;
@@ -91,10 +101,14 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 	{
 		tab->prc = ft_atoi(&format[pos]);
 		pos += ft_len(tab->prc);
+		if (tab->prc == 0)
+			tab->zero = 0;
 	}
 	if (format[pos] == '*')
 	{
 		tab->prc = va_arg(tab->args, int);
+		if (tab->prc == 0)
+			tab->zero = 0;
 		if (tab->prc < 0)
 		{
 			tab->prc = 0;

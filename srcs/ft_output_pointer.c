@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/28 21:53:05 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 17:39:22 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void ft_output_pointer(t_print *tab)
 	ft_right_idupx(tab);
 	tab->tl += write(1, "0x", 2);
 	if (!(!j && tab->pnt))
-		tab->tl += ft_putnbr_base(j, "0123456789abcdef");		
+		tab->tl += ft_putnbr_base(j, "0123456789abcdef") - 1;
 	ft_left_idupx(tab);
 }
 
