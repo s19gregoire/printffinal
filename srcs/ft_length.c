@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/02 16:05:56 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 17:43:52 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,22 @@ void ft_update_tab(t_print *tab, int len)
 	{
 		if (tab->wdt)
 			tab->wdt -= 1;
+
 	}
+	if (tab->prc > 0)
+		tab->zero = 0;
 	if (tab->wdt && tab->wdt >= tab->prc)
 	{
 		if (tab->prc > len)
+		{
 			tab->prc -= len;
+			//tab->zero = 0;
+		}
 	  else
+	  {
 			tab->prc = 0;
+			//tab->zero = 0;
+	}
 		if (!tab->is_zero)
 				tab->wdt = tab->wdt - tab->prc - len;
 	}

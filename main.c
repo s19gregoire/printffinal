@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:52:53 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/28 21:14:28 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 17:42:34 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int				mx_i = 42;
   ret = 0;
   ret2 = 0;
   // ft_printf("%32s\n", "ciao");
-  ret = ft_printf("%29p%0151.162x%---53.46u%-139.26X" ,(void*)17894711340605174765lu,1565093748u,662758369u,3536629372u);
+  ret = ft_printf("%08.3i" , 8375);
   //ret = ft_printf("  %u    %%    %p    %x    %s    %i  ",  mx_u, &mx_i, mx_u, mx_s, mx_i);
   printf("|%i\n", ret);
 //   First line of code: {return test("%02.7X", 3267);}
@@ -75,7 +75,7 @@ static int				mx_i = 42;
 // First line of code: {return test("%-*.*s", -7, -3, "yolo");}
 // Test 495 (new2019_negstar_7) : FAILED.
 // First line of code: {return test();}
-  ret2 = printf("%29p%0151.162x%---53.46u%-139.26X" ,(void*)17894711340605174765lu,1565093748u,662758369u,3536629372u);
+  ret2 = printf("%08.3i", 8375);
   printf("|%i\n", ret2);
   return (0);
 }

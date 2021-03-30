@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/29 11:22:08 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 17:47:58 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,22 @@ int ft_eval_precision(t_print *tab, const char *format, int pos)
 	pos++;
 	tab->pnt = 1;
 	while (format[pos] == '0')
+	{
 		pos++;
+		tab->zero = 0;
+	}
 	if (ft_isdigit(format[pos]))
 	{
 		i = ft_atoi(&format[pos]);
 		pos += ft_len(i);
+		tab->zero = 0;
 	}
 	tab->prc = i;
 	if (format[pos] == '*')
+	{
 		pos = ft_eval_star(tab, format, pos);
+		tab->zero = 0;
+	}
 	return (pos);
 }
 
@@ -53,6 +60,7 @@ int ft_eval_dash(t_print *tab, const char *format, int pos)
 {
 	pos++;
 	tab->dash = 1;
+	tab->zero = 0;
 	while (format[pos] == '-' || format[pos] == '0')
 		pos++;
 	pos = ft_eval_width(tab, format, pos);
