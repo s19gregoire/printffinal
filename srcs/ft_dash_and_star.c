@@ -6,7 +6,7 @@
 /*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 17:47:58 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 18:08:01 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 			tab->prc = 0;
 			tab->pnt = 0;
 		}
+		else
+			tab->zero = 0;
 	}
 	if (format[pos] == '.')
 	{
@@ -99,6 +101,7 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 	{
 		tab->prc = ft_atoi(&format[pos]);
 		pos += ft_len(tab->prc);
+		tab->zero = 0;
 	}
 	if (format[pos] == '*')
 	{
@@ -108,6 +111,8 @@ int ft_eval_star(t_print *tab, const char *format, int pos)
 			tab->prc = 0;
 			tab->pnt = 0;
 		}
+		else
+			tab->zero = 0;
 		pos++;
 	}
 	return (pos);
