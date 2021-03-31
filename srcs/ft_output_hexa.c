@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 20:04:12 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/31 13:06:57 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_output_hexa_int(t_print *tab, int c)
 {
-	unsigned long long		j;
+	unsigned 	j;
 	int len;
 	char *num;
 
@@ -37,17 +37,16 @@ void	ft_output_hexa_int(t_print *tab, int c)
 	while(num && len-- > 0)
 		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
-	len = 0;
 	free(num);
 }
 
 void ft_output_pointer(t_print *tab)
 {
-	unsigned long long j;
+	unsigned long j;
 	int l;
 
 	l = 2;
-	j = va_arg(tab->args, unsigned long long);
+	j = va_arg(tab->args, unsigned long);
 	if (!(!j && tab->pnt))
 		l += ft_numlen_base(j, 16);
 	ft_update_tab(tab, l);

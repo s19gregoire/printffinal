@@ -6,7 +6,7 @@
 /*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 20:10:12 by mlazzare         ###   ########.fr       */
+/*   Updated: 2021/03/30 22:04:54 by mlazzare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ void ft_output_int(t_print *tab)
 	while(j && num[i])
 		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
-	len = 0;
 	free(num);
 }
