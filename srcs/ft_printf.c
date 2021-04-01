@@ -46,7 +46,7 @@ int	ft_printf(const char *format, ...)
 	int		r;
 
 	r = 0;
-	tab = (t_print*)malloc(sizeof(t_print));
+	tab = (t_print *)malloc(sizeof(t_print));
 	if (!tab)
 		return (-1);
 	ft_initialise_tab(tab);
