@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/10 08:05:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/01/24 14:37:26 by mlazzare         ###   ########.fr       */
+/*   Created: 2020/11/10 08:05:31 by gneve	           #+#    #+#             */
+/*   Updated: 2021/04/01 09:45:33 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_overflow(int sign)
 	return (0);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int						i;
 	int						sign;

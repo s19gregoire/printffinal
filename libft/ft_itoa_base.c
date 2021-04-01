@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 14:07:35 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/01/08 12:44:10 by mlazzare         ###   ########.fr       */
+/*   Created: 2020/11/23 14:07:35 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 09:47:23 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_itoa_base(char *str, unsigned long long n, int base, int c)
+char	*ft_itoa_base(char *str, unsigned long long n, int base, int c)
 {
 	int		i;
 

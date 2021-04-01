@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 08:54:37 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/01/26 15:33:05 by mlazzare         ###   ########.fr       */
+/*   Created: 2020/11/23 08:54:37 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 09:50:27 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ static int	word_count(const char *s, char c)
 
 static int	ft_words_len(const char *s, char c, int i)
 {
-	int l;
+	int	l;
 
 	l = 0;
 	while (s[i] && s[i] == c)
 		i++;
 	while (s[i] && s[i++] != c)
-			l++;
+		l++;
 	return (l);
 }
 
 static void	*freetab(char **arr)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (arr[++i])
@@ -50,10 +50,10 @@ static void	*freetab(char **arr)
 
 static void	*fill_arr(int words, const char *s, char c, char **arr)
 {
-	int i;
-	int j;
-	int k;
-	int l;
+	int	i;
+	int	j;
+	int	k;
+	int	l;
 
 	i = 0;
 	j = 0;
@@ -62,7 +62,8 @@ static void	*fill_arr(int words, const char *s, char c, char **arr)
 	{
 		j = 0;
 		l = ft_words_len(s, c, i);
-		if (!(arr[k] = (char *)malloc(sizeof(char) * (l + 1))))
+		arr[k] = (char *)malloc(sizeof(char) * (l + 1));
+		if (!(arr[k]))
 			return (freetab(arr));
 		while (s[i] && s[i] == c)
 			i++;
@@ -75,7 +76,7 @@ static void	*fill_arr(int words, const char *s, char c, char **arr)
 	return (arr);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**arr;
 	int		words;
@@ -83,7 +84,8 @@ char		**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = word_count(s, c);
-	if (!(arr = (char **)malloc(sizeof(char *) * ((words) + 1))))
+	arr = (char **)malloc(sizeof(char *) * ((words) + 1));
+	if (!(arr))
 		return (NULL);
 	arr = fill_arr(words, s, c, arr);
 	return (arr);

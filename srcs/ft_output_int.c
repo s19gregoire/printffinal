@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_output_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 22:04:54 by mlazzare         ###   ########.fr       */
+/*   Created: 2021/02/17 16:39:31 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 14:36:30 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-int ft_check_sign(t_print *tab, int j)
+int	ft_check_sign(t_print *tab, int j)
 {
 	if (j > MIN_INT)
 		tab->sign = 1;
 	return (j * -1);
 }
 
-void ft_write_zero(t_print *tab)
+void	ft_write_zero(t_print *tab)
 {
 	tab->is_zero = 1;
 	if ((tab->wdt && tab->zero) || tab->pnt)
@@ -33,10 +33,10 @@ void ft_write_zero(t_print *tab)
 		tab->tl += write(1, " ", 1);
 	tab->tl += write(1, "0", 1);
 	while (tab->dash && --tab->wdt > 0)
-	 	tab->tl += write(1, " ", 1);
+		tab->tl += write(1, " ", 1);
 }
 
-void ft_output_int(t_print *tab)
+void	ft_output_int(t_print *tab)
 {
 	int		i;
 	int		j;
@@ -56,7 +56,7 @@ void ft_output_int(t_print *tab)
 	len = ft_strlen(num);
 	ft_update_tab(tab, len);
 	ft_right_idupx(tab);
-	while(j && num[i])
+	while (j && num[i])
 		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
 	free(num);

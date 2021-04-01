@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_unsigned_int.c                           :+:      :+:    :+:   */
+/*   ft_output_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 22:05:13 by mlazzare         ###   ########.fr       */
+/*   Created: 2021/02/17 16:39:31 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 09:54:38 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
-char		*ft_unsigned_itoa(unsigned int nb)
+char	*ft_unsigned_itoa(unsigned int nb)
 {
 	char	*a;
 	int		l;
 
 	l = ft_len(nb);
-	if (!(a = (char *)malloc(sizeof(char) * (l + 1))))
+	a = (char *)malloc(sizeof(char) * (l + 1));
+	if (!a)
 		return (NULL);
 	a[l--] = '\0';
 	if (nb == 0)
@@ -32,8 +33,7 @@ char		*ft_unsigned_itoa(unsigned int nb)
 	return (a);
 }
 
-
-void ft_output_unsigned_int(t_print *tab)
+void	ft_output_unsigned_int(t_print *tab)
 {
 	int				i;
 	unsigned int	j;
@@ -51,7 +51,7 @@ void ft_output_unsigned_int(t_print *tab)
 	len = ft_len(j);
 	ft_update_tab(tab, len);
 	ft_right_idupx(tab);
-	while(num[i])
+	while (num[i])
 		tab->tl += write(1, &num[i++], 1);
 	ft_left_idupx(tab);
 	free(num);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_output_hexa_int.c                               :+:      :+:    :+:   */
+/*   ft_output_hexa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/31 13:06:57 by mlazzare         ###   ########.fr       */
+/*   Created: 2021/02/17 16:39:31 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 14:36:29 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	ft_output_hexa_int(t_print *tab, int c)
 {
-	unsigned 	j;
-	int len;
-	char *num;
+	unsigned int	j;
+	int				len;
+	char			*num;
 
 	j = va_arg(tab->args, unsigned);
 	if (!j)
@@ -25,25 +25,23 @@ void	ft_output_hexa_int(t_print *tab, int c)
 		ft_write_zero(tab);
 		return ;
 	}
-	//printf("j %lld\n", j);
 	len = ft_numlen_base(j, 16);
-	//printf("len %d\n", len);
-	num = (char*)malloc(sizeof(char) * (len + 1));
+	num = (char *)malloc(sizeof(char) * (len + 1));
 	if (!num)
 		return ;
 	num = ft_itoa_base(num, j, 16, c);
 	ft_update_tab(tab, len);
 	ft_right_idupx(tab);
-	while(num && len-- > 0)
+	while (num && len-- > 0)
 		tab->tl += write(1, &num[len], 1);
 	ft_left_idupx(tab);
 	free(num);
 }
 
-void ft_output_pointer(t_print *tab)
+void	ft_output_pointer(t_print *tab)
 {
-	unsigned long j;
-	int l;
+	unsigned long	j;
+	int				l;
 
 	l = 2;
 	j = va_arg(tab->args, unsigned long);

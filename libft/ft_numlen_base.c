@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/14 13:16:38 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/31 13:12:15 by mlazzare         ###   ########.fr       */
+/*   Created: 2020/10/14 13:16:38 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 09:48:34 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "limits.h"
 
-int ft_numlen_base(unsigned long n, int base)
+int	ft_numlen_base(unsigned long n, int base)
 {
 	int		i;
 
@@ -23,16 +23,6 @@ int ft_numlen_base(unsigned long n, int base)
 		i += 1;
 		return (i);
 	}
-	//if (n < LLONG_MIN)
-	//{
-	//	i += 1;
-	//	n *= -1;
-	//}
-	//if (n < 0)
-	//{
-	//	i += 1;
-	//	n *= -1;
-	//}
 	while (n > 0)
 	{
 		i++;
@@ -40,4 +30,3 @@ int ft_numlen_base(unsigned long n, int base)
 	}
 	return (i);
 }
-

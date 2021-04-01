@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eval_input.c                                    :+:      :+:    :+:   */
+/*   ft_format.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 11:33:39 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/26 11:51:17 by mlazzare         ###   ########.fr       */
+/*   Created: 2021/01/16 11:33:39 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 14:36:25 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int 	ft_eval_variable(t_print *tab, const char *format, int pos)
 	return (pos);
 }
 
-int ft_eval_format(t_print *tab, const char *format, int pos)
+int	ft_eval_format(t_print *tab, const char *format, int pos)
 {
 	while (!(ft_isalpha(format[pos])))
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_length.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gregoire <gregoire@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/17 16:39:31 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/03/30 18:22:25 by mlazzare         ###   ########.fr       */
+/*   Created: 2021/02/17 16:39:31 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 14:36:26 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_len(long n)
 	return (count);
 }
 
-int ft_update_tab_string(char *s, t_print *tab, int len)
+int	ft_update_tab_string(char *s, t_print *tab, int len)
 {
 	if (s)
 		len = ft_strlen(s);
@@ -40,7 +40,7 @@ int ft_update_tab_string(char *s, t_print *tab, int len)
 	return (len);
 }
 
-void ft_update_tab(t_print *tab, int len)
+void	ft_update_tab(t_print *tab, int len)
 {
 	if (tab->sign)
 	{
@@ -53,10 +53,10 @@ void ft_update_tab(t_print *tab, int len)
 	{
 		if (tab->prc > len)
 			tab->prc -= len;
-	  else
+		else
 			tab->prc = 0;
 		if (!tab->is_zero)
-				tab->wdt = tab->wdt - tab->prc - len;
+			tab->wdt = tab->wdt - tab->prc - len;
 	}
 	else if (tab->prc > tab->wdt)
 	{

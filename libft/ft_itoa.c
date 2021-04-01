@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlazzare <mlazzare@student.s19.be>         +#+  +:+       +#+        */
+/*   By: gneve <gneve@student.s19.be>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/23 14:07:35 by mlazzare          #+#    #+#             */
-/*   Updated: 2021/01/08 12:44:10 by mlazzare         ###   ########.fr       */
+/*   Created: 2020/11/23 14:07:35 by gneve             #+#    #+#             */
+/*   Updated: 2021/04/01 09:48:09 by gneve            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,16 @@ static int	n_len(long n)
 	return (count);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char	*a;
-	int		l;
-	long	long nb;
+	char		*a;
+	int			l;
+	long long	nb;
 
 	nb = n;
 	l = n_len(nb);
-	if (!(a = (char *)malloc(sizeof(char) * (l + 1))))
+	a = (char *)malloc(sizeof(char) * (l + 1));
+	if (!(a))
 		return (NULL);
 	a[l--] = '\0';
 	if (nb < 0)
